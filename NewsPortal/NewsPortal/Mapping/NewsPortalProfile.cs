@@ -23,6 +23,10 @@ namespace NewsPortal.Mapping
         CreateMap<PollAnswer, MPollAnswer>();
         CreateMap<PollAnswer, PollAnswerSearchRequest>().ReverseMap();
         CreateMap<PollAnswer, PollAnswerUpsertRequest>().ReverseMap();
+
+        CreateMap<Comment, MComment>();
+        CreateMap<Comment, CommentSearchRequest>().ReverseMap();
+        CreateMap<Comment, CommentUpsertRequest>().ReverseMap();
         }
     }
 }

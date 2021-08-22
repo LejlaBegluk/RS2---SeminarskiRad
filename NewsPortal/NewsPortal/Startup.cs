@@ -44,6 +44,7 @@ namespace NewsPortal
            // services.AddScoped<IBaseService, BaseService>();
             services.AddScoped<ICRUDService<MPoll, PollSearchRequest, PollUpsertRequest, PollUpsertRequest>, PollService>();
             services.AddScoped<ICRUDService<MPollAnswer, PollAnswerSearchRequest, PollAnswerUpsertRequest, PollAnswerUpsertRequest>, PollAnswerService>();
+            services.AddScoped<ICRUDService<MComment, CommentSearchRequest, CommentUpsertRequest, CommentUpsertRequest>, CommentService>();
 
             services.AddDbContext<PortalDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
