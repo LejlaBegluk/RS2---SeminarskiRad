@@ -10,7 +10,7 @@ namespace NewsPortal.WebAPI.Database
         public string Content { get; set; }
         public int Likes { get; set; }
         public DateTime CreateOn { get; set; }
-        public DateTime UpdateOn { get; set; }
+        public DateTime? UpdateOn { get; set; }
         public bool Active { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }

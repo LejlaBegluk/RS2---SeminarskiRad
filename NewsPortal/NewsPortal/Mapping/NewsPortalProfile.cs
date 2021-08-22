@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using NewsPortal.Model.Models.Request;
+using NewsPortal.Model.Request;
 using NewsPortal.WebAPI.Database;
 using NewsPortal.WebAPI.Model;
 using System;
@@ -15,6 +15,14 @@ namespace NewsPortal.Mapping
         CreateMap<Category, MCategory>();
         CreateMap<Category, CategorySearchRequest>().ReverseMap();
         CreateMap<Category, CategoryUpsertRequest>().ReverseMap();
+
+        CreateMap<Poll, MPoll>();
+        CreateMap<Poll, PollSearchRequest>().ReverseMap();
+        CreateMap<Poll, PollUpsertRequest>().ReverseMap();
+
+        CreateMap<PollAnswer, MPollAnswer>();
+        CreateMap<PollAnswer, PollAnswerSearchRequest>().ReverseMap();
+        CreateMap<PollAnswer, PollAnswerUpsertRequest>().ReverseMap();
         }
     }
 }

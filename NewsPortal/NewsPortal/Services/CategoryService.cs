@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Services.Users;
-using NewsPortal.Model.Models.Request;
+using NewsPortal.Model.Request;
 using NewsPortal.WebAPI.Database;
 using NewsPortal.WebAPI.Model;
 using System;

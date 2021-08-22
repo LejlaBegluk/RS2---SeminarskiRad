@@ -4,9 +4,8 @@ using System.Text;
 
 namespace NewsPortal.Model.Request
 {
-    public class CategorySearchRequest
+    public class PollSearchRequest
     {
-        public string Name { get; set; }
+        public string Question { get; set; }
     }
-
 }

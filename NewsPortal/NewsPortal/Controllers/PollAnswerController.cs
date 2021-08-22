@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewsPortal.Model.Request;
-using NewsPortal.WebAPI.Database;
 using NewsPortal.WebAPI.Model;
 using NewsPortal.WebAPI.Services;
 using System;
@@ -13,9 +12,9 @@ namespace NewsPortal.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : CRUDController<MCategory, CategorySearchRequest, CategoryUpsertRequest, CategoryUpsertRequest>
+    public class PollAnswerController : CRUDController<MPollAnswer, PollAnswerSearchRequest, PollAnswerUpsertRequest, PollAnswerUpsertRequest>
     {
-        public CategoryController(ICRUDService<MCategory, CategorySearchRequest, CategoryUpsertRequest, CategoryUpsertRequest> service) : base(service)
+        public PollAnswerController(ICRUDService<MPollAnswer, PollAnswerSearchRequest, PollAnswerUpsertRequest, PollAnswerUpsertRequest> service) : base(service)
         {
 
         }

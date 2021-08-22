@@ -13,12 +13,12 @@ using Microsoft.Extensions.Logging;
 using NewsPortal.Services;
 using Microsoft.EntityFrameworkCore;
 using NewsPortal.WebAPI.Services;
-using NewsPortal.Model.Models.Request;
 using NewsPortal.Models;
 using Microsoft.AspNetCore.Authentication;
 using NewsPortal.WebAPI.Security;
 using NewsPortal.WebAPI.Database;
 using NewsPortal.WebAPI.Model;
+using NewsPortal.Model.Request;
 
 namespace NewsPortal
 {
@@ -41,8 +41,9 @@ namespace NewsPortal
             services.AddControllers();
             services.AddScoped<IArticleService, ArticleService>();
             services.AddScoped<ICRUDService<MCategory, CategorySearchRequest, CategoryUpsertRequest, CategoryUpsertRequest>, CategoryService>();
-         //   services.AddScoped<IBaseService, BaseService>();
-            
+           // services.AddScoped<IBaseService, BaseService>();
+            services.AddScoped<ICRUDService<MPoll, PollSearchRequest, PollUpsertRequest, PollUpsertRequest>, PollService>();
+            services.AddScoped<ICRUDService<MPollAnswer, PollAnswerSearchRequest, PollAnswerUpsertRequest, PollAnswerUpsertRequest>, PollAnswerService>();
 
             services.AddDbContext<PortalDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
