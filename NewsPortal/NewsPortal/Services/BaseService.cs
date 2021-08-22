@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using Portal.Data.Entities;
+using Microsoft.EntityFrameworkCore;
+using NewsPortal.WebAPI.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,29 +8,25 @@ using System.Threading.Tasks;
 
 namespace NewsPortal.WebAPI.Services
 {
-    public class BaseService<TModel, TSearch, TDatabase> : IService<TModel, TSearch> where TDatabase : class
+    public class BaseService<TModel, TSearch, TDatabase> : IBaseService<TModel, TSearch> where TDatabase : class
     {
-        protected readonly PortalDbContext _context;
-        protected readonly IMapper _mapper;
+        protected PortalDbContext _context;
+        protected IMapper _mapper;
         public BaseService(PortalDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
-
         }
-        public virtual List<TModel> Get(TSearch search)
+        public virtual async Task<List<TModel>> Get(TSearch search)
         {
-            var list = _context.Set<TDatabase>().ToList();
-
+            var list = await _context.Set<TDatabase>().ToListAsync();
             return _mapper.Map<List<TModel>>(list);
         }
-
-        public virtual TModel GetById(int id)
+        public virtual async Task<TModel> GetById(int ID)
         {
-            var entity = _context.Set<TDatabase>().Find(id);
-
+            var entity = await _context.Set<TDatabase>().FindAsync(ID);
             return _mapper.Map<TModel>(entity);
         }
-
     }
+
 }

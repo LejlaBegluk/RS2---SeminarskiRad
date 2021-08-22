@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NewsPortal.Models
+namespace NewsPortal.WebAPI.Database
 {
     public class ArticlePhoto
     {

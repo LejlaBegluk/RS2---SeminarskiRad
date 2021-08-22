@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace NewsPortal.Models
+namespace NewsPortal.WebAPI.Database
 {
     public class Poll
     {

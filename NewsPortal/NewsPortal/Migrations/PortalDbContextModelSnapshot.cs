@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Portal.Data.Entities;
+using NewsPortal.WebAPI.Database;
 
-namespace NewsPortal.Model.Migrations
+namespace NewsPortal.WebAPI.Migrations
 {
     [DbContext(typeof(PortalDbContext))]
     partial class PortalDbContextModelSnapshot : ModelSnapshot
@@ -19,7 +19,7 @@ namespace NewsPortal.Model.Migrations
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("NewsPortal.Models.Article", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.Article", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -44,7 +44,7 @@ namespace NewsPortal.Model.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdatedOn")
+                    b.Property<DateTime>("UpdateOn")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
@@ -59,7 +59,7 @@ namespace NewsPortal.Model.Migrations
                     b.ToTable("Articles");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.ArticlePhoto", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.ArticlePhoto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -69,7 +69,7 @@ namespace NewsPortal.Model.Migrations
                     b.Property<int>("ArticleId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DateAdded")
+                    b.Property<DateTime>("CreateOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -91,7 +91,7 @@ namespace NewsPortal.Model.Migrations
                     b.ToTable("ArticlePhotos");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.Category", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -116,7 +116,7 @@ namespace NewsPortal.Model.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.Comment", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.Comment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -144,7 +144,7 @@ namespace NewsPortal.Model.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.Country", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.Country", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -162,14 +162,14 @@ namespace NewsPortal.Model.Migrations
                     b.ToTable("Countries");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.Photo", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.Photo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateAdded")
+                    b.Property<DateTime>("CreateOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -191,7 +191,7 @@ namespace NewsPortal.Model.Migrations
                     b.ToTable("UserPhotos");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.Poll", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.Poll", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -201,13 +201,13 @@ namespace NewsPortal.Model.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("CreateDate")
+                    b.Property<DateTime>("CreateOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Question")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime>("UpdateOn")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
@@ -220,7 +220,7 @@ namespace NewsPortal.Model.Migrations
                     b.ToTable("Polls");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.PollAnswer", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.PollAnswer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -244,7 +244,7 @@ namespace NewsPortal.Model.Migrations
                     b.ToTable("PollAnswer");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.Role", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.Role", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -262,7 +262,7 @@ namespace NewsPortal.Model.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.User", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -272,7 +272,7 @@ namespace NewsPortal.Model.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime>("CreateOn")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("EditorId")
@@ -293,6 +293,12 @@ namespace NewsPortal.Model.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordSalt")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
@@ -306,14 +312,14 @@ namespace NewsPortal.Model.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.UserRole", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.UserRole", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreateDate")
+                    b.Property<DateTime>("CreateOn")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("RoleId")
@@ -331,15 +337,15 @@ namespace NewsPortal.Model.Migrations
                     b.ToTable("UserRoles");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.Article", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.Article", b =>
                 {
-                    b.HasOne("NewsPortal.Models.Category", "Category")
+                    b.HasOne("NewsPortal.WebAPI.Database.Category", "Category")
                         .WithMany("Articles")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NewsPortal.Models.User", "User")
+                    b.HasOne("NewsPortal.WebAPI.Database.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -350,9 +356,9 @@ namespace NewsPortal.Model.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.ArticlePhoto", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.ArticlePhoto", b =>
                 {
-                    b.HasOne("NewsPortal.Models.Article", "Article")
+                    b.HasOne("NewsPortal.WebAPI.Database.Article", "Article")
                         .WithMany("ArticlePhotos")
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -361,15 +367,15 @@ namespace NewsPortal.Model.Migrations
                     b.Navigation("Article");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.Comment", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.Comment", b =>
                 {
-                    b.HasOne("NewsPortal.Models.Article", "Article")
+                    b.HasOne("NewsPortal.WebAPI.Database.Article", "Article")
                         .WithMany("Comments")
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NewsPortal.Models.User", "User")
+                    b.HasOne("NewsPortal.WebAPI.Database.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -380,9 +386,9 @@ namespace NewsPortal.Model.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.Photo", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.Photo", b =>
                 {
-                    b.HasOne("NewsPortal.Models.User", "User")
+                    b.HasOne("NewsPortal.WebAPI.Database.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -391,9 +397,9 @@ namespace NewsPortal.Model.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.Poll", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.Poll", b =>
                 {
-                    b.HasOne("NewsPortal.Models.User", "User")
+                    b.HasOne("NewsPortal.WebAPI.Database.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -402,9 +408,9 @@ namespace NewsPortal.Model.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.PollAnswer", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.PollAnswer", b =>
                 {
-                    b.HasOne("NewsPortal.Models.Poll", "Poll")
+                    b.HasOne("NewsPortal.WebAPI.Database.Poll", "Poll")
                         .WithMany("PollAnswers")
                         .HasForeignKey("PollId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -413,24 +419,24 @@ namespace NewsPortal.Model.Migrations
                     b.Navigation("Poll");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.User", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.User", b =>
                 {
-                    b.HasOne("NewsPortal.Models.User", "Editor")
+                    b.HasOne("NewsPortal.WebAPI.Database.User", "Editor")
                         .WithMany()
                         .HasForeignKey("EditorId");
 
                     b.Navigation("Editor");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.UserRole", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.UserRole", b =>
                 {
-                    b.HasOne("NewsPortal.Models.Role", "Role")
+                    b.HasOne("NewsPortal.WebAPI.Database.Role", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NewsPortal.Models.User", "User")
+                    b.HasOne("NewsPortal.WebAPI.Database.User", "User")
                         .WithMany("UserRoles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -441,24 +447,24 @@ namespace NewsPortal.Model.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.Article", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.Article", b =>
                 {
                     b.Navigation("ArticlePhotos");
 
                     b.Navigation("Comments");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.Category", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.Category", b =>
                 {
                     b.Navigation("Articles");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.Poll", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.Poll", b =>
                 {
                     b.Navigation("PollAnswers");
                 });
 
-            modelBuilder.Entity("NewsPortal.Models.User", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.User", b =>
                 {
                     b.Navigation("UserRoles");
                 });

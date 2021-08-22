@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace NewsPortal.Models
+namespace NewsPortal.WebAPI.Model
 {
 
-    public class User 
+    public class MUser 
     {
         public int Id { get; set; }
         public byte[] Image { get; set; }
@@ -14,12 +14,10 @@ namespace NewsPortal.Models
         public string Username { get; set; }
         public string Email { get; set; }
         public DateTime BirthDate { get; set; }
-        public DateTime CreateOn { get; set; }
+        public DateTime CreatedOn { get; set; }
         public bool IsActive { get; set; }
         public int? EditorId { get; set; }
-        public User Editor { get; set; }
-        public string PasswordHash { get; set; }
-        public string PasswordSalt { get; set; }
+        public MUser Editor { get; set; }
 
         public ICollection<UserRole> UserRoles { get; set; }
 

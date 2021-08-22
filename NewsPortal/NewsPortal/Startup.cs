@@ -11,8 +11,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NewsPortal.Services;
-using Portal.Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using NewsPortal.WebAPI.Services;
+using NewsPortal.Model.Models.Request;
+using NewsPortal.Models;
+using Microsoft.AspNetCore.Authentication;
+using NewsPortal.WebAPI.Security;
+using NewsPortal.WebAPI.Database;
+using NewsPortal.WebAPI.Model;
+
 namespace NewsPortal
 {
     public class Startup
@@ -27,12 +34,22 @@ namespace NewsPortal
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(options =>
+            {
+                options.CustomSchemaIds(type => type.ToString());
+            });
             services.AddControllers();
             services.AddScoped<IArticleService, ArticleService>();
+            services.AddScoped<ICRUDService<MCategory, CategorySearchRequest, CategoryUpsertRequest, CategoryUpsertRequest>, CategoryService>();
+         //   services.AddScoped<IBaseService, BaseService>();
+            
+
             services.AddDbContext<PortalDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
             services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<IUserService, UserService>();
+            services.AddAuthentication("BasicAuthentication")
+            .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

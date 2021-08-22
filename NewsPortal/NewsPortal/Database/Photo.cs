@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NewsPortal.Models
+namespace NewsPortal.WebAPI.Database
 {
     public class Photo
     {

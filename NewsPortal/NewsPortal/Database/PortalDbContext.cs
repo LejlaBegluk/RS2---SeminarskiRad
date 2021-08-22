@@ -2,7 +2,7 @@
 using NewsPortal.Models;
 using System;
 
-namespace Portal.Data.Entities
+namespace NewsPortal.WebAPI.Database
 {
     public class PortalDbContext :DbContext
     {

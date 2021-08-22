@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace NewsPortal.WebAPI.Services
 {
-    public interface ICRUDService<TModel, TSearch, TInsert, TUpdate> : IService<TModel, TSearch>
+    public interface ICRUDService<T, TSearch, TInsert, TUpdate> : IBaseService<T, TSearch>
     {
-        TModel Insert(TInsert request);
-
-        TModel Update(int id, TUpdate request);
+        Task<T> Insert(TInsert request);
+        Task<T> Update(int ID, TUpdate request);
+        Task<bool> Delete(int ID);
     }
+
 }

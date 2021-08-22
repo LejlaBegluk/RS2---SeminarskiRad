@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace NewsPortal.Models
+namespace NewsPortal.WebAPI.Database
 {
 
     public class User 
@@ -21,7 +21,7 @@ namespace NewsPortal.Models
         public string PasswordHash { get; set; }
         public string PasswordSalt { get; set; }
 
-        public ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
 
 
     }

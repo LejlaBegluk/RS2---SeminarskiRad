@@ -11,29 +11,24 @@ namespace NewsPortal.WebAPI.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class BaseController<T, TSearch> : ControllerBase
+    public class BaseController<T, Tsearch> : ControllerBase
     {
-        private readonly IService<T, TSearch> _service;
-
-        public BaseController(IService<T, TSearch> service)
+        private readonly IBaseService<T, Tsearch> _service;
+        public BaseController(IBaseService<T, Tsearch> service)
         {
             _service = service;
         }
-
-
+        //[Authorize]
         [HttpGet]
-        //[AllowAnonymous]
-        public List<T> Get([FromQuery] TSearch search)
+        public async Task<List<T>> Get([FromQuery] Tsearch search)
         {
-            var list = _service.Get(search);
-            return (list);
+            return await _service.Get(search);
         }
-
-        [HttpGet("{id}")]
-        //[AllowAnonymous]
-        public T GetById(int id)
+        //[Authorize]
+        [HttpGet("{ID}")]
+        public async Task<T> GetById(int ID)
         {
-            return _service.GetById(id);
+            return await _service.GetById(ID);
         }
     }
 }
