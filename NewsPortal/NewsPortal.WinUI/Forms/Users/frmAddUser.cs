@@ -6,16 +6,13 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace NewsPortal.WinUI.Users
+namespace NewsPortal.WinUI.Forms.Users
 {
-    public partial class fmfLogin : Form
+    public partial class frmAddUser : Form
     {
-        private APIService _api = new APIService("Uposlenik");
-        public fmfLogin()
+        public frmAddUser()
         {
             InitializeComponent();
         }
-
-
     }
 }

@@ -7,19 +7,43 @@ using System.Threading.Tasks;
 using NewsPortal.Model;
 using System.Windows.Forms;
 using Microsoft.EntityFrameworkCore;
+using NewsPortal.WebAPI.Model;
+using NewsPortal.Model.Request;
 
 namespace NewsPortal.WinUI
 {
     class APIService
     {
         private string _ruta;
-        public static string username;
-        public static string pass;
+        public static string Username;
+        public static string Password;
         public APIService(string ruta)
         {
             _ruta = ruta;
         }
 
+        public async Task<MUser> Authenticate(UserAuthenticationRequest request)
+        {
+            try
+            {
+                var url = $"{Properties.Settings.Default.APIUrl}/User/Authenticate";
+                return await url.WithBasicAuth(Username, Password).PostJsonAsync(request).ReceiveJson<MUser>();
+            }
+            catch (FlurlHttpException ex)
+            {
+                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+
+                var stringBuilder = new StringBuilder();
+                if (errors != null) {
+                foreach (var error in errors)
+                {
+                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                }
+                }
+                MessageBox.Show(stringBuilder.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return default(MUser);
+            }
+        }
         public async Task<T> Get<T>(object search)
         {
             var url = $"{Properties.Settings.Default.APIUrl}/{_ruta}";
@@ -31,7 +55,7 @@ namespace NewsPortal.WinUI
 
             }
 
-            var result = await url.WithBasicAuth(username, pass).GetJsonAsync<T>();
+            var result = await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
             return result;
 
         }
@@ -39,7 +63,7 @@ namespace NewsPortal.WinUI
         public async Task<T> GetById<T>(int? id)
         {
             var url = $"{Properties.Settings.Default.APIUrl}/{_ruta}/{id}";
-            var result = await url.WithBasicAuth(username, pass).GetJsonAsync<T>();
+            var result = await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
             return result;
         }
 
