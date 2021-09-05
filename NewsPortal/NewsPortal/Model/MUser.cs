@@ -19,7 +19,7 @@ namespace NewsPortal.WebAPI.Model
         public int? EditorId { get; set; }
         public MUser Editor { get; set; }
 
-        public ICollection<UserRole> UserRoles { get; set; }
+        public ICollection<MUserRole> UserRoles { get; set; }
 
 
     }

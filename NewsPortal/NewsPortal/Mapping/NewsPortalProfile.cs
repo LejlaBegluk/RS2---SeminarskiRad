@@ -27,6 +27,15 @@ namespace NewsPortal.Mapping
         CreateMap<Comment, MComment>();
         CreateMap<Comment, CommentSearchRequest>().ReverseMap();
         CreateMap<Comment, CommentUpsertRequest>().ReverseMap();
+
+        CreateMap<User, MUser>();
+        CreateMap<User, UserSearchRequest>().ReverseMap();
+        CreateMap<User, UserUpsertRequest>().ReverseMap();
+
+        CreateMap<UserRole, MUserRole>();
+        CreateMap<Role, MRole>();
+            // CreateMap<User, UserSearchRequest>().ReverseMap();
+            //  CreateMap<User, UserUpsertRequest>().ReverseMap();
         }
     }
 }

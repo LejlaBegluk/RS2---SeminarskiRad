@@ -38,7 +38,8 @@ namespace NewsPortal
             {
                 options.CustomSchemaIds(type => type.ToString());
             });
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
             services.AddScoped<IArticleService, ArticleService>();
             services.AddScoped<ICRUDService<MCategory, CategorySearchRequest, CategoryUpsertRequest, CategoryUpsertRequest>, CategoryService>();
            // services.AddScoped<IBaseService, BaseService>();

@@ -43,25 +43,32 @@ namespace NewsPortal.WinUI.Forms.Users
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
-            APIService.Username = txtUserName.Text;
-            APIService.Password = txtPassword.Text;
-
-            var request = new UserAuthenticationRequest()
+            try
             {
-                Username = APIService.Username,
-                Password = APIService.Password
-            };
+                APIService.Username = txtUserName.Text;
+                APIService.Password = txtPassword.Text;
 
-            var user = await _api.Authenticate(request);
+                var request = new UserAuthenticationRequest()
+                {
+                    Username = APIService.Username,
+                    Password = APIService.Password
+                };
 
-            if (user != null)
-            {
-                LoadPanel(user);
-                this.Hide();
+                var user = await _api.Authenticate(request);
+
+                if (user != null)
+                {
+                    LoadPanel(user);
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Wrong Username Or Password!");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Wrong Username Or Password!");
+                MessageBox.Show(ex.Message, "Authentikacija", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

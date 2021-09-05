@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NewsPortal.WebAPI.Model
 {
-    public class UserRole 
+    public class MUserRole 
     {
         public int Id { get; set; }
         public int UserId { get; set; }

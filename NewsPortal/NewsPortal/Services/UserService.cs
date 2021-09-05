@@ -60,7 +60,7 @@ namespace NewsPortal.WebAPI.Services
             {
                 var role = new Database.UserRole()
                 {
-                    Id = entity.Id,
+                    UserId = entity.Id,
                     RoleId = roleID
                 };
 
