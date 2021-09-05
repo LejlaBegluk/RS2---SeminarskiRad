@@ -27,11 +27,11 @@ namespace NewsPortal.WinUI
             public async Task<T> Get<T>(object search)
             {
                 var url = $"{Properties.Settings.Default.APIUrl}/{_route}";
-            /*    if (search != null)
+                if (search != null)
                 {
                     url += "?";
                     url += await search.ToQueryString();
-                }*/
+                }
                 var result = await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
                 return result;
             }

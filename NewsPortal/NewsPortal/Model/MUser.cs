@@ -20,7 +20,7 @@ namespace NewsPortal.WebAPI.Model
         public MUser Editor { get; set; }
 
         public ICollection<MUserRole> UserRoles { get; set; }
-
-
+        public string Active { get; set; }
+        public string Uloga { get; set; }
     }
 }

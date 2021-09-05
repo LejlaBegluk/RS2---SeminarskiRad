@@ -72,6 +72,7 @@ namespace NewsPortal.WinUI.Forms.Users
             this.pretragaToolStripMenuItem.Name = "pretragaToolStripMenuItem";
             this.pretragaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pretragaToolStripMenuItem.Text = "Pretraga";
+            this.pretragaToolStripMenuItem.Click += new System.EventHandler(this.pretragaToolStripMenuItem_Click);
             // 
             // noviKorisnikToolStripMenuItem
             // 

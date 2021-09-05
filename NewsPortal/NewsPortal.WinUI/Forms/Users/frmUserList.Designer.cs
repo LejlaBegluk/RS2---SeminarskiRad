@@ -29,12 +29,136 @@ namespace NewsPortal.WinUI.Forms.Users
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnPonisti = new System.Windows.Forms.Button();
+            this.btnPretraga = new System.Windows.Forms.Button();
+            this.txtPrezime = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtIme = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Korisnici = new System.Windows.Forms.GroupBox();
+            this.dgvUsers = new System.Windows.Forms.DataGridView();
+            this.groupBox1.SuspendLayout();
+            this.Korisnici.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnPonisti);
+            this.groupBox1.Controls.Add(this.btnPretraga);
+            this.groupBox1.Controls.Add(this.txtPrezime);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.txtIme);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(4, 26);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(784, 101);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Pretraga";
+            // 
+            // btnPonisti
+            // 
+            this.btnPonisti.Location = new System.Drawing.Point(573, 72);
+            this.btnPonisti.Name = "btnPonisti";
+            this.btnPonisti.Size = new System.Drawing.Size(75, 23);
+            this.btnPonisti.TabIndex = 5;
+            this.btnPonisti.Text = "Ponisti";
+            this.btnPonisti.UseVisualStyleBackColor = true;
+            // 
+            // btnPretraga
+            // 
+            this.btnPretraga.Location = new System.Drawing.Point(492, 72);
+            this.btnPretraga.Name = "btnPretraga";
+            this.btnPretraga.Size = new System.Drawing.Size(75, 23);
+            this.btnPretraga.TabIndex = 4;
+            this.btnPretraga.Text = "Pretraga";
+            this.btnPretraga.UseVisualStyleBackColor = true;
+            this.btnPretraga.Click += new System.EventHandler(this.btnPretraga_Click);
+            // 
+            // txtPrezime
+            // 
+            this.txtPrezime.Location = new System.Drawing.Point(437, 33);
+            this.txtPrezime.Name = "txtPrezime";
+            this.txtPrezime.Size = new System.Drawing.Size(228, 23);
+            this.txtPrezime.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(369, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 15);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Prezime";
+            // 
+            // txtIme
+            // 
+            this.txtIme.Location = new System.Drawing.Point(60, 33);
+            this.txtIme.Name = "txtIme";
+            this.txtIme.Size = new System.Drawing.Size(228, 23);
+            this.txtIme.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(27, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Ime";
+            // 
+            // Korisnici
+            // 
+            this.Korisnici.Controls.Add(this.dgvUsers);
+            this.Korisnici.Location = new System.Drawing.Point(4, 158);
+            this.Korisnici.Name = "Korisnici";
+            this.Korisnici.Size = new System.Drawing.Size(784, 280);
+            this.Korisnici.TabIndex = 1;
+            this.Korisnici.TabStop = false;
+            this.Korisnici.Text = "Korisnici";
+            // 
+            // dgvUsers
+            // 
+            this.dgvUsers.AllowUserToAddRows = false;
+            this.dgvUsers.AllowUserToDeleteRows = false;
+            this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUsers.Location = new System.Drawing.Point(0, 22);
+            this.dgvUsers.Name = "dgvUsers";
+            this.dgvUsers.ReadOnly = true;
+            this.dgvUsers.RowTemplate.Height = 25;
+            this.dgvUsers.Size = new System.Drawing.Size(778, 243);
+            this.dgvUsers.TabIndex = 0;
+            // 
+            // frmUserList
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Korisnici);
+            this.Controls.Add(this.groupBox1);
+            this.Name = "frmUserList";
             this.Text = "frmUserList";
+            this.Load += new System.EventHandler(this.frmUserList_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.Korisnici.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnPonisti;
+        private System.Windows.Forms.Button btnPretraga;
+        private System.Windows.Forms.TextBox txtPrezime;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtIme;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox Korisnici;
+        private System.Windows.Forms.DataGridView dgvUsers;
     }
 }

@@ -13,14 +13,23 @@ namespace NewsPortal.WinUI.Forms.Users
     {
         public frmAdminIndex(WebAPI.Model.MUser user)
         {
+
             InitializeComponent();
         }
 
         private void noviKorisnikToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var m = new frmAddUser();
-            m.Show();
+            var frm = new frmAddUser();
+           // frm.MdiParent = this;
+            frm.Show();
             //PanelHelper.SwapPanels(this.Parent, this, new frmAddUser());
+        }
+
+        private void pretragaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmUserList();
+          //  frm.MdiParent = this;
+            frm.Show();
         }
     }
 }

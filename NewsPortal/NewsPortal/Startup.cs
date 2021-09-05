@@ -46,11 +46,16 @@ namespace NewsPortal
             services.AddScoped<ICRUDService<MPoll, PollSearchRequest, PollUpsertRequest, PollUpsertRequest>, PollService>();
             services.AddScoped<ICRUDService<MPollAnswer, PollAnswerSearchRequest, PollAnswerUpsertRequest, PollAnswerUpsertRequest>, PollAnswerService>();
             services.AddScoped<ICRUDService<MComment, CommentSearchRequest, CommentUpsertRequest, CommentUpsertRequest>, CommentService>();
+            services.AddScoped<ICRUDService<MUser, UserSearchRequest, UserUpsertRequest, UserUpsertRequest>, UserService>();
+            services.AddScoped<ICRUDService<MUserRole, UserRoleSearchRequest, UserRoleUpsertRequest, UserRoleUpsertRequest>, UserRoleService>();
+            services.AddScoped<ICRUDService<MRole, RoleSearchRequest, RoleUpsertRequest, RoleUpsertRequest>, RoleService>();
+
 
             services.AddDbContext<PortalDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IUserService, UserService>();
+
             services.AddAuthentication("BasicAuthentication")
             .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
         }
