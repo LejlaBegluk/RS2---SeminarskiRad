@@ -90,7 +90,7 @@ namespace NewsPortal.WinUI.Forms.Users
             dgvUsers.DataSource = result.ToList();
         }
 
-        private void dgvUserList_MouseDoubleClick(object sender, MouseEventArgs e)
+       private void dgvUserList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
            
             int idKorisnika = int.Parse(dgvUsers.SelectedRows[0].Cells[0].Value.ToString());

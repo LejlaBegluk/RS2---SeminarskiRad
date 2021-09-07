@@ -70,14 +70,14 @@ namespace NewsPortal.WinUI.Forms.Users
             // pretragaToolStripMenuItem
             // 
             this.pretragaToolStripMenuItem.Name = "pretragaToolStripMenuItem";
-            this.pretragaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pretragaToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.pretragaToolStripMenuItem.Text = "Pretraga";
             this.pretragaToolStripMenuItem.Click += new System.EventHandler(this.pretragaToolStripMenuItem_Click);
             // 
             // noviKorisnikToolStripMenuItem
             // 
             this.noviKorisnikToolStripMenuItem.Name = "noviKorisnikToolStripMenuItem";
-            this.noviKorisnikToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.noviKorisnikToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.noviKorisnikToolStripMenuItem.Text = "Novi korisnik";
             this.noviKorisnikToolStripMenuItem.Click += new System.EventHandler(this.noviKorisnikToolStripMenuItem_Click);
             // 
@@ -93,14 +93,16 @@ namespace NewsPortal.WinUI.Forms.Users
             // pretragaToolStripMenuItem1
             // 
             this.pretragaToolStripMenuItem1.Name = "pretragaToolStripMenuItem1";
-            this.pretragaToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
+            this.pretragaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.pretragaToolStripMenuItem1.Text = "Pretraga";
+            this.pretragaToolStripMenuItem1.Click += new System.EventHandler(this.pretragaToolStripMenuItem1_Click);
             // 
             // novaKategorijaToolStripMenuItem
             // 
             this.novaKategorijaToolStripMenuItem.Name = "novaKategorijaToolStripMenuItem";
-            this.novaKategorijaToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.novaKategorijaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.novaKategorijaToolStripMenuItem.Text = "Nova kategorija";
+            this.novaKategorijaToolStripMenuItem.Click += new System.EventHandler(this.novaKategorijaToolStripMenuItem_Click);
             // 
             // članciToolStripMenuItem
             // 

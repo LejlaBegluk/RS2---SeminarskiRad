@@ -1,4 +1,5 @@
-﻿using NewsPortal.WinUI.Helpers;
+﻿using NewsPortal.WinUI.Forms.Categories;
+using NewsPortal.WinUI.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,6 +30,19 @@ namespace NewsPortal.WinUI.Forms.Users
         {
             var frm = new frmUserList();
           //  frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void pretragaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            var frm = new frmCategoryList();
+            //  frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void novaKategorijaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmAddCategory();
             frm.Show();
         }
     }

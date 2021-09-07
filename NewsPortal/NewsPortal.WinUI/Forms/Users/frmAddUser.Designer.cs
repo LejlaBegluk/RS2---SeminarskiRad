@@ -190,8 +190,6 @@ namespace NewsPortal.WinUI.Forms.Users
             this.btnSave.Text = "Spremi";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            this.Load += new System.EventHandler(this.frmAddUser_Load);
-
             // 
             // btnCancel
             // 
@@ -201,6 +199,7 @@ namespace NewsPortal.WinUI.Forms.Users
             this.btnCancel.TabIndex = 18;
             this.btnCancel.Text = "Odustani";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // cbRole
             // 
@@ -257,6 +256,7 @@ namespace NewsPortal.WinUI.Forms.Users
             this.Controls.Add(this.label1);
             this.Name = "frmAddUser";
             this.Text = "frmAddUser";
+            this.Load += new System.EventHandler(this.frmAddUser_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

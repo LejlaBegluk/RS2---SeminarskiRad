@@ -169,5 +169,12 @@ namespace NewsPortal.WinUI.Forms.Users
                 }
             }
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            var frm = new frmUserList();
+            this.Close();
+            frm.Show();
+        }
     }
 }

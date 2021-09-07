@@ -68,12 +68,14 @@ namespace NewsPortal.WinUI.Forms.Users
             this.pretragaToolStripMenuItem.Name = "pretragaToolStripMenuItem";
             this.pretragaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pretragaToolStripMenuItem.Text = "Pretraga";
+            this.pretragaToolStripMenuItem.Click += new System.EventHandler(this.pretragaToolStripMenuItem_Click);
             // 
             // novaKategorijaToolStripMenuItem
             // 
             this.novaKategorijaToolStripMenuItem.Name = "novaKategorijaToolStripMenuItem";
             this.novaKategorijaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.novaKategorijaToolStripMenuItem.Text = "Nova kategorija";
+            this.novaKategorijaToolStripMenuItem.Click += new System.EventHandler(this.novaKategorijaToolStripMenuItem_Click_1);
             // 
             // članciToolStripMenuItem
             // 
@@ -87,13 +89,13 @@ namespace NewsPortal.WinUI.Forms.Users
             // pretragaToolStripMenuItem1
             // 
             this.pretragaToolStripMenuItem1.Name = "pretragaToolStripMenuItem1";
-            this.pretragaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.pretragaToolStripMenuItem1.Size = new System.Drawing.Size(136, 22);
             this.pretragaToolStripMenuItem1.Text = "Pretraga";
             // 
             // noviČlanakToolStripMenuItem
             // 
             this.noviČlanakToolStripMenuItem.Name = "noviČlanakToolStripMenuItem";
-            this.noviČlanakToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.noviČlanakToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.noviČlanakToolStripMenuItem.Text = "Novi članak";
             // 
             // anketeToolStripMenuItem
@@ -108,13 +110,13 @@ namespace NewsPortal.WinUI.Forms.Users
             // pretragaToolStripMenuItem2
             // 
             this.pretragaToolStripMenuItem2.Name = "pretragaToolStripMenuItem2";
-            this.pretragaToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.pretragaToolStripMenuItem2.Size = new System.Drawing.Size(140, 22);
             this.pretragaToolStripMenuItem2.Text = "Pretraga";
             // 
             // novaAnketaToolStripMenuItem
             // 
             this.novaAnketaToolStripMenuItem.Name = "novaAnketaToolStripMenuItem";
-            this.novaAnketaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.novaAnketaToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.novaAnketaToolStripMenuItem.Text = "Nova anketa";
             // 
             // frmEditorIndex
