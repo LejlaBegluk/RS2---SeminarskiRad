@@ -42,12 +42,15 @@ namespace NewsPortal.WinUI.Forms.Users
             this.label3 = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.lbUsername = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpBirthDate = new System.Windows.Forms.DateTimePicker();
             this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
             this.txtConfirmPass = new System.Windows.Forms.TextBox();
             this.lbConfirmPass = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.cbRole = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.chbActive = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -155,12 +158,12 @@ namespace NewsPortal.WinUI.Forms.Users
             this.lbUsername.TabIndex = 8;
             this.lbUsername.Text = "Korisničko ime";
             // 
-            // dateTimePicker1
+            // dtpBirthDate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(243, 235);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
-            this.dateTimePicker1.TabIndex = 14;
+            this.dtpBirthDate.Location = new System.Drawing.Point(243, 235);
+            this.dtpBirthDate.Name = "dtpBirthDate";
+            this.dtpBirthDate.Size = new System.Drawing.Size(200, 23);
+            this.dtpBirthDate.TabIndex = 14;
             // 
             // txtConfirmPass
             // 
@@ -180,33 +183,65 @@ namespace NewsPortal.WinUI.Forms.Users
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(243, 359);
+            this.btnSave.Location = new System.Drawing.Point(243, 379);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 17;
             this.btnSave.Text = "Spremi";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.Load += new System.EventHandler(this.frmAddUser_Load);
+
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(368, 359);
+            this.btnCancel.Location = new System.Drawing.Point(368, 379);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 18;
             this.btnCancel.Text = "Odustani";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
+            // cbRole
+            // 
+            this.cbRole.FormattingEnabled = true;
+            this.cbRole.Location = new System.Drawing.Point(242, 350);
+            this.cbRole.Name = "cbRole";
+            this.cbRole.Size = new System.Drawing.Size(201, 23);
+            this.cbRole.TabIndex = 19;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(123, 353);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 15);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Uloga";
+            // 
+            // chbActive
+            // 
+            this.chbActive.AutoSize = true;
+            this.chbActive.Location = new System.Drawing.Point(449, 354);
+            this.chbActive.Name = "chbActive";
+            this.chbActive.Size = new System.Drawing.Size(66, 19);
+            this.chbActive.TabIndex = 21;
+            this.chbActive.Text = "Aktivan";
+            this.chbActive.UseVisualStyleBackColor = true;
+            // 
             // frmAddUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.chbActive);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cbRole);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtConfirmPass);
             this.Controls.Add(this.lbConfirmPass);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dtpBirthDate);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.lbPassword);
             this.Controls.Add(this.label3);
@@ -242,11 +277,14 @@ namespace NewsPortal.WinUI.Forms.Users
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label lbUsername;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpBirthDate;
         private System.Windows.Forms.PageSetupDialog pageSetupDialog1;
         private System.Windows.Forms.TextBox txtConfirmPass;
         private System.Windows.Forms.Label lbConfirmPass;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.ComboBox cbRole;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox chbActive;
     }
 }

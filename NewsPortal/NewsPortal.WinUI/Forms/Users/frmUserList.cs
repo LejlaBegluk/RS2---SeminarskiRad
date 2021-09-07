@@ -24,7 +24,7 @@ namespace NewsPortal.WinUI.Forms.Users
 
         }
 
-        private async void btnPretraga_Click(object sender, EventArgs e)
+            private async void btnPretraga_Click(object sender, EventArgs e)
         {
             UserSearchRequest search = new UserSearchRequest()
             {
@@ -36,6 +36,8 @@ namespace NewsPortal.WinUI.Forms.Users
             {
                 if (item.IsActive == true)
                     item.Active = "DA";
+                else
+                    item.Active = "NE";
 
                 var userrole = result2.Where(x => x.UserId == item.Id).FirstOrDefault();
                 var role = await _role.GetById<MRole>(userrole.RoleId);
@@ -87,5 +89,16 @@ namespace NewsPortal.WinUI.Forms.Users
 
             dgvUsers.DataSource = result.ToList();
         }
+
+        private void dgvUserList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+           
+            int idKorisnika = int.Parse(dgvUsers.SelectedRows[0].Cells[0].Value.ToString());
+            frmAddUser frm = new frmAddUser(idKorisnika);
+            frm.ShowDialog();
+            this.Close();
+        }
+
+      
     }
 }

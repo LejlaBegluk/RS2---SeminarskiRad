@@ -108,9 +108,12 @@ namespace NewsPortal.WinUI.Forms.Users
             this.dgvUsers.Location = new System.Drawing.Point(7, 23);
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.ReadOnly = true;
+            this.dgvUsers.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvUsers.RowTemplate.Height = 25;
+            this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUsers.Size = new System.Drawing.Size(771, 251);
             this.dgvUsers.TabIndex = 0;
+            this.dgvUsers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvUserList_MouseDoubleClick);
             // 
             // frmUserList
             // 

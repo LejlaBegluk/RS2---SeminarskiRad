@@ -56,16 +56,14 @@ namespace NewsPortal.WebAPI.Services
             await _context.Users.AddAsync(entity);
             await _context.SaveChangesAsync();
 
-            foreach (var roleID in request.Roles)
-            {
-                var role = new Database.UserRole()
-                {
+            var role = new Database.UserRole()
+              {
                     UserId = entity.Id,
-                    RoleId = roleID
-                };
+                    RoleId = request.Role
+             };
 
                 await _context.UserRoles.AddAsync(role);
-            }
+            
 
             await _context.SaveChangesAsync();
 
@@ -88,35 +86,24 @@ namespace NewsPortal.WebAPI.Services
                 entity.PasswordSalt = GenerateSalt();
                 entity.PasswordHash = GenerateHash(entity.PasswordSalt, request.Password);
             }
-
-            foreach (var RoleID in request.Roles)
+                var userRole =  _context.UserRoles.Where(i => i.UserId == ID).AsQueryable();
+            foreach(var role in userRole)
             {
-                var userRole = await _context.UserRoles
-                    .Where(i => i.RoleId == RoleID && i.Id == ID)
-                    .SingleOrDefaultAsync();
-
-                if (userRole == null)
+                if (role.RoleId != request.Role)
                 {
-                    var newRole = new Database.UserRole()
-                    {
-                        Id = ID,
-                        RoleId = RoleID
-                    };
-                    await _context.Set<Database.UserRole>().AddAsync(newRole);
+                    _context.Set<Database.UserRole>().Remove(role);
                 }
+
             }
-
-          /*  foreach (var RoleID in request.RolesToDelete)
+            
+            var newRole = new Database.UserRole()
             {
-                var userRole = await _context.UserRoles
-                    .Where(i => i.RoleID == RoleID && i.UserID == ID)
-                    .SingleOrDefaultAsync();
+               UserId = ID,
+               RoleId = request.Role
+             };
+           await _context.Set<Database.UserRole>().AddAsync(newRole);
 
-                if (userRole != null)
-                {
-                    _context.Set<UserRoles>().Remove(userRole);
-                }
-            }*/
+            
 
             _mapper.Map(request, entity);
             await _context.SaveChangesAsync();
@@ -147,7 +134,7 @@ namespace NewsPortal.WebAPI.Services
             {
                 throw new Exception("Passwords do not match!");
             }
-            request.Roles = new List<int> { 2, 3 };
+            request.Role = 2;//new List<int> { 2, 3 };
             var entity = _mapper.Map<User>(request);
             entity.PasswordSalt = GenerateSalt();
             entity.PasswordHash = GenerateHash(entity.PasswordSalt, request.Password);
