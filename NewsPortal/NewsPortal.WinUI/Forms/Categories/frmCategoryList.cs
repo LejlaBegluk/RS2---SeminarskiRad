@@ -35,6 +35,7 @@ namespace NewsPortal.WinUI.Forms.Categories
         {
             var result = await _category.Get<List<MCategory>>(null);
             dgvCategories.DataSource = result.ToList();
+            txtName.Text = ""; 
         }
         private async void frmCategoryList_Load(object sender, EventArgs e)
         {

@@ -40,7 +40,7 @@ namespace NewsPortal
             });
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-            services.AddScoped<IArticleService, ArticleService>();
+            //services.AddScoped<IArticleService, ArticleService>();
             services.AddScoped<ICRUDService<MCategory, CategorySearchRequest, CategoryUpsertRequest, CategoryUpsertRequest>, CategoryService>();
            // services.AddScoped<IBaseService, BaseService>();
             services.AddScoped<ICRUDService<MPoll, PollSearchRequest, PollUpsertRequest, PollUpsertRequest>, PollService>();
@@ -49,6 +49,7 @@ namespace NewsPortal
             services.AddScoped<ICRUDService<MUser, UserSearchRequest, UserUpsertRequest, UserUpsertRequest>, UserService>();
             services.AddScoped<ICRUDService<MUserRole, UserRoleSearchRequest, UserRoleUpsertRequest, UserRoleUpsertRequest>, UserRoleService>();
             services.AddScoped<ICRUDService<MRole, RoleSearchRequest, RoleUpsertRequest, RoleUpsertRequest>, RoleService>();
+            services.AddScoped<ICRUDService<MArticle, ArticleSearchRequest, ArticleUpsertRequest, ArticleUpsertRequest>, ArticleService>();
 
 
             services.AddDbContext<PortalDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));

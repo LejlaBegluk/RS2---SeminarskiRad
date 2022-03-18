@@ -58,6 +58,7 @@ namespace NewsPortal.WinUI.Forms.Users
             // 
             this.txtPassword.Location = new System.Drawing.Point(175, 216);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(283, 23);
             this.txtPassword.TabIndex = 3;
             // 
@@ -80,7 +81,7 @@ namespace NewsPortal.WinUI.Forms.Users
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // fmfLogin
+            // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -90,9 +91,8 @@ namespace NewsPortal.WinUI.Forms.Users
             this.Controls.Add(this.labelPassword);
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.labelUserName);
-            this.Name = "fmfLogin";
+            this.Name = "frmLogin";
             this.Text = "fmfLogin";
-            //this.Load += new System.EventHandler(this.fmfLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

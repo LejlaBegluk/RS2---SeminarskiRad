@@ -1,4 +1,6 @@
-﻿using NewsPortal.WinUI.Forms.Categories;
+﻿using NewsPortal.WebAPI.Model;
+using NewsPortal.WinUI.Forms.Articles;
+using NewsPortal.WinUI.Forms.Categories;
 using NewsPortal.WinUI.Helpers;
 using System;
 using System.Collections.Generic;
@@ -43,6 +45,18 @@ namespace NewsPortal.WinUI.Forms.Users
         private void novaKategorijaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var frm = new frmAddCategory();
+            frm.Show();
+        }
+
+        private void pretragaToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            var frm = new frmArticleIndex();
+            frm.Show();
+        }
+
+        private async void noviČlanakToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmAddArticle();
             frm.Show();
         }
     }

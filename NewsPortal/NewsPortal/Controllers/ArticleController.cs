@@ -3,30 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using NewsPortal.Model.Request;
 using NewsPortal.Models;
 using NewsPortal.Services;
+using NewsPortal.WebAPI.Controllers;
+using NewsPortal.WebAPI.Model;
+using NewsPortal.WebAPI.Services;
 
 namespace NewsPortal.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
-    public class ArticleController : ControllerBase
+    public class ArticleController : CRUDController<MArticle, ArticleSearchRequest, ArticleUpsertRequest, ArticleUpsertRequest>
     {
-        public IArticleService _articleService { get; set; }
+        public ArticleController(ICRUDService<MArticle, ArticleSearchRequest, ArticleUpsertRequest, ArticleUpsertRequest> service) : base(service)
+        {
 
-        public ArticleController(IArticleService articleService)
-        {
-            _articleService = articleService;
-        }
-        [HttpGet]
-        public IEnumerable<Article> Get()
-        {
-            return _articleService.Get();
-        }
-        [HttpGet(template: "{Id}")]
-        public Article GetById( int Id)
-        {
-            return _articleService.GetById(Id);
         }
     }
 }

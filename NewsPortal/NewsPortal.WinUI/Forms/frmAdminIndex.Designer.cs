@@ -116,14 +116,16 @@ namespace NewsPortal.WinUI.Forms.Users
             // pretragaToolStripMenuItem2
             // 
             this.pretragaToolStripMenuItem2.Name = "pretragaToolStripMenuItem2";
-            this.pretragaToolStripMenuItem2.Size = new System.Drawing.Size(136, 22);
+            this.pretragaToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             this.pretragaToolStripMenuItem2.Text = "Pretraga";
+            this.pretragaToolStripMenuItem2.Click += new System.EventHandler(this.pretragaToolStripMenuItem2_Click);
             // 
             // noviČlanakToolStripMenuItem
             // 
             this.noviČlanakToolStripMenuItem.Name = "noviČlanakToolStripMenuItem";
-            this.noviČlanakToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.noviČlanakToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.noviČlanakToolStripMenuItem.Text = "Novi članak";
+            this.noviČlanakToolStripMenuItem.Click += new System.EventHandler(this.noviČlanakToolStripMenuItem_Click);
             // 
             // anketeToolStripMenuItem
             // 

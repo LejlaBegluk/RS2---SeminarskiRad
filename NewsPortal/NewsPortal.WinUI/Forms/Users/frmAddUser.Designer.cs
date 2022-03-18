@@ -183,7 +183,7 @@ namespace NewsPortal.WinUI.Forms.Users
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(243, 379);
+            this.btnSave.Location = new System.Drawing.Point(242, 415);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 17;
@@ -193,7 +193,7 @@ namespace NewsPortal.WinUI.Forms.Users
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(368, 379);
+            this.btnCancel.Location = new System.Drawing.Point(368, 415);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 18;
@@ -221,7 +221,7 @@ namespace NewsPortal.WinUI.Forms.Users
             // chbActive
             // 
             this.chbActive.AutoSize = true;
-            this.chbActive.Location = new System.Drawing.Point(449, 354);
+            this.chbActive.Location = new System.Drawing.Point(242, 379);
             this.chbActive.Name = "chbActive";
             this.chbActive.Size = new System.Drawing.Size(66, 19);
             this.chbActive.TabIndex = 21;
