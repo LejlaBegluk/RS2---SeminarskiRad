@@ -56,7 +56,7 @@ namespace NewsPortal.WinUI.Forms.Users
 
         private async void noviČlanakToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var frm = new frmAddArticle();
+            var frm = new frmAddArticle(null);
             frm.Show();
         }
     }

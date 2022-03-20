@@ -49,65 +49,17 @@ namespace NewsPortal.WinUI.Forms.Users
                 cbRole.SelectedValue = ulogekorisnika.RoleId;
             }
         }
-        private async Task<bool> txtUsername_Validating()
-        {
-            var result = await userService.Get<List<MUser>>(null);
-            int id = Id ?? 0;
-            foreach (var item in result)
-                if (item.Username == txtUsername.Text && item.Id != id)
-                {
-                    MessageBox.Show("Username already exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-      
-            return true;
-        }
-
-        private async Task<bool> txtEmail_Validating()
-        {
-            var result = await userService.Get<List<MUser>>(null);
-            int id = Id ?? 0;
-            foreach (var item in result)
-                if (item.Email == txtEmail.Text && item.Id != id)
-                {
-                    MessageBox.Show("Email already exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    return false;
-                }
-            return true;
-        }
-
-        private bool txtPassword_Validating()
-        {
-            if (string.IsNullOrWhiteSpace(txtPassword.Text))
-            {
-                if (Id.HasValue)
-                {
-                    return true;
-                }
-                else
-                {
-                    MessageBox.Show("Password is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            }
-            else if (txtPassword.Text != txtConfirmPass.Text)
-            {
-                MessageBox.Show("Passwords don't match!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            return true;
-        }
+ 
         private async void btnSave_Click(object sender, EventArgs e)
         {
             if (ValidateChildren() && txtPassword_Validating() && await txtUsername_Validating() && await txtEmail_Validating())
             {
+
                 try
                 {
                     // var roleList = clbRoles.CheckedItems.Cast<MRole>().Select(i => i.RoleID).ToList();
 
-
-                    var x = cbRole.SelectedItem;
+                   // var x = cbRole.SelectedItem;
 
                     var request = new UserUpsertRequest
                     {
@@ -121,7 +73,6 @@ namespace NewsPortal.WinUI.Forms.Users
                         //  Image = pbUserImage.Image != null ? ImageHelper.SystemDrawingToByteArray(pbUserImage.Image) : null,
                         Role = (int)cbRole.SelectedValue
                     };
-
                     if (Id == null)
                     {
                         try
@@ -176,5 +127,168 @@ namespace NewsPortal.WinUI.Forms.Users
             this.Close();
             frm.Show();
         }
+        #region Validating
+        private async Task<bool> txtUsername_Validating()
+        {
+            var result = await userService.Get<List<MUser>>(null);
+            int id = Id ?? 0;
+            foreach (var item in result)
+                if (item.Username == txtUsername.Text && item.Id != id)
+                {
+                    MessageBox.Show("Username already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+            return true;
+        }
+
+        private async Task<bool> txtEmail_Validating()
+        {
+            var result = await userService.Get<List<MUser>>(null);
+            int id = Id ?? 0;
+            foreach (var item in result)
+                if (item.Email == txtEmail.Text && item.Id != id)
+                {
+                    MessageBox.Show("Email already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return false;
+                }
+            return true;
+        }
+
+        private bool txtPassword_Validating()
+        {
+            if (string.IsNullOrWhiteSpace(txtPassword.Text))
+            {
+                if (Id.HasValue)
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Password is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            else if (txtPassword.Text != txtConfirmPass.Text)
+            {
+                MessageBox.Show("Passwords don't match!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+        private void txtName_Validating(object sender, CancelEventArgs e)
+        {
+
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+
+                errorProvider.SetError(txtName, "Required field");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(txtName, null);
+            }
+        }
+        private void txtLastname_Validating(object sender, CancelEventArgs e)
+        {
+
+            if (string.IsNullOrWhiteSpace(txtLastname.Text))
+            {
+
+                errorProvider.SetError(txtLastname, "Required field");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(txtLastname, null);
+            }
+        }
+        private void txtUsername_Validating(object sender, CancelEventArgs e)
+        {
+
+            if (string.IsNullOrWhiteSpace(txtUsername.Text))
+            {
+
+                errorProvider.SetError(txtUsername, "Required field");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(txtUsername, null);
+            }
+        }
+        private void txtEmail_Validating(object sender, CancelEventArgs e)
+        {
+
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+
+                errorProvider.SetError(txtEmail, "Required field");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(txtEmail, null);
+            }
+        }
+        private void txtPhone_Validating(object sender, CancelEventArgs e)
+        {
+
+            if (string.IsNullOrWhiteSpace(txtPhone.Text))
+            {
+
+                errorProvider.SetError(txtPhone, "Required field");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(txtPhone, null);
+            }
+        }
+        private void txtPassword_Validating(object sender, CancelEventArgs e)
+        {
+
+            if (string.IsNullOrWhiteSpace(txtPassword.Text))
+            {
+
+                errorProvider.SetError(txtPassword, "Required field");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(txtPassword, null);
+            }
+        }
+        private void txtConfirmPass_Validating(object sender, CancelEventArgs e)
+        {
+
+            if (string.IsNullOrWhiteSpace(txtConfirmPass.Text))
+            {
+
+                errorProvider.SetError(txtConfirmPass, "Required field");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(txtConfirmPass, null);
+            }
+        }
+        private void dtpBirthDate_Validating(object sender, CancelEventArgs e)
+        {
+
+            if (string.IsNullOrWhiteSpace(dtpBirthDate.Text))
+            {
+
+                errorProvider.SetError(dtpBirthDate, "Required field");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(dtpBirthDate, null);
+            }
+        }
+        #endregion
     }
 }

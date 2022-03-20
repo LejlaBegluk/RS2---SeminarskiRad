@@ -29,12 +29,15 @@ namespace NewsPortal.WinUI.Forms.Categories
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddCategory));
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.Load += new System.EventHandler(this.frmAddCategory_Load);
             this.SuspendLayout();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             // 
             // label1
             // 
@@ -51,6 +54,8 @@ namespace NewsPortal.WinUI.Forms.Categories
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(238, 23);
             this.txtName.TabIndex = 1;
+            this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.txtName_Validating);
+
             // 
             // btnCancel
             // 
@@ -94,5 +99,6 @@ namespace NewsPortal.WinUI.Forms.Categories
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

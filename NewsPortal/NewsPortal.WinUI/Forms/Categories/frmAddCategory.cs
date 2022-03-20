@@ -31,11 +31,11 @@ namespace NewsPortal.WinUI.Forms.Categories
         }
         private async void btnSave_Click(object sender, EventArgs e)
         {
-                if (ValidateChildren() )
+                if (ValidateChildren())
                 {
                     try
                     {
-                        
+                   
                         var request = new CategoryUpsertRequest
                         {
                             Name = txtName.Text,
@@ -46,6 +46,7 @@ namespace NewsPortal.WinUI.Forms.Categories
                         {
                             try
                             {
+                 
                                 var result = await _category.Insert<MCategory>(request);
                                 if (result != null)
                                 {
@@ -79,8 +80,8 @@ namespace NewsPortal.WinUI.Forms.Categories
                             }
 
                         }
-                    }
-                    catch
+                }
+                catch
                     {
                         MessageBox.Show("You don't have permission to do that!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -94,6 +95,20 @@ namespace NewsPortal.WinUI.Forms.Categories
             var frm = new frmCategoryList();
             this.Close();
             frm.Show();
+        }
+        private void txtName_Validating(object sender, CancelEventArgs e)
+        {
+
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+
+                errorProvider.SetError(txtName, "Required field");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(txtName, null);
+            }
         }
     }
 }

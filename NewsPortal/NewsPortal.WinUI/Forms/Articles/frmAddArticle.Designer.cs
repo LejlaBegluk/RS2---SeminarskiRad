@@ -29,6 +29,7 @@ namespace NewsPortal.WinUI.Forms.Articles
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtTitle = new System.Windows.Forms.TextBox();
@@ -41,10 +42,12 @@ namespace NewsPortal.WinUI.Forms.Articles
             this.txtPhotoInput = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtContent = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnDeletePhoto = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -73,6 +76,7 @@ namespace NewsPortal.WinUI.Forms.Articles
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(518, 23);
             this.txtTitle.TabIndex = 22;
+            this.txtTitle.Validating += new System.ComponentModel.CancelEventHandler(this.txtTitle_Validating);
             // 
             // label1
             // 
@@ -99,6 +103,7 @@ namespace NewsPortal.WinUI.Forms.Articles
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(518, 23);
             this.cbCategory.TabIndex = 27;
+            this.cbCategory.Validating += new System.ComponentModel.CancelEventHandler(this.cbCategory_Validating);
             // 
             // label3
             // 
@@ -130,6 +135,7 @@ namespace NewsPortal.WinUI.Forms.Articles
             // 
             // txtPhotoInput
             // 
+            this.txtPhotoInput.Enabled = false;
             this.txtPhotoInput.Location = new System.Drawing.Point(143, 133);
             this.txtPhotoInput.Name = "txtPhotoInput";
             this.txtPhotoInput.Size = new System.Drawing.Size(356, 23);
@@ -148,13 +154,15 @@ namespace NewsPortal.WinUI.Forms.Articles
             // 
             this.openFileDialog.FileName = "openFileDialog";
             // 
-            // textBox2
+            // txtContent
             // 
-            this.textBox2.Location = new System.Drawing.Point(143, 257);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(518, 261);
-            this.textBox2.TabIndex = 33;
+            this.txtContent.Location = new System.Drawing.Point(143, 257);
+            this.txtContent.Multiline = true;
+            this.txtContent.Name = "txtContent";
+            this.txtContent.Size = new System.Drawing.Size(518, 261);
+            this.txtContent.TabIndex = 33;
+            this.txtContent.Validating += new System.ComponentModel.CancelEventHandler(this.txtContent_Validating);
+
             // 
             // openFileDialog1
             // 
@@ -170,13 +178,17 @@ namespace NewsPortal.WinUI.Forms.Articles
             this.btnDeletePhoto.UseVisualStyleBackColor = true;
             this.btnDeletePhoto.Click += new System.EventHandler(this.btnDeletePhoto_Click);
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // frmAddArticle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(840, 594);
             this.Controls.Add(this.btnDeletePhoto);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtContent);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtPhotoInput);
             this.Controls.Add(this.pictureBox);
@@ -191,6 +203,7 @@ namespace NewsPortal.WinUI.Forms.Articles
             this.Name = "frmAddArticle";
             this.Text = "AddArticle";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,8 +223,10 @@ namespace NewsPortal.WinUI.Forms.Articles
         private System.Windows.Forms.TextBox txtPhotoInput;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtContent;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btnDeletePhoto;
+        private System.Windows.Forms.ErrorProvider errorProvider;
+
     }
 }
