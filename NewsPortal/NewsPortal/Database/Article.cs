@@ -17,7 +17,7 @@ namespace NewsPortal.WebAPI.Database
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<ArticlePhoto>  ArticlePhotos { get; set; }
+        public byte[] Photo { get; set; }
 
     }
 }

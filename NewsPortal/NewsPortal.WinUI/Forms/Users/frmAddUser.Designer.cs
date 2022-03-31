@@ -30,7 +30,6 @@ namespace NewsPortal.WinUI.Forms.Users
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddUser));
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtLastname = new System.Windows.Forms.TextBox();
@@ -53,8 +52,9 @@ namespace NewsPortal.WinUI.Forms.Users
             this.cbRole = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.chbActive = new System.Windows.Forms.CheckBox();
-            this.SuspendLayout();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            this.SuspendLayout();
             // 
             // label1
             // 
@@ -72,7 +72,6 @@ namespace NewsPortal.WinUI.Forms.Users
             this.txtName.Size = new System.Drawing.Size(201, 23);
             this.txtName.TabIndex = 1;
             this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.txtName_Validating);
-
             // 
             // txtLastname
             // 
@@ -81,7 +80,6 @@ namespace NewsPortal.WinUI.Forms.Users
             this.txtLastname.Size = new System.Drawing.Size(201, 23);
             this.txtLastname.TabIndex = 3;
             this.txtLastname.Validating += new System.ComponentModel.CancelEventHandler(this.txtLastname_Validating);
-
             // 
             // lbLastname
             // 
@@ -99,7 +97,6 @@ namespace NewsPortal.WinUI.Forms.Users
             this.txtEmail.Size = new System.Drawing.Size(201, 23);
             this.txtEmail.TabIndex = 7;
             this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
-
             // 
             // lbEmail
             // 
@@ -117,7 +114,6 @@ namespace NewsPortal.WinUI.Forms.Users
             this.txtPhone.Size = new System.Drawing.Size(201, 23);
             this.txtPhone.TabIndex = 5;
             this.txtPhone.Validating += new System.ComponentModel.CancelEventHandler(this.txtPhone_Validating);
-
             // 
             // lbPhone
             // 
@@ -136,7 +132,6 @@ namespace NewsPortal.WinUI.Forms.Users
             this.txtPassword.Size = new System.Drawing.Size(201, 23);
             this.txtPassword.TabIndex = 13;
             this.txtPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtPassword_Validating);
-
             // 
             // lbPassword
             // 
@@ -163,7 +158,6 @@ namespace NewsPortal.WinUI.Forms.Users
             this.txtUsername.Size = new System.Drawing.Size(201, 23);
             this.txtUsername.TabIndex = 9;
             this.txtUsername.Validating += new System.ComponentModel.CancelEventHandler(this.txtUsername_Validating);
-
             // 
             // lbUsername
             // 
@@ -181,7 +175,6 @@ namespace NewsPortal.WinUI.Forms.Users
             this.dtpBirthDate.Size = new System.Drawing.Size(200, 23);
             this.dtpBirthDate.TabIndex = 14;
             this.dtpBirthDate.Validating += new System.ComponentModel.CancelEventHandler(this.dtpBirthDate_Validating);
-
             // 
             // txtConfirmPass
             // 
@@ -191,7 +184,6 @@ namespace NewsPortal.WinUI.Forms.Users
             this.txtConfirmPass.Size = new System.Drawing.Size(201, 23);
             this.txtConfirmPass.TabIndex = 16;
             this.txtConfirmPass.Validating += new System.ComponentModel.CancelEventHandler(this.txtConfirmPass_Validating);
-
             // 
             // lbConfirmPass
             // 
@@ -211,7 +203,6 @@ namespace NewsPortal.WinUI.Forms.Users
             this.btnSave.Text = "Spremi";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-
             // 
             // btnCancel
             // 
@@ -250,6 +241,10 @@ namespace NewsPortal.WinUI.Forms.Users
             this.chbActive.Text = "Aktivan";
             this.chbActive.UseVisualStyleBackColor = true;
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // frmAddUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -279,6 +274,7 @@ namespace NewsPortal.WinUI.Forms.Users
             this.Name = "frmAddUser";
             this.Text = "frmAddUser";
             this.Load += new System.EventHandler(this.frmAddUser_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -309,6 +305,5 @@ namespace NewsPortal.WinUI.Forms.Users
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox chbActive;
         private System.Windows.Forms.ErrorProvider errorProvider;
-
     }
 }

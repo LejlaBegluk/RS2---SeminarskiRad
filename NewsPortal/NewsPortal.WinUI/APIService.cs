@@ -74,6 +74,9 @@ namespace NewsPortal.WinUI
             var url = $"{Properties.Settings.Default.APIUrl}/{_route}/{id}";
             return await url.WithBasicAuth(Username, Password).PutJsonAsync(request).ReceiveJson<T>();
         }
-
+        public string GetActiveUser()
+        {
+            return  Username;
+        }
     }
 }

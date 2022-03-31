@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 
 namespace NewsPortal.WinUI.Forms.Articles
 {
@@ -17,6 +19,8 @@ namespace NewsPortal.WinUI.Forms.Articles
     {
         private readonly APIService _category = new APIService("Category");
         private readonly APIService _userService = new APIService("User");
+        private readonly APIService _articleService = new APIService("Article");
+
 
         private int? Id = null;
         public  frmAddArticle(int? articleId)
@@ -34,6 +38,53 @@ namespace NewsPortal.WinUI.Forms.Articles
             cbCategory.ValueMember = "Id";
             cbCategory.SelectedValue = 0;
         }
+ 
+        private async void frmAddArticle_Load(object sender, EventArgs e)
+        {
+            try
+            {
+
+           
+            if (Id.HasValue)
+            {
+                var model = await _articleService.GetById<MArticle>(Id);
+                txtTitle.Text = model.Title;
+                txtContent.Text = model.Content;
+                cbCategory.SelectedValue = model.CategoryId;
+                txtUserID.Text = model.UserId.ToString();
+                txtCreateOn.Text = model.CreateOn.ToString();
+
+                    byte[] image = model.Photo;
+
+                MemoryStream ms=new MemoryStream(image);
+                //ms.Flush();
+                //ms.Position = 0;
+                //ms = 
+                if (ms.Length == 0 && ms.Position == 0 && ms.Capacity == 0)
+                {
+
+                    string startuppath = Path.GetDirectoryName(Application.ExecutablePath).Replace("NewsPortal.WinUI\\bin\\Debug\\net5.0-windows", string.Empty);
+                    string s = "NewsPortal.WinUI\\Resources\\news.jpg";
+                    var filename = startuppath + s;
+
+
+                    Image imaged = Image.FromFile(filename);
+                    pictureBox.Image = imaged;
+                }
+                else
+                {
+                        pictureBox.Image =Image.FromStream(ms);
+                }
+
+
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         ArticleUpsertRequest request = new ArticleUpsertRequest();
         private void btnAddPhoto_Click(object sender, EventArgs e)
         {
@@ -42,7 +93,7 @@ namespace NewsPortal.WinUI.Forms.Articles
             {
 
                 var filename = openFileDialog1.FileName;
-                var file = File.ReadAllBytes(filename);
+                var file = File.ReadAllBytes(openFileDialog1.FileName);
                 request.Photo = file;
                 txtPhotoInput.Text = filename;
                 Image image = Image.FromFile(filename);
@@ -51,7 +102,14 @@ namespace NewsPortal.WinUI.Forms.Articles
             }
 
         }
-
+        public byte[] ImageToByteArray(System.Drawing.Image imageIn)
+        {
+            using (var ms = new MemoryStream())
+            {
+                imageIn.Save(ms, imageIn.RawFormat);
+                return ms.ToArray();
+            }
+        }
         private void btnDeletePhoto_Click(object sender, EventArgs e)
         {
             pictureBox.Image = null;
@@ -73,24 +131,25 @@ namespace NewsPortal.WinUI.Forms.Articles
                 try
                 {
 
-                    var request = new ArticleUpsertRequest
+                    request.CategoryId = (int)cbCategory.SelectedValue;
+                    request.Content = txtContent.Text;
+                    request.Title = txtTitle.Text;                  
+                    UserSearchRequest search = new UserSearchRequest()
                     {
-                          CategoryId = (int)cbCategory.SelectedValue,
-                           Content=txtContent.Text,
-                              Title=txtTitle.Text,
-                              //  UserId= _userService.
-
-                    };
-
+                        Username = _userService.GetActiveUser()
+                };
+                    var users = await _userService.Get<List<MUser>>(search);
+                    request.UserId = users.FirstOrDefault().Id;
                     if (Id == null)
                     {
                         try
                         {
+                           
                             request.CreateOn = DateTime.Now;
-                            var result = await _category.Insert<MCategory>(request);
+                            var result = await _articleService.Insert<MArticle>(request);
                             if (result != null)
                             {
-                                MessageBox.Show("Category added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Article added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 var frm = new frmArticleIndex();
                                 this.Close();
                                 frm.Show();
@@ -105,12 +164,14 @@ namespace NewsPortal.WinUI.Forms.Articles
                     {
                         try
                         {
+                            request.UserId = Int32.Parse(txtUserID.Text);
+                            request.CreateOn = DateTime.Parse(txtCreateOn.Text);
                             request.UpdatedOn = DateTime.Now;
-
-                            var result = await _category.Update<MCategory>(Id, request);
+                            request.Id = (int)Id;
+                            var result = await _articleService.Update<MArticle>(Id, request);
                             if (result != null)
                             {
-                                MessageBox.Show("Category was updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Article was updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 var frm = new frmArticleIndex();
                                 this.Close();
                                 frm.Show();

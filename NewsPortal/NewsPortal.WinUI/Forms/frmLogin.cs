@@ -55,7 +55,7 @@ namespace NewsPortal.WinUI.Forms.Users
                 };
 
                 var user = await _api.Authenticate(request);
-
+              
                 if (user != null)
                 {
                     LoadPanel(user);

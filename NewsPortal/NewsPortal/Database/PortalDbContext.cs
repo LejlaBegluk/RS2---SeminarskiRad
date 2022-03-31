@@ -13,7 +13,6 @@ namespace NewsPortal.WebAPI.Database
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Poll> Polls { get; set; }
         public DbSet<PollAnswer> PollAnswer { get; set; }
-        public DbSet<ArticlePhoto> ArticlePhotos { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }

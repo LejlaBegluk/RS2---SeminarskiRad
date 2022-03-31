@@ -113,6 +113,8 @@ namespace NewsPortal.WinUI.Forms.Articles
             this.dgvArticle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArticle.Size = new System.Drawing.Size(771, 275);
             this.dgvArticle.TabIndex = 0;
+            this.dgvArticle.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvArticle_DoubleClick);
+ 
             // 
             // frmArticleIndex
             // 
