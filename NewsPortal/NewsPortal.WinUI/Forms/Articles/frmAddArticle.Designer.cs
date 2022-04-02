@@ -46,8 +46,6 @@ namespace NewsPortal.WinUI.Forms.Articles
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnDeletePhoto = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtCreateOn = new System.Windows.Forms.TextBox();
-            this.txtUserID = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
@@ -183,29 +181,11 @@ namespace NewsPortal.WinUI.Forms.Articles
             // 
             this.errorProvider.ContainerControl = this;
             // 
-            // txtCreateOn
-            // 
-            this.txtCreateOn.Location = new System.Drawing.Point(12, 407);
-            this.txtCreateOn.Name = "txtCreateOn";
-            this.txtCreateOn.Size = new System.Drawing.Size(100, 23);
-            this.txtCreateOn.TabIndex = 36;
-            this.txtCreateOn.Visible = false;
-            // 
-            // txtUserID
-            // 
-            this.txtUserID.Location = new System.Drawing.Point(12, 378);
-            this.txtUserID.Name = "txtUserID";
-            this.txtUserID.Size = new System.Drawing.Size(100, 23);
-            this.txtUserID.TabIndex = 35;
-            this.txtUserID.Visible = false;
-            // 
             // frmAddArticle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(840, 594);
-            this.Controls.Add(this.txtCreateOn);
-            this.Controls.Add(this.txtUserID);
             this.Controls.Add(this.btnDeletePhoto);
             this.Controls.Add(this.txtContent);
             this.Controls.Add(this.label4);
@@ -247,7 +227,5 @@ namespace NewsPortal.WinUI.Forms.Articles
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btnDeletePhoto;
         private System.Windows.Forms.ErrorProvider errorProvider;
-        private System.Windows.Forms.TextBox txtCreateOn;
-        private System.Windows.Forms.TextBox txtUserID;
     }
 }

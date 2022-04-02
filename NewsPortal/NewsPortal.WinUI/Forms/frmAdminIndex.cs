@@ -1,6 +1,7 @@
 ﻿using NewsPortal.WebAPI.Model;
 using NewsPortal.WinUI.Forms.Articles;
 using NewsPortal.WinUI.Forms.Categories;
+using NewsPortal.WinUI.Forms.Poll;
 using NewsPortal.WinUI.Helpers;
 using System;
 using System.Collections.Generic;
@@ -57,6 +58,18 @@ namespace NewsPortal.WinUI.Forms.Users
         private async void noviČlanakToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var frm = new frmAddArticle(null);
+            frm.Show();
+        }
+
+        private void pretragaToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            var frm = new frmPollList();
+            frm.Show();
+        }
+
+        private void novaAnketaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmAddPoll();
             frm.Show();
         }
     }

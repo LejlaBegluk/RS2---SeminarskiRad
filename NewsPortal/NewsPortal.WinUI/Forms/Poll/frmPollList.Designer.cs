@@ -1,7 +1,7 @@
 ﻿
-namespace NewsPortal.WinUI.Forms.Categories
+namespace NewsPortal.WinUI.Forms.Poll
 {
-    partial class frmCategoryList
+    partial class frmPollList
     {
         /// <summary>
         /// Required designer variable.
@@ -29,17 +29,43 @@ namespace NewsPortal.WinUI.Forms.Categories
         /// </summary>
         private void InitializeComponent()
         {
+            this.Ankete = new System.Windows.Forms.GroupBox();
+            this.dgvPolls = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnPonisti = new System.Windows.Forms.Button();
             this.btnPretraga = new System.Windows.Forms.Button();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.Kategorije = new System.Windows.Forms.GroupBox();
-            this.dgvCategories = new System.Windows.Forms.DataGridView();
+            this.Ankete.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPolls)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.Kategorije.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCategories)).BeginInit();
             this.SuspendLayout();
+            this.dgvPolls.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvPollList_MouseDoubleClick);
+
+            // 
+            // Ankete
+            // 
+            this.Ankete.Controls.Add(this.dgvPolls);
+            this.Ankete.Location = new System.Drawing.Point(8, 144);
+            this.Ankete.Name = "Ankete";
+            this.Ankete.Size = new System.Drawing.Size(784, 280);
+            this.Ankete.TabIndex = 4;
+            this.Ankete.TabStop = false;
+            this.Ankete.Text = "Ankete";
+            // 
+            // dgvPolls
+            // 
+            this.dgvPolls.AllowUserToAddRows = false;
+            this.dgvPolls.AllowUserToDeleteRows = false;
+            this.dgvPolls.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPolls.Location = new System.Drawing.Point(7, 23);
+            this.dgvPolls.Name = "dgvPolls";
+            this.dgvPolls.ReadOnly = true;
+            this.dgvPolls.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgvPolls.RowTemplate.Height = 25;
+            this.dgvPolls.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPolls.Size = new System.Drawing.Size(771, 251);
+            this.dgvPolls.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -47,13 +73,12 @@ namespace NewsPortal.WinUI.Forms.Categories
             this.groupBox1.Controls.Add(this.btnPretraga);
             this.groupBox1.Controls.Add(this.txtName);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(4, 12);
+            this.groupBox1.Location = new System.Drawing.Point(8, 26);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(784, 101);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pretraga";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // btnPonisti
             // 
@@ -63,7 +88,6 @@ namespace NewsPortal.WinUI.Forms.Categories
             this.btnPonisti.TabIndex = 5;
             this.btnPonisti.Text = "Ponisti";
             this.btnPonisti.UseVisualStyleBackColor = true;
-            this.btnPonisti.Click += new System.EventHandler(this.btnPonisti_Click);
             // 
             // btnPretraga
             // 
@@ -91,57 +115,32 @@ namespace NewsPortal.WinUI.Forms.Categories
             this.label1.TabIndex = 0;
             this.label1.Text = "Naziv";
             // 
-            // Kategorije
-            // 
-            this.Kategorije.Controls.Add(this.dgvCategories);
-            this.Kategorije.Location = new System.Drawing.Point(4, 130);
-            this.Kategorije.Name = "Kategorije";
-            this.Kategorije.Size = new System.Drawing.Size(784, 280);
-            this.Kategorije.TabIndex = 2;
-            this.Kategorije.TabStop = false;
-            this.Kategorije.Text = "Kategorije";
-            // 
-            // dgvCategories
-            // 
-            this.dgvCategories.AllowUserToAddRows = false;
-            this.dgvCategories.AllowUserToDeleteRows = false;
-            this.dgvCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCategories.Location = new System.Drawing.Point(7, 23);
-            this.dgvCategories.Name = "dgvCategories";
-            this.dgvCategories.ReadOnly = true;
-            this.dgvCategories.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dgvCategories.RowTemplate.Height = 25;
-            this.dgvCategories.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCategories.Size = new System.Drawing.Size(771, 251);
-            this.dgvCategories.TabIndex = 0;
-            this.dgvCategories.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvCategoryList_MouseDoubleClick);
-            // 
-            // frmCategoryList
+            // frmPollList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.Kategorije);
+            this.Controls.Add(this.Ankete);
             this.Controls.Add(this.groupBox1);
-            this.Name = "frmCategoryList";
-            this.Text = "frmCategoryList";
-            this.Load += new System.EventHandler(this.frmCategoryList_Load);
+            this.Name = "frmPollList";
+            this.Text = "frmPollList";
+            this.Load += new System.EventHandler(this.frmPollList_Load);
+            this.Ankete.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPolls)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.Kategorije.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCategories)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
+        private System.Windows.Forms.GroupBox Ankete;
+        private System.Windows.Forms.DataGridView dgvPolls;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnPonisti;
         private System.Windows.Forms.Button btnPretraga;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox Kategorije;
-        private System.Windows.Forms.DataGridView dgvCategories;
     }
 }

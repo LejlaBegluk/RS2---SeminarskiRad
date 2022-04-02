@@ -78,5 +78,16 @@ namespace NewsPortal.WinUI
         {
             return  Username;
         }
+        //public async Task<bool> Delete(object id)
+        //{
+        //    var url = $"{Properties.Settings.Default.APIUrl}/{_route}";
+
+
+
+        //    var result = await url+"/{ id}".WithBasicAuth(Username, Password).GetAsync();
+        //    items.Remove(oldItem);
+
+        //    return await Task.FromResult(true);
+        //}
     }
 }

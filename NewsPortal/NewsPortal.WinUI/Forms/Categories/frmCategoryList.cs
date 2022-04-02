@@ -49,6 +49,9 @@ namespace NewsPortal.WinUI.Forms.Categories
             frm.ShowDialog();
             this.Close();
         }
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
 
+        }
     }
 }

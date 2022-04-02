@@ -83,5 +83,17 @@ namespace NewsPortal.WebAPI.Services
             }
             return false;
         }
+        public  async Task<List<MPollAnswer>> GetByPollId(int ID)
+        {
+            var query = _context.PollAnswer.AsQueryable().OrderBy(c => c.Text);
+
+            if (ID!=0)
+            {
+                query = query.Where(x => x.PollId==ID).OrderBy(c => c.Text);
+            }
+            var list = await query.ToListAsync();
+
+            return _mapper.Map<List<MPollAnswer>>(list);
+        }
     }
 }

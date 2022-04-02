@@ -27,7 +27,7 @@ namespace NewsPortal.WebAPI.Services
             if (!string.IsNullOrWhiteSpace(request?.Question))
             {
                 query = query.Where(x => x.Question.StartsWith(request.Question)).OrderBy(c => c.Question);
-            }
+            } 
             var list = await query.ToListAsync();
 
             return _mapper.Map<List<MPoll>>(list);
@@ -48,8 +48,6 @@ namespace NewsPortal.WebAPI.Services
             }
 
             var entity = _mapper.Map<Poll>(request);
-            entity.CreateOn = DateTime.Now;
-            entity.UserId = 1;//**********get logged user
             _context.Set<Poll>().Add(entity);
             await _context.SaveChangesAsync();
 

@@ -93,14 +93,14 @@ namespace NewsPortal.WinUI.Forms.Users
             // pretragaToolStripMenuItem1
             // 
             this.pretragaToolStripMenuItem1.Name = "pretragaToolStripMenuItem1";
-            this.pretragaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.pretragaToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
             this.pretragaToolStripMenuItem1.Text = "Pretraga";
             this.pretragaToolStripMenuItem1.Click += new System.EventHandler(this.pretragaToolStripMenuItem1_Click);
             // 
             // novaKategorijaToolStripMenuItem
             // 
             this.novaKategorijaToolStripMenuItem.Name = "novaKategorijaToolStripMenuItem";
-            this.novaKategorijaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.novaKategorijaToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.novaKategorijaToolStripMenuItem.Text = "Nova kategorija";
             this.novaKategorijaToolStripMenuItem.Click += new System.EventHandler(this.novaKategorijaToolStripMenuItem_Click);
             // 
@@ -116,14 +116,14 @@ namespace NewsPortal.WinUI.Forms.Users
             // pretragaToolStripMenuItem2
             // 
             this.pretragaToolStripMenuItem2.Name = "pretragaToolStripMenuItem2";
-            this.pretragaToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.pretragaToolStripMenuItem2.Size = new System.Drawing.Size(136, 22);
             this.pretragaToolStripMenuItem2.Text = "Pretraga";
             this.pretragaToolStripMenuItem2.Click += new System.EventHandler(this.pretragaToolStripMenuItem2_Click);
             // 
             // noviČlanakToolStripMenuItem
             // 
             this.noviČlanakToolStripMenuItem.Name = "noviČlanakToolStripMenuItem";
-            this.noviČlanakToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.noviČlanakToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.noviČlanakToolStripMenuItem.Text = "Novi članak";
             this.noviČlanakToolStripMenuItem.Click += new System.EventHandler(this.noviČlanakToolStripMenuItem_Click);
             // 
@@ -139,14 +139,16 @@ namespace NewsPortal.WinUI.Forms.Users
             // pretragaToolStripMenuItem3
             // 
             this.pretragaToolStripMenuItem3.Name = "pretragaToolStripMenuItem3";
-            this.pretragaToolStripMenuItem3.Size = new System.Drawing.Size(140, 22);
+            this.pretragaToolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
             this.pretragaToolStripMenuItem3.Text = "Pretraga";
+            this.pretragaToolStripMenuItem3.Click += new System.EventHandler(this.pretragaToolStripMenuItem3_Click);
             // 
             // novaAnketaToolStripMenuItem
             // 
             this.novaAnketaToolStripMenuItem.Name = "novaAnketaToolStripMenuItem";
-            this.novaAnketaToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.novaAnketaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.novaAnketaToolStripMenuItem.Text = "Nova anketa";
+            this.novaAnketaToolStripMenuItem.Click += new System.EventHandler(this.novaAnketaToolStripMenuItem_Click);
             // 
             // frmAdminIndex
             // 

@@ -21,7 +21,7 @@ namespace NewsPortal.WinUI.Forms.Articles
         private readonly APIService _userService = new APIService("User");
         private readonly APIService _articleService = new APIService("Article");
 
-
+        ArticleUpsertRequest request = new ArticleUpsertRequest();
         private int? Id = null;
         public  frmAddArticle(int? articleId)
         {
@@ -51,8 +51,8 @@ namespace NewsPortal.WinUI.Forms.Articles
                 txtTitle.Text = model.Title;
                 txtContent.Text = model.Content;
                 cbCategory.SelectedValue = model.CategoryId;
-                txtUserID.Text = model.UserId.ToString();
-                txtCreateOn.Text = model.CreateOn.ToString();
+                request.UserId = model.UserId;
+                request.CreateOn = model.CreateOn;
 
                     byte[] image = model.Photo;
 
@@ -73,10 +73,20 @@ namespace NewsPortal.WinUI.Forms.Articles
                 }
                 else
                 {
+                       
                         pictureBox.Image =Image.FromStream(ms);
                 }
 
 
+                }
+            else
+                {
+                    UserSearchRequest search = new UserSearchRequest()
+                    {
+                        Username = _userService.GetActiveUser()
+                    };
+                    var users = await _userService.Get<List<MUser>>(search);
+                    request.UserId = users.FirstOrDefault().Id;
                 }
             }
             catch(Exception ex)
@@ -85,7 +95,7 @@ namespace NewsPortal.WinUI.Forms.Articles
             }
         }
 
-        ArticleUpsertRequest request = new ArticleUpsertRequest();
+       
         private void btnAddPhoto_Click(object sender, EventArgs e)
         {
             var result = openFileDialog1.ShowDialog();
@@ -133,18 +143,12 @@ namespace NewsPortal.WinUI.Forms.Articles
 
                     request.CategoryId = (int)cbCategory.SelectedValue;
                     request.Content = txtContent.Text;
-                    request.Title = txtTitle.Text;                  
-                    UserSearchRequest search = new UserSearchRequest()
-                    {
-                        Username = _userService.GetActiveUser()
-                };
-                    var users = await _userService.Get<List<MUser>>(search);
-                    request.UserId = users.FirstOrDefault().Id;
+                    request.Title = txtTitle.Text;
+                  
                     if (Id == null)
                     {
                         try
-                        {
-                           
+                        {                           
                             request.CreateOn = DateTime.Now;
                             var result = await _articleService.Insert<MArticle>(request);
                             if (result != null)
@@ -164,8 +168,7 @@ namespace NewsPortal.WinUI.Forms.Articles
                     {
                         try
                         {
-                            request.UserId = Int32.Parse(txtUserID.Text);
-                            request.CreateOn = DateTime.Parse(txtCreateOn.Text);
+                            
                             request.UpdatedOn = DateTime.Now;
                             request.Id = (int)Id;
                             var result = await _articleService.Update<MArticle>(Id, request);
