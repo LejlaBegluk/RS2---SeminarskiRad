@@ -14,6 +14,7 @@ namespace NewsPortal.WebAPI.Model
         public string Content { get; set; }
         public int Likes { get; set; }
         public byte[] Photo { get; set; }
+        public byte[] PhotoThumb { get; set; }
         public DateTime CreateOn { get; set; }
         [System.ComponentModel.Browsable(false)]
         public DateTime UpdatedOn { get; set; }
@@ -27,7 +28,7 @@ namespace NewsPortal.WebAPI.Model
         [System.ComponentModel.Browsable(false)]
         public Category Category { get; set; }
         [System.ComponentModel.Browsable(false)]
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<MComment> Comments { get; set; }
         public string ActiveStatus { get; set; }
         public string CategoryName { get; set; }
 

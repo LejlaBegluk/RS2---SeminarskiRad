@@ -7,5 +7,6 @@ namespace NewsPortal.Model.Request
     public class CommentSearchRequest
     {
         public string Text { get; set; }
+        public int ArticleId { get; set; }
     }
 }

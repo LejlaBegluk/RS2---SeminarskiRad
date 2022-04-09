@@ -19,8 +19,12 @@ namespace NewsPortal.Model.Request
             public string Username { get; set; }
             public string Password { get; set; }
             public string PasswordConfirmation { get; set; }
-            public byte[] Image { get; set; }
+            public byte[] Photo { get; set; }
+            public byte[] PhotoThumb { get; set; }
             public string FullName { get; set; }
-            public int Role { get; set; } 
-        }
+            public int Role { get; set; }
+            public DateTime BirthDate { get; set; }
+            public bool IsActive { get; set; }
+            public DateTime CreateOn { get; set; }
+    }
     }

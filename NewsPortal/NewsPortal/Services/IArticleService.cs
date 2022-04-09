@@ -1,4 +1,5 @@
 ﻿using NewsPortal.Models;
+using NewsPortal.WebAPI.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace NewsPortal.Services
     {
         public IEnumerable<Article> Get();
         public Article GetById(int Id);
+
     }
 }

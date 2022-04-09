@@ -141,7 +141,7 @@ namespace NewsPortal.WinUI.Forms.Poll
                 DialogResult result = MessageBox.Show("Do You Want to delete?", "Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 if (result.Equals(DialogResult.OK))
                 {
-                    int id = int.Parse(dgvPollAnswers.SelectedRows[0].Cells[0].Value.ToString());
+                    //int id = int.Parse(dgvPollAnswers.SelectedRows[0].Cells[0].Value.ToString());
                     //_pollAnswer.Delete
                 }
                 else

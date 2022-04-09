@@ -46,13 +46,14 @@ namespace NewsPortal.WinUI.Forms.Articles
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnDeletePhoto = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cbActive = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(550, 559);
+            this.btnCancel.Location = new System.Drawing.Point(547, 572);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(111, 23);
             this.btnCancel.TabIndex = 24;
@@ -62,7 +63,7 @@ namespace NewsPortal.WinUI.Forms.Articles
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(424, 559);
+            this.btnSave.Location = new System.Drawing.Point(421, 572);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(111, 23);
             this.btnSave.TabIndex = 23;
@@ -90,7 +91,7 @@ namespace NewsPortal.WinUI.Forms.Articles
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(85, 273);
+            this.label2.Location = new System.Drawing.Point(77, 274);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 15);
             this.label2.TabIndex = 26;
@@ -108,7 +109,7 @@ namespace NewsPortal.WinUI.Forms.Articles
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(69, 92);
+            this.label3.Location = new System.Drawing.Point(61, 92);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 15);
             this.label3.TabIndex = 28;
@@ -144,7 +145,7 @@ namespace NewsPortal.WinUI.Forms.Articles
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(69, 141);
+            this.label4.Location = new System.Drawing.Point(90, 136);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(31, 15);
             this.label4.TabIndex = 32;
@@ -181,11 +182,22 @@ namespace NewsPortal.WinUI.Forms.Articles
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // cbActive
+            // 
+            this.cbActive.AutoSize = true;
+            this.cbActive.Location = new System.Drawing.Point(143, 537);
+            this.cbActive.Name = "cbActive";
+            this.cbActive.Size = new System.Drawing.Size(66, 19);
+            this.cbActive.TabIndex = 35;
+            this.cbActive.Text = "Aktivan";
+            this.cbActive.UseVisualStyleBackColor = true;
+            // 
             // frmAddArticle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(840, 594);
+            this.ClientSize = new System.Drawing.Size(839, 607);
+            this.Controls.Add(this.cbActive);
             this.Controls.Add(this.btnDeletePhoto);
             this.Controls.Add(this.txtContent);
             this.Controls.Add(this.label4);
@@ -227,5 +239,6 @@ namespace NewsPortal.WinUI.Forms.Articles
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btnDeletePhoto;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.CheckBox cbActive;
     }
 }

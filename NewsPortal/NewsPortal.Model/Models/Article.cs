@@ -10,6 +10,7 @@ namespace NewsPortal.Models
         public string Content { get; set; }
         public int Likes { get; set; }
         public byte[] Photo { get; set; }
+        public byte[] PhotoThumb { get; set; }
         public DateTime CreateOn { get; set; }
         public DateTime UpdatedOn { get; set; }
         public bool Active { get; set; }

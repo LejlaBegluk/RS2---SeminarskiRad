@@ -53,7 +53,13 @@ namespace NewsPortal.WinUI.Forms.Users
             this.label2 = new System.Windows.Forms.Label();
             this.chbActive = new System.Windows.Forms.CheckBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnDeletePhoto = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtPhotoInput = new System.Windows.Forms.TextBox();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.btnAddPhoto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -245,11 +251,60 @@ namespace NewsPortal.WinUI.Forms.Users
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // btnDeletePhoto
+            // 
+            this.btnDeletePhoto.Location = new System.Drawing.Point(747, 29);
+            this.btnDeletePhoto.Name = "btnDeletePhoto";
+            this.btnDeletePhoto.Size = new System.Drawing.Size(58, 23);
+            this.btnDeletePhoto.TabIndex = 39;
+            this.btnDeletePhoto.Text = "Poništi";
+            this.btnDeletePhoto.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(455, 33);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(31, 15);
+            this.label4.TabIndex = 38;
+            this.label4.Text = "Slika";
+            // 
+            // txtPhotoInput
+            // 
+            this.txtPhotoInput.Enabled = false;
+            this.txtPhotoInput.Location = new System.Drawing.Point(503, 30);
+            this.txtPhotoInput.Name = "txtPhotoInput";
+            this.txtPhotoInput.Size = new System.Drawing.Size(183, 23);
+            this.txtPhotoInput.TabIndex = 37;
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.Location = new System.Drawing.Point(503, 59);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(183, 89);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox.TabIndex = 36;
+            this.pictureBox.TabStop = false;
+            // 
+            // btnAddPhoto
+            // 
+            this.btnAddPhoto.Location = new System.Drawing.Point(692, 30);
+            this.btnAddPhoto.Name = "btnAddPhoto";
+            this.btnAddPhoto.Size = new System.Drawing.Size(49, 23);
+            this.btnAddPhoto.TabIndex = 35;
+            this.btnAddPhoto.Text = "Dodaj";
+            this.btnAddPhoto.UseVisualStyleBackColor = true;
+            // 
             // frmAddUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(811, 450);
+            this.Controls.Add(this.btnDeletePhoto);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtPhotoInput);
+            this.Controls.Add(this.pictureBox);
+            this.Controls.Add(this.btnAddPhoto);
             this.Controls.Add(this.chbActive);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cbRole);
@@ -275,6 +330,7 @@ namespace NewsPortal.WinUI.Forms.Users
             this.Text = "frmAddUser";
             this.Load += new System.EventHandler(this.frmAddUser_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,5 +361,11 @@ namespace NewsPortal.WinUI.Forms.Users
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox chbActive;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.Button btnDeletePhoto;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtPhotoInput;
+        private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.Button btnAddPhoto;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

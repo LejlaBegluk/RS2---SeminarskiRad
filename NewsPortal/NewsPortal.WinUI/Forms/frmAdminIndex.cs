@@ -2,6 +2,7 @@
 using NewsPortal.WinUI.Forms.Articles;
 using NewsPortal.WinUI.Forms.Categories;
 using NewsPortal.WinUI.Forms.Poll;
+using NewsPortal.WinUI.Forms.Report;
 using NewsPortal.WinUI.Helpers;
 using System;
 using System.Collections.Generic;
@@ -70,6 +71,12 @@ namespace NewsPortal.WinUI.Forms.Users
         private void novaAnketaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var frm = new frmAddPoll();
+            frm.Show();
+        }
+
+        private void izvještajONovinarimaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmReport();
             frm.Show();
         }
     }

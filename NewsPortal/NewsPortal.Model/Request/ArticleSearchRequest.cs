@@ -9,5 +9,6 @@ namespace NewsPortal.Model.Request
     public class ArticleSearchRequest
     {
         public string Title { get; set; }
+        public int UserID { get; set; }
     }
 }

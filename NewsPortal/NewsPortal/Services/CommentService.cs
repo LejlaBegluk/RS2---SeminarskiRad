@@ -28,6 +28,10 @@ namespace NewsPortal.WebAPI.Services
             {
                 query = query.Where(x => x.Content.StartsWith(request.Text)).OrderBy(c => c.Content);
             }
+            else if (request.ArticleId != 0)
+            {
+                query = query.Where(x => x.ArticleId == request.ArticleId).OrderBy(c => c.Content);
+            }
             var list = await query.ToListAsync();
 
             return _mapper.Map<List<MComment>>(list);
@@ -49,7 +53,6 @@ namespace NewsPortal.WebAPI.Services
 
             var entity = _mapper.Map<Comment>(request);
             entity.CreateOn = DateTime.Now;
-            entity.UserId = 1;///********************logged user
             _context.Set<Comment>().Add(entity);
             await _context.SaveChangesAsync();
 
@@ -86,6 +89,14 @@ namespace NewsPortal.WebAPI.Services
    
             }
             return false;
+        }
+        public   List<MComment> GetByArticleId(int ID)
+        {
+            var entity =  _context.Comments
+                .Where(i => i.ArticleId == ID)
+                .ToList();
+
+            return _mapper.Map<List<MComment>>(entity);
         }
     }
 }

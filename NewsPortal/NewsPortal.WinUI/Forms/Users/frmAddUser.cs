@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,20 +16,42 @@ namespace NewsPortal.WinUI.Forms.Users
 {
     public partial class frmAddUser : Form
     {
-        private readonly APIService userService = new APIService("User");
-        private readonly APIService roleService = new APIService("Role");
-        private readonly APIService userroleService = new APIService("UserRole");
+        private readonly APIService _userService = new APIService("User");
+        private readonly APIService _roleService = new APIService("Role");
+        private readonly APIService _userroleService = new APIService("UserRole");
         private int? Id = null;
-
+        UserUpsertRequest request = new UserUpsertRequest();
         public frmAddUser(int? userId = null)
         {
             InitializeComponent();
             Id = userId;
         }
+        private void btnAddPhoto_Click(object sender, EventArgs e)
+        {
+            var result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
 
+                var filename = openFileDialog1.FileName;
+                var file = File.ReadAllBytes(openFileDialog1.FileName);
+                request.Photo = file;
+                request.PhotoThumb = file;
+                txtPhotoInput.Text = filename;
+                Image image = Image.FromFile(filename);
+                pictureBox.Image = image;
+
+            }
+
+        }
+        private void btnDeletePhoto_Click(object sender, EventArgs e)
+        {
+            pictureBox.Image = null;
+            txtPhotoInput.Text = "";
+            request.Photo = null;
+        }
         private async void frmAddUser_Load(object sender, EventArgs e)
         {
-            var result = await roleService.Get<List<MRole>>(null);
+            var result = await _roleService.Get<List<MRole>>(null);
 
             cbRole.DataSource = result;
             cbRole.DisplayMember = "Name";
@@ -36,7 +59,7 @@ namespace NewsPortal.WinUI.Forms.Users
 
             if (Id != null)
             {
-                var korisnik = await userService.GetById<MUser>(Id);
+                var korisnik = await _userService.GetById<MUser>(Id);
                 txtName.Text = korisnik.FirstName;
                 txtLastname.Text = korisnik.LastName;
                 txtEmail.Text = korisnik.Email;
@@ -44,7 +67,7 @@ namespace NewsPortal.WinUI.Forms.Users
                 txtPhone.Text = korisnik.PhoneNumber;
                 dtpBirthDate.Value = korisnik.BirthDate;
                 chbActive.Checked = korisnik.IsActive ;
-                var uloge = await userroleService.Get<List<MUserRole>>(null);
+                var uloge = await _userroleService.Get<List<MUserRole>>(null);
                 var ulogekorisnika = uloge.Where(a => a.UserId == korisnik.Id).FirstOrDefault();
                 cbRole.SelectedValue = ulogekorisnika.RoleId;
             }
@@ -59,25 +82,26 @@ namespace NewsPortal.WinUI.Forms.Users
                 {
                     // var roleList = clbRoles.CheckedItems.Cast<MRole>().Select(i => i.RoleID).ToList();
 
-                   // var x = cbRole.SelectedItem;
+                    // var x = cbRole.SelectedItem;
 
-                    var request = new UserUpsertRequest
-                    {
-                        FirstName = txtName.Text,
-                        LastName = txtLastname.Text,
-                        Username = txtUsername.Text,
-                        Email = txtEmail.Text,
-                        PhoneNumber = txtPhone.Text,
-                        Password = txtPassword.Text,
-                        PasswordConfirmation = txtConfirmPass.Text,
-                        //  Image = pbUserImage.Image != null ? ImageHelper.SystemDrawingToByteArray(pbUserImage.Image) : null,
-                        Role = (int)cbRole.SelectedValue
-                    };
+                    request.FirstName = txtName.Text;
+                    request.LastName = txtLastname.Text;
+                    request.Username = txtUsername.Text;
+                    request.Email = txtEmail.Text;
+                    request.PhoneNumber = txtPhone.Text;
+                    request.Password = txtPassword.Text;
+                    request.PasswordConfirmation = txtConfirmPass.Text;
+                    request.BirthDate = Convert.ToDateTime(dtpBirthDate.Value);
+                    request.IsActive =Convert.ToBoolean(chbActive);
+                    //  Image = pbUserImage.Image != null ? ImageHelper.SystemDrawingToByteArray(pbUserImage.Image) : null,
+                    request.Role = (int)cbRole.SelectedValue;
+
                     if (Id == null)
                     {
                         try
                         {
-                            var result = await userService.Insert<MUser>(request);
+                            request.CreateOn = DateTime.Now;
+                            var result = await _userService.Insert<MUser>(request);
                             if (result != null)
                             {
                                 MessageBox.Show("User added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -95,7 +119,7 @@ namespace NewsPortal.WinUI.Forms.Users
                     {
                         try
                         {
-                            var result = await userService.Update<MUser>(Id, request);
+                            var result = await _userService.Update<MUser>(Id, request);
                             if (result != null)
                             {
                                 MessageBox.Show("User was updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -130,7 +154,7 @@ namespace NewsPortal.WinUI.Forms.Users
         #region Validating
         private async Task<bool> txtUsername_Validating()
         {
-            var result = await userService.Get<List<MUser>>(null);
+            var result = await _userService.Get<List<MUser>>(null);
             int id = Id ?? 0;
             foreach (var item in result)
                 if (item.Username == txtUsername.Text && item.Id != id)
@@ -144,7 +168,7 @@ namespace NewsPortal.WinUI.Forms.Users
 
         private async Task<bool> txtEmail_Validating()
         {
-            var result = await userService.Get<List<MUser>>(null);
+            var result = await _userService.Get<List<MUser>>(null);
             int id = Id ?? 0;
             foreach (var item in result)
                 if (item.Email == txtEmail.Text && item.Id != id)

@@ -31,6 +31,10 @@ namespace NewsPortal.Services
             {
                 query = query.Where(x => x.Title.StartsWith(request.Title)).OrderBy(c => c.Title);
             }
+            else if (request.UserID != 0)
+            {
+                query = query.Where(x => x.UserId==request.UserID).OrderBy(c => c.Title);
+            }
             var list = await query.ToListAsync();
 
             return _mapper.Map<List<MArticle>>(list);
@@ -82,5 +86,6 @@ namespace NewsPortal.Services
             }
             return false;
         }
+
     }
 }

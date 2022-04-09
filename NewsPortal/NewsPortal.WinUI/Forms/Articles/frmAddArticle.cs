@@ -20,6 +20,8 @@ namespace NewsPortal.WinUI.Forms.Articles
         private readonly APIService _category = new APIService("Category");
         private readonly APIService _userService = new APIService("User");
         private readonly APIService _articleService = new APIService("Article");
+        private readonly APIService _roleService = new APIService("Role");
+        private readonly APIService _userroleService = new APIService("UserRole");
 
         ArticleUpsertRequest request = new ArticleUpsertRequest();
         private int? Id = null;
@@ -43,9 +45,20 @@ namespace NewsPortal.WinUI.Forms.Articles
         {
             try
             {
+                UserSearchRequest search = new UserSearchRequest()
+                {
+                    Username = _userService.GetActiveUser()
+                };
+                var users = await _userService.Get<List<MUser>>(search);
+                var uloge = await _userroleService.Get<List<MUserRole>>(null);
+                var ulogekorisnika = uloge.Where(a => a.UserId == users.FirstOrDefault().Id).FirstOrDefault();
+                var role = await _roleService.GetById<MRole>(ulogekorisnika.RoleId);
 
-           
-            if (Id.HasValue)
+                if (role.Name == "Novinar")
+                {
+                    cbActive.Enabled = false;
+                }
+                if (Id.HasValue)
             {
                 var model = await _articleService.GetById<MArticle>(Id);
                 txtTitle.Text = model.Title;
@@ -81,11 +94,6 @@ namespace NewsPortal.WinUI.Forms.Articles
                 }
             else
                 {
-                    UserSearchRequest search = new UserSearchRequest()
-                    {
-                        Username = _userService.GetActiveUser()
-                    };
-                    var users = await _userService.Get<List<MUser>>(search);
                     request.UserId = users.FirstOrDefault().Id;
                 }
             }
@@ -105,6 +113,7 @@ namespace NewsPortal.WinUI.Forms.Articles
                 var filename = openFileDialog1.FileName;
                 var file = File.ReadAllBytes(openFileDialog1.FileName);
                 request.Photo = file;
+                request.PhotoThumb = file;
                 txtPhotoInput.Text = filename;
                 Image image = Image.FromFile(filename);
                 pictureBox.Image = image;
@@ -112,14 +121,7 @@ namespace NewsPortal.WinUI.Forms.Articles
             }
 
         }
-        public byte[] ImageToByteArray(System.Drawing.Image imageIn)
-        {
-            using (var ms = new MemoryStream())
-            {
-                imageIn.Save(ms, imageIn.RawFormat);
-                return ms.ToArray();
-            }
-        }
+    
         private void btnDeletePhoto_Click(object sender, EventArgs e)
         {
             pictureBox.Image = null;
@@ -237,5 +239,7 @@ namespace NewsPortal.WinUI.Forms.Articles
             }
         }
         #endregion
+
+       
     }
 }

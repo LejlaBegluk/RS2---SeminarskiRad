@@ -18,6 +18,7 @@ namespace NewsPortal.WebAPI.Database
         public Category Category { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public byte[] Photo { get; set; }
+        public byte[] PhotoThumb { get; set; }
 
     }
 }
