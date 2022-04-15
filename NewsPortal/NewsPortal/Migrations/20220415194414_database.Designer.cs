@@ -10,8 +10,8 @@ using NewsPortal.WebAPI.Database;
 namespace NewsPortal.WebAPI.Migrations
 {
     [DbContext(typeof(PortalDbContext))]
-    [Migration("20220403140856_UserPhoto")]
-    partial class UserPhoto
+    [Migration("20220415194414_database")]
+    partial class database
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
