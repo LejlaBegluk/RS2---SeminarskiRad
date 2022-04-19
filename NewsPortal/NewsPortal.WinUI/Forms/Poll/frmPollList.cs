@@ -49,6 +49,11 @@ namespace NewsPortal.WinUI.Forms.Poll
             this.Close();
         }
 
-    
+        private async void btnPonisti_Click_1(object sender, EventArgs e)
+        {
+            var result = await _poll.Get<List<MPoll>>(null);
+            dgvPolls.DataSource = result.ToList();
+            txtName.Text = "";
+        }
     }
 }

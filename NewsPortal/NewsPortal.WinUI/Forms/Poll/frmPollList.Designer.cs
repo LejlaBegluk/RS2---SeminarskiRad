@@ -40,8 +40,6 @@ namespace NewsPortal.WinUI.Forms.Poll
             ((System.ComponentModel.ISupportInitialize)(this.dgvPolls)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            this.dgvPolls.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvPollList_MouseDoubleClick);
-
             // 
             // Ankete
             // 
@@ -66,6 +64,7 @@ namespace NewsPortal.WinUI.Forms.Poll
             this.dgvPolls.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPolls.Size = new System.Drawing.Size(771, 251);
             this.dgvPolls.TabIndex = 0;
+            this.dgvPolls.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvPollList_MouseDoubleClick);
             // 
             // groupBox1
             // 
@@ -88,6 +87,7 @@ namespace NewsPortal.WinUI.Forms.Poll
             this.btnPonisti.TabIndex = 5;
             this.btnPonisti.Text = "Ponisti";
             this.btnPonisti.UseVisualStyleBackColor = true;
+            this.btnPonisti.Click += new System.EventHandler(this.btnPonisti_Click_1);
             // 
             // btnPretraga
             // 

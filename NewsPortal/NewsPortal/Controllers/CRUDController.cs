@@ -18,19 +18,17 @@ namespace NewsPortal.WebAPI.Controllers
             _service = service;
         }
         [HttpPost]
-        //[Authorize(Roles = "Admin,Instruktor,Polaznik")]
         public async Task<T> Insert(TInsert request)
         {
             return await _service.Insert(request);
         }
         [HttpPut("{ID}")]
-       // [Authorize]
         public async Task<T> Update(int ID, TUpdate request)
         {
             return await _service.Update(ID, request);
         }
         [HttpDelete("{ID}")]
-       // [Authorize(Roles = "Admin,Instruktor")]
+
         public async Task<bool> Delete(int ID)
         {
             return await _service.Delete(ID);

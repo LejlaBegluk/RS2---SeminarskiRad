@@ -78,6 +78,26 @@ namespace NewsPortal.WinUI
         {
             return  Username;
         }
+        public async Task<bool> Delete(int id)
+        {
+            try
+            {
+                var url = $"{Properties.Settings.Default.APIUrl}/{_route}/{id}";
+                return await url.WithBasicAuth(Username, Password).DeleteAsync().ReceiveJson<bool>();
+            }
+            catch (FlurlHttpException ex)
+            {
+                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
 
+                var stringBuilder = new StringBuilder();
+                foreach (var error in errors)
+                {
+                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                }
+
+                MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return default(bool);
+            }
         }
+    }
 }

@@ -134,15 +134,20 @@ namespace NewsPortal.WinUI.Forms.Poll
             frm.Show();
         }
 
-        private void dgvPollAnswers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgvPollAnswers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 4)
+            if (e.ColumnIndex == 4 && e.RowIndex!=-1)
             {
                 DialogResult result = MessageBox.Show("Do You Want to delete?", "Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 if (result.Equals(DialogResult.OK))
                 {
-                    //int id = int.Parse(dgvPollAnswers.SelectedRows[0].Cells[0].Value.ToString());
-                    //_pollAnswer.Delete
+                   // int id = int.Parse(dgvPollAnswers.SelectedRows[0].Cells[0].Value.ToString());
+                    DataGridViewRow row = this.dgvPollAnswers.Rows[e.RowIndex];
+                    int id = Int32.Parse(row.Cells["Id"].Value.ToString());
+                   await _pollAnswer.Delete(id);
+                    this.Close();
+                    var frm = new frmAddPoll(Id);
+                    frm.Show();
                 }
                 else
                 {
