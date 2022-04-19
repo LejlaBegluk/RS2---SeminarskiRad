@@ -52,8 +52,8 @@ namespace NewsPortal.WinUI.Forms.Users
         }
         private async void frmUserList_Load(object sender, EventArgs e)
         {
-            var result = await _user.Get<List<MUser>>(null);
-            var result2 = await _userRole.Get<List<MUserRole>>(null);
+            var result = await _user.Get<IEnumerable<MUser>>(null);
+            var result2 = await _userRole.Get<IEnumerable<MUserRole>>(null);
             foreach (var item in result)
             {
                 if (item.IsActive == true)

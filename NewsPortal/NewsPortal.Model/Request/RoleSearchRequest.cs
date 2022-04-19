@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NewsPortal.Model.Request
 {
-    public class RoleSearchRequest
+    public class RoleSearchRequest : BaseSearchObject
     {
         public int RoleId { get; set; }
     }

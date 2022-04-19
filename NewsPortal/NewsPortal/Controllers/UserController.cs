@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NewsPortal.Model.Request;
 using NewsPortal.WebAPI.Model;
 using NewsPortal.WebAPI.Services;
@@ -17,6 +18,7 @@ namespace NewsPortal.WebAPI.Controllers
             _service = service;
         }
         [HttpPost("Authenticate")]
+        [AllowAnonymous]
         public async Task<MUser> Authenticate(UserAuthenticationRequest request)
         {
             return await _service.Authenticate(request);

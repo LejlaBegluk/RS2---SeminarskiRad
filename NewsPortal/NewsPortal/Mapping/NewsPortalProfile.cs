@@ -32,7 +32,7 @@ namespace NewsPortal.Mapping
         CreateMap<User, UserSearchRequest>().ReverseMap();
         CreateMap<User, UserUpsertRequest>().ReverseMap();
 
-        CreateMap<UserRole, MUserRole>();
+        CreateMap<UserRole, MUserRole>().ReverseMap();
         CreateMap<UserRole, UserRoleSearchRequest>().ReverseMap();
         CreateMap<UserRole, UserRoleUpsertRequest>().ReverseMap();
 

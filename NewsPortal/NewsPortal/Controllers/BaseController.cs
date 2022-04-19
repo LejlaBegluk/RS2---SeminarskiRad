@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewsPortal.WebAPI.Services;
 using System;
@@ -11,24 +12,23 @@ namespace NewsPortal.WebAPI.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class BaseController<T, Tsearch> : ControllerBase
+    //[Authorize]
+    public class BaseController<T, Tsearch> : ControllerBase where T : class where Tsearch : class
     {
-        private readonly IBaseService<T, Tsearch> _service;
-        public BaseController(IBaseService<T, Tsearch> service)
+        private readonly IService<T, Tsearch> _service;
+        public BaseController(IService<T, Tsearch> service)
         {
             _service = service;
         }
-        //[Authorize]
         [HttpGet]
-        public async Task<List<T>> Get([FromQuery] Tsearch search)
+        public virtual IEnumerable<T> Get([FromQuery] Tsearch search = null)
         {
-            return await _service.Get(search);
+            return _service.Get(search);
         }
-        //[Authorize]
-        [HttpGet("{ID}")]
-        public async Task<T> GetById(int ID)
+        [HttpGet("{id}")]
+        public virtual T GetById(int id)
         {
-            return await _service.GetById(ID);
+            return _service.GetById(id);
         }
     }
 }

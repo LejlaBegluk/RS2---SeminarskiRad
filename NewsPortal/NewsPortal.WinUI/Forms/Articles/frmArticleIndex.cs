@@ -44,8 +44,8 @@ namespace NewsPortal.WinUI.Forms.Articles
         }
         private async void frmArticle_Load(object sender, EventArgs e)
         {
-            var result = await _article.Get<List<MArticle>>(null);
-            var categories = await _category.Get<List<MCategory>>(null);
+            var result = await _article.Get<IEnumerable<MArticle>>(null);
+            var categories = await _category.Get<IEnumerable<MCategory>>(null);
 
             foreach (var item in result)
             {

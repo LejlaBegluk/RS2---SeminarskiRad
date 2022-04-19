@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace NewsPortal.WebAPI.Services
 {
-    public class UserRoleService : CRUDService<MUserRole, UserRoleSearchRequest, UserRole, UserRoleUpsertRequest, UserRoleUpsertRequest>
+    public class UserRoleService : CRUDService<MUserRole, UserRoleSearchRequest, UserRole, UserRoleUpsertRequest, UserRoleUpsertRequest>,IUserRoleService
     {
         private readonly PortalDbContext _context;
         private readonly IMapper _mapper;
@@ -20,7 +20,7 @@ namespace NewsPortal.WebAPI.Services
             _context = context;
             _mapper = mapper;
         }
-        public override async Task<List<MUserRole>> Get(UserRoleSearchRequest request)
+        public override  IEnumerable<MUserRole> Get(UserRoleSearchRequest request)
         {
             var query = _context.UserRoles.AsQueryable().OrderBy(c => c.RoleId);
 
@@ -28,15 +28,17 @@ namespace NewsPortal.WebAPI.Services
             {
                 query = query.Where(x => x.UserId == request.UserId).OrderBy(c => c.RoleId);
             }
-            var list = await query.ToListAsync();
+            var list =  query.ToList();
 
-            return _mapper.Map<List<MUserRole>>(list);
+            return _mapper.Map<IEnumerable<MUserRole>>(list);
         }
-        public override async Task<MUserRole> GetById(int ID)
+
+
+        public override MUserRole GetById(int ID)
         {
-            var entity = await _context.UserRoles
+            var entity =  _context.UserRoles
                 .Where(i => i.Id == ID)
-                .SingleOrDefaultAsync();
+                .SingleOrDefault();
 
             return _mapper.Map<MUserRole>(entity);
         }

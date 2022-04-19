@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace NewsPortal.WebAPI.Services
 {
-    public class CategoryService : CRUDService<MCategory, CategorySearchRequest, Category, CategoryUpsertRequest, CategoryUpsertRequest>
+    public class CategoryService : CRUDService<MCategory, CategorySearchRequest, Category, CategoryUpsertRequest, CategoryUpsertRequest>, ICategoryService
     {
         private readonly PortalDbContext _context;
         private readonly IMapper _mapper;
@@ -20,7 +20,7 @@ namespace NewsPortal.WebAPI.Services
             _context = context;
             _mapper = mapper;
         }
-        public override async Task<List<MCategory>> Get(CategorySearchRequest request)
+        public override IEnumerable<MCategory> Get(CategorySearchRequest request)
         {
             var query = _context.Categories.AsQueryable().OrderBy(c => c.Name);
 
@@ -28,15 +28,15 @@ namespace NewsPortal.WebAPI.Services
             {
                 query = query.Where(x => x.Name.StartsWith(request.Name)).OrderBy(c => c.Name);
             }
-            var list = await query.ToListAsync();
+            var list =  query.ToList();
 
-            return _mapper.Map<List<MCategory>>(list);
+            return _mapper.Map<IEnumerable<MCategory>>(list);
         }
-        public override async Task<MCategory> GetById(int ID)
+        public override MCategory GetById(int ID)
         {
-            var entity = await _context.Categories
+            var entity =  _context.Categories
                 .Where(i => i.Id == ID)
-                .SingleOrDefaultAsync();
+                .SingleOrDefault();
 
             return _mapper.Map<MCategory>(entity);
         }

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace NewsPortal.Model.Request
 {
-    public class UserRoleSearchRequest : BaseSearchObject
+    public class BaseSearchObject
     {
-        public int UserId { get; set; }
+        public int? Page { get; set; }
+        public int? PageSize { get; set; }
     }
 }

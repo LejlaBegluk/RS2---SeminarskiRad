@@ -1,16 +1,12 @@
-﻿using NewsPortal.Models;
+﻿using NewsPortal.Model.Request;
 using NewsPortal.WebAPI.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using NewsPortal.WebAPI.Services;
+
 
 namespace NewsPortal.Services
 {
-   public interface IArticleService
+   public interface IArticleService : ICRUDService<MArticle, ArticleSearchRequest, ArticleUpsertRequest, ArticleUpsertRequest>
     {
-        public IEnumerable<Article> Get();
-        public Article GetById(int Id);
 
     }
 }

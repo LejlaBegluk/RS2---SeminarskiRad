@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NewsPortal.Model.Request
 {
-    public class ArticleSearchRequest
+    public class ArticleSearchRequest : BaseSearchObject
     {
         public string Title { get; set; }
         public int UserID { get; set; }

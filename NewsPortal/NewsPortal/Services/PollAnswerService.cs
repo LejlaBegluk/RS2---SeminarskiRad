@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace NewsPortal.WebAPI.Services
 {
-    public class PollAnswerService : CRUDService<MPollAnswer, PollAnswerSearchRequest, PollAnswer, PollAnswerUpsertRequest, PollAnswerUpsertRequest>
+    public class PollAnswerService : CRUDService<MPollAnswer, PollAnswerSearchRequest, PollAnswer, PollAnswerUpsertRequest, PollAnswerUpsertRequest>, IPollAnswer
     {
         private readonly PortalDbContext _context;
         private readonly IMapper _mapper;
@@ -20,7 +20,7 @@ namespace NewsPortal.WebAPI.Services
             _context = context;
             _mapper = mapper;
         }
-        public override async Task<List<MPollAnswer>> Get(PollAnswerSearchRequest request)
+        public override IEnumerable<MPollAnswer> Get(PollAnswerSearchRequest request)
         {
             var query = _context.PollAnswer.AsQueryable().OrderBy(c => c.Text);
 
@@ -28,15 +28,15 @@ namespace NewsPortal.WebAPI.Services
             {
                 query = query.Where(x => x.Text.StartsWith(request.Text)).OrderBy(c => c.Text);
             }
-            var list = await query.ToListAsync();
+            var list =  query.ToList();
 
-            return _mapper.Map<List<MPollAnswer>>(list);
+            return _mapper.Map<IEnumerable<MPollAnswer>>(list);
         }
-        public override async Task<MPollAnswer> GetById(int ID)
+        public override MPollAnswer GetById(int ID)
         {
-            var entity = await _context.PollAnswer
+            var entity =  _context.PollAnswer
                 .Where(i => i.Id == ID)
-                .SingleOrDefaultAsync();
+                .SingleOrDefault();
 
             return _mapper.Map<MPollAnswer>(entity);
         }

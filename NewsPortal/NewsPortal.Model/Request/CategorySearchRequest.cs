@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NewsPortal.Model.Request
 {
-    public class CategorySearchRequest
+    public class CategorySearchRequest : BaseSearchObject
     {
         public string Name { get; set; }
     }

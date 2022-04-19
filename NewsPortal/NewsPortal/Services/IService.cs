@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace NewsPortal.WebAPI.Services
 {
-    public interface IService<T, TSearch>
+    public interface IService<TModel, TSearch> where TModel : class where TSearch : class
     {
-        List<T> Get(TSearch search);
+        IEnumerable<TModel> Get(TSearch search);
 
-        T GetById(int id);
+        TModel GetById(int id);
     }
 }

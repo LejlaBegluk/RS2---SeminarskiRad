@@ -20,7 +20,7 @@ namespace NewsPortal.WebAPI.Services
             _context = context;
             _mapper = mapper;
         }
-        public override async Task<List<MRole>> Get(RoleSearchRequest request)
+        public override  IEnumerable<MRole> Get(RoleSearchRequest request)
         {
             var query = _context.Roles.AsQueryable().OrderBy(c => c.Id);
 
@@ -28,15 +28,15 @@ namespace NewsPortal.WebAPI.Services
             {
                 query = query.Where(x => x.Id == request.RoleId).OrderBy(c => c.Id);
             }
-            var list = await query.ToListAsync();
+            var list =  query.ToList();
 
             return _mapper.Map<List<MRole>>(list);
         }
-        public override async Task<MRole> GetById(int ID)
+        public override MRole GetById(int ID)
         {
-            var entity = await _context.Roles
+            var entity =  _context.Roles
                 .Where(i => i.Id == ID)
-                .SingleOrDefaultAsync();
+                .SingleOrDefault();
 
             return _mapper.Map<MRole>(entity);
         }

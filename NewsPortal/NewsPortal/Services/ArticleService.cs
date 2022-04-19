@@ -14,7 +14,7 @@ using Article = NewsPortal.WebAPI.Database.Article;
 
 namespace NewsPortal.Services
 {
-    public class ArticleService : CRUDService<MArticle, ArticleSearchRequest, Article, ArticleUpsertRequest, ArticleUpsertRequest>
+    public class ArticleService : CRUDService<MArticle, ArticleSearchRequest, Article, ArticleUpsertRequest, ArticleUpsertRequest>, IArticleService
     {
         private readonly PortalDbContext _context;
         private readonly IMapper _mapper;
@@ -23,7 +23,7 @@ namespace NewsPortal.Services
             _context = context;
             _mapper = mapper;
         }
-        public override async Task<List<MArticle>> Get(ArticleSearchRequest request)
+        public override IEnumerable<MArticle> Get(ArticleSearchRequest request)
         {
             var query = _context.Articles.AsQueryable().OrderBy(c => c.Title);
 
@@ -35,15 +35,15 @@ namespace NewsPortal.Services
             {
                 query = query.Where(x => x.UserId==request.UserID).OrderBy(c => c.Title);
             }
-            var list = await query.ToListAsync();
+            var list =  query.ToList();
 
-            return _mapper.Map<List<MArticle>>(list);
+            return _mapper.Map<IEnumerable<MArticle>>(list);
         }
-        public override async Task<MArticle> GetById(int ID)
+        public override MArticle GetById(int ID)
         {
-            var entity = await _context.Articles
+            var entity =  _context.Articles
                 .Where(i => i.Id == ID)
-                .SingleOrDefaultAsync();
+                .SingleOrDefault();
 
             return _mapper.Map<MArticle>(entity);
         }
@@ -85,6 +85,16 @@ namespace NewsPortal.Services
                 }
             }
             return false;
+        }
+        public override IQueryable<Article> AddFilter(IQueryable<Article> query, ArticleSearchRequest search )
+        {
+            var filteredQuery = base.AddFilter(query, search);
+
+            if (!string.IsNullOrWhiteSpace(search?.Title))
+            {
+                filteredQuery = filteredQuery.Where(x => x.Title.Contains(search.Title));
+            }
+            return filteredQuery;
         }
 
     }

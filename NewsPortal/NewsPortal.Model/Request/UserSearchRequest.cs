@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NewsPortal.Model.Request
 {
-    public class UserSearchRequest
+    public class UserSearchRequest : BaseSearchObject
     {
         public string Username { get; set; }
 

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace NewsPortal.WebAPI.Services
 {
-    public class PollService : CRUDService<MPoll, PollSearchRequest, Poll, PollUpsertRequest, PollUpsertRequest>
+    public class PollService : CRUDService<MPoll, PollSearchRequest, Poll, PollUpsertRequest, PollUpsertRequest>, IPollService
     {
         private readonly PortalDbContext _context;
         private readonly IMapper _mapper;
@@ -20,7 +20,7 @@ namespace NewsPortal.WebAPI.Services
             _context = context;
             _mapper = mapper;
         }
-        public override async Task<List<MPoll>> Get(PollSearchRequest request)
+        public override IEnumerable<MPoll> Get(PollSearchRequest request)
         {
             var query = _context.Polls.AsQueryable().OrderBy(c => c.Question);
 
@@ -28,15 +28,15 @@ namespace NewsPortal.WebAPI.Services
             {
                 query = query.Where(x => x.Question.StartsWith(request.Question)).OrderBy(c => c.Question);
             } 
-            var list = await query.ToListAsync();
+            var list =  query.ToList();
 
-            return _mapper.Map<List<MPoll>>(list);
+            return _mapper.Map<IEnumerable<MPoll>>(list);
         }
-        public override async Task<MPoll> GetById(int ID)
+        public override MPoll GetById(int ID)
         {
-            var entity = await _context.Polls
+            var entity =  _context.Polls
                 .Where(i => i.Id == ID)
-                .SingleOrDefaultAsync();
+                .SingleOrDefault();
 
             return _mapper.Map<MPoll>(entity);
         }

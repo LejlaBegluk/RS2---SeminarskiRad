@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using NewsPortal.Model.Request;
 using NewsPortal.WebAPI.Database;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace NewsPortal.WebAPI.Services
 {
     public class CRUDService<TModel, TSearch, TDatabase, TInsert, TUpdate> : BaseService<TModel, TSearch, TDatabase>,
-  ICRUDService<TModel, TSearch, TInsert, TUpdate> where TDatabase : class
+  ICRUDService<TModel, TSearch, TInsert, TUpdate> where TModel : class where TDatabase : class where TSearch : BaseSearchObject
     {
         private readonly PortalDbContext _context;
         private readonly IMapper _mapper;

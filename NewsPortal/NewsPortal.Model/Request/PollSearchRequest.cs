@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NewsPortal.Model.Request
 {
-    public class PollSearchRequest
+    public class PollSearchRequest : BaseSearchObject
     {
         public string Question { get; set; }
     }

@@ -7,8 +7,8 @@ namespace NewsPortal.WebAPI.Services
 {
     public interface IBaseService<T, TSearch>
     {
-        Task<List<T>> Get(TSearch search);
-        Task<T> GetById(int ID);
+        IEnumerable<T> Get(TSearch search);
+       T GetById(int ID);
 
     }
 }

@@ -21,7 +21,7 @@ namespace NewsPortal.WebAPI.Services
             _context = context;
             _mapper = mapper;
         }
-        public async override Task<List<MUser>> Get(UserSearchRequest search)
+        public  override IEnumerable<MUser> Get(UserSearchRequest search)
         {
             var query = _context.Users.Include(x => x.UserRoles).AsQueryable().OrderBy(c => c.FirstName);
 
@@ -29,16 +29,16 @@ namespace NewsPortal.WebAPI.Services
             {
                 query = query.Where(x => x.Username.ToLower().StartsWith(search.Username.ToLower())).OrderBy(c => c.FirstName);
             }
-            var list = await query.ToListAsync();
-            return _mapper.Map<List<MUser>>(list);
+            var list =  query.ToList();
+            return _mapper.Map<IEnumerable<MUser>>(list);
         }
 
-        public override async Task<MUser> GetById(int ID)
+        public override  MUser GetById(int ID)
         {
-            var entity = await _context.Set<User>()
+            var entity =  _context.Set<User>()
                 .Where(i => i.Id == ID)
                 .Include(i => i.UserRoles)
-                .SingleOrDefaultAsync();
+                .SingleOrDefault();
 
             return _mapper.Map<MUser>(entity);
         }

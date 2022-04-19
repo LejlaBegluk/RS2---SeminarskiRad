@@ -10,7 +10,7 @@ namespace NewsPortal.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CRUDController<T, TSearch, TInsert, TUpdate> : BaseController<T, TSearch>
+    public class CRUDController<T, TSearch, TInsert, TUpdate> : BaseController<T, TSearch> where T : class where TSearch : class where TInsert : class where TUpdate : class
     {
         private readonly ICRUDService<T, TSearch, TInsert, TUpdate> _service;
         public CRUDController(ICRUDService<T, TSearch, TInsert, TUpdate> service) : base(service)

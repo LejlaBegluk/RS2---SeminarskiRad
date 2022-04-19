@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace NewsPortal.WebAPI.Services
 {
-    public class CommentService : CRUDService<MComment, CommentSearchRequest, Comment, CommentUpsertRequest, CommentUpsertRequest>
+    public class CommentService : CRUDService<MComment, CommentSearchRequest, Comment, CommentUpsertRequest, CommentUpsertRequest>, ICommentService
     {
         private readonly PortalDbContext _context;
         private readonly IMapper _mapper;
@@ -20,7 +20,7 @@ namespace NewsPortal.WebAPI.Services
             _context = context;
             _mapper = mapper;
         }
-        public override async Task<List<MComment>> Get(CommentSearchRequest request)
+        public override  IEnumerable<MComment> Get(CommentSearchRequest request)
         {
             var query = _context.Comments.AsQueryable().OrderBy(c => c.Content);
 
@@ -32,15 +32,15 @@ namespace NewsPortal.WebAPI.Services
             {
                 query = query.Where(x => x.ArticleId == request.ArticleId).OrderBy(c => c.Content);
             }
-            var list = await query.ToListAsync();
+            var list =  query.ToList();
 
-            return _mapper.Map<List<MComment>>(list);
+            return _mapper.Map<IEnumerable<MComment>>(list);
         }
-        public override async Task<MComment> GetById(int ID)
+        public override MComment GetById(int ID)
         {
-            var entity = await _context.Comments
+            var entity =  _context.Comments
                 .Where(i => i.Id == ID)
-                .SingleOrDefaultAsync();
+                .SingleOrDefault();
 
             return _mapper.Map<MComment>(entity);
         }
