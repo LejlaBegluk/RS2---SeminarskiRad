@@ -36,13 +36,14 @@ namespace NewsPortal.WinUI.Forms.Poll
             this.Odgovori = new System.Windows.Forms.GroupBox();
             this.dgvPollAnswers = new System.Windows.Forms.DataGridView();
             this.btnAddAnswer = new System.Windows.Forms.Button();
+            this.cbActive = new System.Windows.Forms.CheckBox();
             this.Odgovori.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPollAnswers)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(362, 101);
+            this.btnCancel.Location = new System.Drawing.Point(364, 117);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(111, 23);
             this.btnCancel.TabIndex = 24;
@@ -52,7 +53,7 @@ namespace NewsPortal.WinUI.Forms.Poll
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(237, 101);
+            this.btnSave.Location = new System.Drawing.Point(237, 117);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(111, 23);
             this.btnSave.TabIndex = 23;
@@ -109,11 +110,22 @@ namespace NewsPortal.WinUI.Forms.Poll
             this.btnAddAnswer.UseVisualStyleBackColor = true;
             this.btnAddAnswer.Click += new System.EventHandler(this.btnAddAnswer_Click);
             // 
+            // cbActive
+            // 
+            this.cbActive.AutoSize = true;
+            this.cbActive.Location = new System.Drawing.Point(238, 92);
+            this.cbActive.Name = "cbActive";
+            this.cbActive.Size = new System.Drawing.Size(66, 19);
+            this.cbActive.TabIndex = 28;
+            this.cbActive.Text = "Aktivna";
+            this.cbActive.UseVisualStyleBackColor = true;
+            // 
             // frmAddPoll
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(773, 447);
+            this.Controls.Add(this.cbActive);
             this.Controls.Add(this.btnAddAnswer);
             this.Controls.Add(this.Odgovori);
             this.Controls.Add(this.btnCancel);
@@ -139,5 +151,6 @@ namespace NewsPortal.WinUI.Forms.Poll
         private System.Windows.Forms.GroupBox Odgovori;
         private System.Windows.Forms.DataGridView dgvPollAnswers;
         private System.Windows.Forms.Button btnAddAnswer;
+        private System.Windows.Forms.CheckBox cbActive;
     }
 }

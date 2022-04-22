@@ -22,7 +22,7 @@ namespace NewsPortal.WinUI.Forms.Categories
 
         private async void btnPretraga_Click(object sender, EventArgs e)
         {
-           CategorySearchRequest search = new CategorySearchRequest()
+            CategorySearchRequest search = new CategorySearchRequest()
             {
                 Name = txtName.Text
             };
@@ -31,16 +31,23 @@ namespace NewsPortal.WinUI.Forms.Categories
             dgvCategories.DataSource = result.ToList();
         }
 
-       private async void btnPonisti_Click(object sender, EventArgs e)
+        private async void btnPonisti_Click(object sender, EventArgs e)
         {
             var result = await _category.Get<List<MCategory>>(null);
             dgvCategories.DataSource = result.ToList();
-            txtName.Text = ""; 
+            txtName.Text = "";
         }
         private async void frmCategoryList_Load(object sender, EventArgs e)
         {
             var result = await _category.Get<List<MCategory>>(null);
             dgvCategories.DataSource = result.ToList();
+            var deleteButton = new DataGridViewButtonColumn();
+            deleteButton.Name = "btnDelete";
+            deleteButton.HeaderText = "Delete";
+            deleteButton.Text = "Delete";
+            deleteButton.UseColumnTextForButtonValue = true;
+
+            dgvCategories.Columns.Add(deleteButton);
         }
         private void dgvCategoryList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -49,9 +56,33 @@ namespace NewsPortal.WinUI.Forms.Categories
             frm.ShowDialog();
             this.Close();
         }
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private async void dgvCategory_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.ColumnIndex == 2 && e.RowIndex != -1)
+            {
+                DialogResult result = MessageBox.Show("Do you want to delete?", "Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                if (result.Equals(DialogResult.OK))
+                {
+                    // int id = int.Parse(dgvPollAnswers.SelectedRows[0].Cells[0].Value.ToString());
+                    DataGridViewRow row = this.dgvCategories.Rows[e.RowIndex];
+                    int id = Int32.Parse(row.Cells["Id"].Value.ToString());
+                    var isDeleted=await _category.Delete(id);
+                    this.Close();
+                    if (isDeleted)
+                    {
+                        var frm = new frmCategoryList();
+                        frm.Show();
+                    }
+                    else {
+                        MessageBox.Show("Record is connected to other objects in system.", "Delete failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                }
 
+
+            }
         }
     }
 }

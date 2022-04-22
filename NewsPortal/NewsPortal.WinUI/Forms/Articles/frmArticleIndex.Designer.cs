@@ -114,7 +114,8 @@ namespace NewsPortal.WinUI.Forms.Articles
             this.dgvArticle.Size = new System.Drawing.Size(771, 275);
             this.dgvArticle.TabIndex = 0;
             this.dgvArticle.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvArticle_DoubleClick);
- 
+            this.dgvArticle.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticle_CellContentClick);
+
             // 
             // frmArticleIndex
             // 

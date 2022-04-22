@@ -92,7 +92,7 @@ namespace NewsPortal.WinUI.Forms.Users
                     request.Password = txtPassword.Text;
                     request.PasswordConfirmation = txtConfirmPass.Text;
                     request.BirthDate = Convert.ToDateTime(dtpBirthDate.Value);
-                    request.IsActive =Convert.ToBoolean(chbActive);
+                    request.IsActive =Convert.ToBoolean(Convert.ToInt32(chbActive.Checked));
                     //  Image = pbUserImage.Image != null ? ImageHelper.SystemDrawingToByteArray(pbUserImage.Image) : null,
                     request.Role = (int)cbRole.SelectedValue;
 

@@ -50,7 +50,6 @@ namespace NewsPortal.Services
         public override async Task<MArticle> Insert(ArticleUpsertRequest request)
         {
            var entity = _mapper.Map<Article>(request);
-            entity.CreateOn = DateTime.Now;
             _context.Set<Article>().Add(entity);
             await _context.SaveChangesAsync();
 
@@ -75,14 +74,19 @@ namespace NewsPortal.Services
             var Article = await _context.Articles.Where(i => i.Id == ID).FirstOrDefaultAsync();
             if (Article != null)
             {
-                var articleList = await _context.Articles.Where(i => i.UserId == ID).ToListAsync();
-
-                if (!articleList.Any())
+                var CommentList = await _context.Comments.Where(i => i.ArticleId == ID).ToListAsync();
+                if (CommentList.Any())
                 {
-                    _context.Articles.Remove(Article);
-                    await _context.SaveChangesAsync();
-                    return true;
+                    foreach(var item in CommentList)
+                    {
+                        _context.Comments.Remove(item);
+                    }
+                    _context.SaveChanges();
                 }
+               _context.Articles.Remove(Article);
+               await _context.SaveChangesAsync();
+               return true;
+               
             }
             return false;
         }

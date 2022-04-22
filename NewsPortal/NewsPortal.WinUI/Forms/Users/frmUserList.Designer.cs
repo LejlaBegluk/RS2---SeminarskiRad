@@ -114,6 +114,7 @@ namespace NewsPortal.WinUI.Forms.Users
             this.dgvUsers.Size = new System.Drawing.Size(771, 251);
             this.dgvUsers.TabIndex = 0;
             this.dgvUsers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvUserList_MouseDoubleClick);
+            this.dgvUsers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUser_CellContentClick);
             // 
             // frmUserList
             // 

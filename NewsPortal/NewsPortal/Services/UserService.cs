@@ -150,13 +150,20 @@ namespace NewsPortal.WebAPI.Services
                 Include(i => i.UserRoles).
                 FirstOrDefaultAsync(i => i.Id == ID);
 
-            if (entity.UserRoles.Count != 0)
-                _context.UserRoles.RemoveRange(entity.UserRoles);
+            var articleList = await _context.Articles.Where(i => i.UserId == ID).ToListAsync();
+            var pollList = await _context.Polls.Where(i => i.UserId == ID).ToListAsync();
+            var commentList = await _context.Comments.Where(i => i.UserId == ID).ToListAsync();
+            if (!articleList.Any() && !pollList.Any() && !commentList.Any())
+            {
+                if (entity.UserRoles.Count != 0)
+                    _context.UserRoles.RemoveRange(entity.UserRoles);
 
-            _context.Users.Remove(entity);
-            await _context.SaveChangesAsync();
+                _context.Users.Remove(entity);
+                await _context.SaveChangesAsync();
+                return true;
+            }
 
-            return true;
+            return false;
         }
 
         public static string GenerateSalt()

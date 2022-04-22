@@ -24,7 +24,7 @@ namespace NewsPortal.WinUI.Forms.Users
 
         }
 
-            private async void btnPretraga_Click(object sender, EventArgs e)
+        private async void btnPretraga_Click(object sender, EventArgs e)
         {
             UserSearchRequest search = new UserSearchRequest()
             {
@@ -59,14 +59,22 @@ namespace NewsPortal.WinUI.Forms.Users
                 if (item.IsActive == true)
                     item.Active = "DA";
 
-               var userrole = result2.Where(x=>x.UserId==item.Id).FirstOrDefault();
-               var role = await _role.GetById<MRole>(userrole.RoleId);
+                var userrole = result2.Where(x => x.UserId == item.Id).FirstOrDefault();
+                var role = await _role.GetById<MRole>(userrole.RoleId);
                 item.Uloga += role.Name;
 
             }
 
 
             dgvUsers.DataSource = result.ToList();
+
+            var deleteButton = new DataGridViewButtonColumn();
+            deleteButton.Name = "btnDelete";
+            deleteButton.HeaderText = "Delete";
+            deleteButton.Text = "Delete";
+            deleteButton.UseColumnTextForButtonValue = true;
+
+            dgvUsers.Columns.Add(deleteButton);
 
         }
 
@@ -90,15 +98,43 @@ namespace NewsPortal.WinUI.Forms.Users
             dgvUsers.DataSource = result.ToList();
         }
 
-       private void dgvUserList_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void dgvUserList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-           
+
             int idKorisnika = int.Parse(dgvUsers.SelectedRows[0].Cells[0].Value.ToString());
             frmAddUser frm = new frmAddUser(idKorisnika);
             frm.ShowDialog();
             this.Close();
         }
+        private async void dgvUser_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 9 && e.RowIndex != -1)
+            {
+                DialogResult result = MessageBox.Show("Do you want to delete?", "Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                if (result.Equals(DialogResult.OK))
+                {
+                    // int id = int.Parse(dgvPollAnswers.SelectedRows[0].Cells[0].Value.ToString());
+                    DataGridViewRow row = this.dgvUsers.Rows[e.RowIndex];
+                    int id = Int32.Parse(row.Cells["Id"].Value.ToString());
+                    var isDeleted = await _user.Delete(id);
+                    this.Close();
+                    if (isDeleted)
+                    {
+                        var frm = new frmUserList();
+                        frm.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Record is connected to other objects in system.", "Delete failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                }
 
-      
+
+            }
+
+        }
     }
 }

@@ -5,7 +5,7 @@ using NewsPortal.WebAPI.Services;
 
 namespace NewsPortal.Services
 {
-   public interface IArticleService : ICRUDService<MArticle, ArticleSearchRequest, ArticleUpsertRequest, ArticleUpsertRequest>
+   public interface IArticleService 
     {
 
     }

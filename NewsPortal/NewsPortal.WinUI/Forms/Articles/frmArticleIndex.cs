@@ -73,7 +73,13 @@ namespace NewsPortal.WinUI.Forms.Articles
 
 
             dgvArticle.DataSource = result.ToList();
-           
+            var deleteButton = new DataGridViewButtonColumn();
+            deleteButton.Name = "btnDelete";
+            deleteButton.HeaderText = "Delete";
+            deleteButton.Text = "Delete";
+            deleteButton.UseColumnTextForButtonValue = true;
+
+            dgvArticle.Columns.Add(deleteButton);
         }
 
         private async void btnPonisti_Click(object sender, EventArgs e)
@@ -99,6 +105,35 @@ namespace NewsPortal.WinUI.Forms.Articles
             frmAddArticle frm = new frmAddArticle(id);
             frm.ShowDialog();
             this.Close();
+        }
+        private async void dgvArticle_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 4 && e.RowIndex != -1)
+            {
+                DialogResult result = MessageBox.Show("Do you want to delete?", "Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                if (result.Equals(DialogResult.OK))
+                {
+                    // int id = int.Parse(dgvPollAnswers.SelectedRows[0].Cells[0].Value.ToString());
+                    DataGridViewRow row = this.dgvArticle.Rows[e.RowIndex];
+                    int id = Int32.Parse(row.Cells["Id"].Value.ToString());
+                    var isDeleted = await _article.Delete(id);
+                    this.Close();
+                    if (isDeleted)
+                    {
+                        var frm = new frmArticleIndex();
+                        frm.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Record is connected to other objects in system.", "Delete failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                }
+
+
+            }
         }
     }
 }

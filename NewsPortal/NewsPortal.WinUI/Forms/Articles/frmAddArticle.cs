@@ -86,8 +86,7 @@ namespace NewsPortal.WinUI.Forms.Articles
                 }
                 else
                 {
-                       
-                        pictureBox.Image =Image.FromStream(ms);
+                   pictureBox.Image =Image.FromStream(ms);
                 }
 
 

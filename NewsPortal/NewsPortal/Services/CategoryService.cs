@@ -77,7 +77,7 @@ namespace NewsPortal.WebAPI.Services
         {
             var category = await _context.Categories.Where(i => i.Id == ID).FirstOrDefaultAsync();
             if (category != null) {
-            var articleList = await _context.Articles.Where(i => i.UserId == ID).ToListAsync();
+            var articleList = await _context.Articles.Where(i => i.CategoryId == ID).ToListAsync();
 
             if (!articleList.Any())
             {

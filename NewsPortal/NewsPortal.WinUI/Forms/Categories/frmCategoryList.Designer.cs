@@ -53,7 +53,6 @@ namespace NewsPortal.WinUI.Forms.Categories
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pretraga";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // btnPonisti
             // 
@@ -115,6 +114,7 @@ namespace NewsPortal.WinUI.Forms.Categories
             this.dgvCategories.Size = new System.Drawing.Size(771, 251);
             this.dgvCategories.TabIndex = 0;
             this.dgvCategories.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvCategoryList_MouseDoubleClick);
+            this.dgvCategories.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCategory_CellContentClick);
             // 
             // frmCategoryList
             // 

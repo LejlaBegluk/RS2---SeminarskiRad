@@ -13,7 +13,7 @@ namespace NewsPortal.Model.Request
         public string Content { get; set; }
         public int Likes { get; set; }
         public DateTime CreateOn { get; set; }
-        public DateTime UpdatedOn { get; set; }
+        public DateTime? UpdatedOn { get; set; }
         public bool Active { get; set; }
         public int UserId { get; set; }
         public int CategoryId { get; set; }
