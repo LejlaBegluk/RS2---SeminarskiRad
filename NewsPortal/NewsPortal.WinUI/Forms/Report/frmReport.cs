@@ -44,8 +44,9 @@ namespace NewsPortal.WinUI.Forms.Report
             bmp = new Bitmap(dgvReport.Width, dgvReport.Height);
             dgvReport.DrawToBitmap(bmp, new Rectangle(0, 0, dgvReport.Width, dgvReport.Height));
             dgvReport.Height = height;
+          
             printPreviewDialog1.ShowDialog();
-
+            
 
 
         }

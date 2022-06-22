@@ -29,6 +29,29 @@ namespace NewsPortal
             services.AddSwaggerGen(options =>
             {
                 options.CustomSchemaIds(type => type.ToString());
+                //options.AddSecurityDefinition("basic", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+                //{
+                //    Name = "Authorization",
+                //    Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
+                //    Scheme = "basic",
+                //    In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+                //    Description = "Basic Authorization header using the Bearer scheme."
+                //});
+                //options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+                //{
+                //    {
+                //        new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+                //        {
+                //           Reference =new Microsoft.OpenApi.Models.OpenApiReference
+                //           {
+                //               Type=Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
+                //               Id="basic"
+
+                //           }
+                //        },
+                //        new string[]{}
+                //    }
+                //});
             });
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
@@ -62,13 +85,16 @@ namespace NewsPortal
             }
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
-            app.UseSwagger();
+            app.UseSwagger(
+               
+                );
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                
             });
 
             app.UseHttpsRedirection();

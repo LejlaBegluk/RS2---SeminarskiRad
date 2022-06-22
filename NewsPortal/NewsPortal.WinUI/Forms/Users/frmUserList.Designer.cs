@@ -49,7 +49,7 @@ namespace NewsPortal.WinUI.Forms.Users
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(4, 26);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(784, 101);
+            this.groupBox1.Size = new System.Drawing.Size(770, 101);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pretraga";
@@ -95,7 +95,7 @@ namespace NewsPortal.WinUI.Forms.Users
             this.Korisnici.Controls.Add(this.dgvUsers);
             this.Korisnici.Location = new System.Drawing.Point(4, 158);
             this.Korisnici.Name = "Korisnici";
-            this.Korisnici.Size = new System.Drawing.Size(784, 280);
+            this.Korisnici.Size = new System.Drawing.Size(770, 280);
             this.Korisnici.TabIndex = 1;
             this.Korisnici.TabStop = false;
             this.Korisnici.Text = "Korisnici";
@@ -111,16 +111,16 @@ namespace NewsPortal.WinUI.Forms.Users
             this.dgvUsers.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvUsers.RowTemplate.Height = 25;
             this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvUsers.Size = new System.Drawing.Size(771, 251);
+            this.dgvUsers.Size = new System.Drawing.Size(763, 251);
             this.dgvUsers.TabIndex = 0;
-            this.dgvUsers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvUserList_MouseDoubleClick);
             this.dgvUsers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUser_CellContentClick);
+            this.dgvUsers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvUserList_MouseDoubleClick);
             // 
             // frmUserList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(772, 450);
             this.Controls.Add(this.Korisnici);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmUserList";

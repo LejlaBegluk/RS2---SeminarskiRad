@@ -58,6 +58,7 @@ namespace NewsPortal.WinUI.Forms.Users
             this.txtPhotoInput = new System.Windows.Forms.TextBox();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.btnAddPhoto = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
@@ -126,7 +127,7 @@ namespace NewsPortal.WinUI.Forms.Users
             this.lbPhone.AutoSize = true;
             this.lbPhone.Location = new System.Drawing.Point(123, 113);
             this.lbPhone.Name = "lbPhone";
-            this.lbPhone.Size = new System.Drawing.Size(46, 15);
+            this.lbPhone.Size = new System.Drawing.Size(45, 15);
             this.lbPhone.TabIndex = 4;
             this.lbPhone.Text = "Telefon";
             // 
@@ -259,6 +260,7 @@ namespace NewsPortal.WinUI.Forms.Users
             this.btnDeletePhoto.TabIndex = 39;
             this.btnDeletePhoto.Text = "Poništi";
             this.btnDeletePhoto.UseVisualStyleBackColor = true;
+            this.btnDeletePhoto.Click += new System.EventHandler(this.btnDeletePhoto_Click);
             // 
             // label4
             // 
@@ -294,6 +296,7 @@ namespace NewsPortal.WinUI.Forms.Users
             this.btnAddPhoto.TabIndex = 35;
             this.btnAddPhoto.Text = "Dodaj";
             this.btnAddPhoto.UseVisualStyleBackColor = true;
+            this.btnAddPhoto.Click += new System.EventHandler(this.btnAddPhoto_Click);
             // 
             // frmAddUser
             // 

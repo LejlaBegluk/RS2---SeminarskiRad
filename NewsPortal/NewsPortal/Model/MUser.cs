@@ -24,5 +24,6 @@ namespace NewsPortal.WebAPI.Model
         public ICollection<MUserRole> UserRoles { get; set; }
         public string Active { get; set; }
         public string Uloga { get; set; }
+        public byte[] Photo { get; set; }
     }
 }

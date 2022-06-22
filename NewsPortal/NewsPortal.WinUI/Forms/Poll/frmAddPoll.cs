@@ -34,6 +34,7 @@ namespace NewsPortal.WinUI.Forms.Poll
             {
                 var model = await _poll.GetById<MPoll>(Id);
                 txtQuestion.Text = model.Question;
+                cbActive.Checked = model.Active;    
                 PollAnswerSearchRequest search = new PollAnswerSearchRequest()
                 {
                     Text = ""
@@ -73,6 +74,8 @@ namespace NewsPortal.WinUI.Forms.Poll
                 {
 
                     request.Question = txtQuestion.Text;
+                    request.Active = Convert.ToBoolean(Convert.ToInt32(cbActive.Checked));
+
                     if (Id == null)
                     {
                         try

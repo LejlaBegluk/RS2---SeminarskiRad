@@ -66,7 +66,7 @@ namespace NewsPortal.WinUI.Forms.Articles
                 cbCategory.SelectedValue = model.CategoryId;
                 request.UserId = model.UserId;
                 request.CreateOn = model.CreateOn;
-
+                request.Active = model.Active;
                     byte[] image = model.Photo;
 
                 MemoryStream ms=new MemoryStream(image);
@@ -76,7 +76,7 @@ namespace NewsPortal.WinUI.Forms.Articles
                 if (ms.Length == 0 && ms.Position == 0 && ms.Capacity == 0)
                 {
 
-                    string startuppath = Path.GetDirectoryName(Application.ExecutablePath).Replace("NewsPortal.WinUI\\bin\\Debug\\net5.0-windows", string.Empty);
+                    string startuppath = Path.GetDirectoryName(Application.ExecutablePath).Replace("NewsPortal.WinUI\\bin\\Debug\\net6.0-windows", string.Empty);
                     string s = "NewsPortal.WinUI\\Resources\\news.jpg";
                     var filename = startuppath + s;
 
@@ -145,7 +145,7 @@ namespace NewsPortal.WinUI.Forms.Articles
                     request.CategoryId = (int)cbCategory.SelectedValue;
                     request.Content = txtContent.Text;
                     request.Title = txtTitle.Text;
-                  
+                    request.Active=Convert.ToBoolean(Convert.ToInt32(cbActive.Checked));
                     if (Id == null)
                     {
                         try

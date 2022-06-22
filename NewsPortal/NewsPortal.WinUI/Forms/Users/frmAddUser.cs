@@ -70,6 +70,27 @@ namespace NewsPortal.WinUI.Forms.Users
                 var uloge = await _userroleService.Get<List<MUserRole>>(null);
                 var ulogekorisnika = uloge.Where(a => a.UserId == korisnik.Id).FirstOrDefault();
                 cbRole.SelectedValue = ulogekorisnika.RoleId;
+
+                byte[] image =korisnik.Photo;
+
+                MemoryStream ms = new MemoryStream(image);
+                if (ms.Length == 0 && ms.Position == 0 && ms.Capacity == 0)
+                {
+
+                    string startuppath = Path.GetDirectoryName(Application.ExecutablePath).Replace("NewsPortal.WinUI\\bin\\Debug\\net6.0-windows", string.Empty);
+                    string s = "NewsPortal.WinUI\\Resources\\news.jpg";
+                    var filename = startuppath + s;
+
+
+                    Image imaged = Image.FromFile(filename);
+                    pictureBox.Image = imaged;
+                }
+                else
+                {
+                    pictureBox.Image = Image.FromStream(ms);
+                }
+
+
             }
         }
  
@@ -313,6 +334,9 @@ namespace NewsPortal.WinUI.Forms.Users
                 errorProvider.SetError(dtpBirthDate, null);
             }
         }
+
         #endregion
+
+    
     }
 }

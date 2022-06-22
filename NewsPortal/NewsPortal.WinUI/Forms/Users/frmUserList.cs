@@ -65,6 +65,24 @@ namespace NewsPortal.WinUI.Forms.Users
 
             }
 
+            dgvUsers.AutoGenerateColumns = false;
+            dgvUsers.ColumnCount = 5;
+            dgvUsers.Columns[0].Name = "Id";
+            dgvUsers.Columns[0].HeaderText = "Id";
+            dgvUsers.Columns[0].DataPropertyName = "Id";
+            dgvUsers.Columns[1].Name = "FirstName";
+            dgvUsers.Columns[1].HeaderText = "Ime";
+            dgvUsers.Columns[1].DataPropertyName = "FirstName";
+            dgvUsers.Columns[2].Name = "LastName";
+            dgvUsers.Columns[2].HeaderText = "Prezime";
+            dgvUsers.Columns[2].DataPropertyName = "LastName";
+            dgvUsers.Columns[3].Name = "Username";
+            dgvUsers.Columns[3].HeaderText = "Username";
+            dgvUsers.Columns[3].DataPropertyName = "Username";
+
+            dgvUsers.Columns[4].Name = "Uloga";
+            dgvUsers.Columns[4].HeaderText = "Uloga";
+            dgvUsers.Columns[4].DataPropertyName = "Uloga";
 
             dgvUsers.DataSource = result.ToList();
 
@@ -108,7 +126,7 @@ namespace NewsPortal.WinUI.Forms.Users
         }
         private async void dgvUser_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 9 && e.RowIndex != -1)
+            if (e.ColumnIndex == 5 && e.RowIndex != -1)
             {
                 DialogResult result = MessageBox.Show("Do you want to delete?", "Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 if (result.Equals(DialogResult.OK))
