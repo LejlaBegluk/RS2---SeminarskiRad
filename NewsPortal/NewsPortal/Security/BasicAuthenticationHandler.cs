@@ -39,13 +39,8 @@ namespace NewsPortal.WebAPI.Security
                 var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
                 var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
                 var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':');
-                var request = new UserAuthenticationRequest()
-                {
-                    Username = credentials[0],
-                    Password = credentials[1]
-                };
 
-                user = await _userService.Authenticate(request);
+                user = await _userService.Authenticate(credentials[0], credentials[1]);
             }
             catch
             {

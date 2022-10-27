@@ -7,6 +7,6 @@ namespace NewsPortal.Services
 {
    public interface IArticleService 
     {
-
+        public MArticle LikeArticle(int Id);
     }
 }

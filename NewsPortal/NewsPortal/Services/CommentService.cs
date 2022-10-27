@@ -22,15 +22,12 @@ namespace NewsPortal.WebAPI.Services
         }
         public override  IEnumerable<MComment> Get(CommentSearchRequest request)
         {
-            var query = _context.Comments.AsQueryable().OrderBy(c => c.Content);
+            var query = _context.Comments.Include(c=>c.User).AsQueryable().OrderBy(c => c.Content);
 
-            if (!string.IsNullOrWhiteSpace(request?.Text))
+
+             if (request.Id != 0)
             {
-                query = query.Where(x => x.Content.StartsWith(request.Text)).OrderBy(c => c.Content);
-            }
-            else if (request.ArticleId != 0)
-            {
-                query = query.Where(x => x.ArticleId == request.ArticleId).OrderBy(c => c.Content);
+                query = query.Where(x => x.ArticleId == request.Id).OrderBy(c => c.CreateOn);
             }
             var list =  query.ToList();
 
@@ -46,11 +43,6 @@ namespace NewsPortal.WebAPI.Services
         }
         public override async Task<MComment> Insert(CommentUpsertRequest request)
         {
-            if (await _context.Comments.AnyAsync(i => i.Content == request.Content))
-            {
-                throw new UserException("Comment with that name already exists!");
-            }
-
             var entity = _mapper.Map<Comment>(request);
             entity.CreateOn = DateTime.Now;
             _context.Set<Comment>().Add(entity);
@@ -61,10 +53,6 @@ namespace NewsPortal.WebAPI.Services
         public override async Task<MComment> Update(int ID, CommentUpsertRequest request)
         {
             var Comment = await _context.Comments.FindAsync(ID);
-            if (await _context.Comments.AnyAsync(i => i.Content == request.Content) && request.Content != Comment.Content)
-            {
-                throw new UserException("Comment with that name already exists!");
-            }
 
             var entity = _context.Set<Comment>().Find(ID);
             

@@ -68,18 +68,14 @@ namespace NewsPortal.WinUI.Forms.Report
             List<ArticleReportViewModel> reportData = new List<ArticleReportViewModel>();
             foreach (var item in list)
             {
-                CommentSearchRequest commentSearch = new CommentSearchRequest()
-                {
-                    ArticleId = item.Id,
-                    Text = String.Empty
-                };
-                var comments = await _commentService.Get<List<MComment>>(commentSearch);
+
+               // var comments = await _commentService.<List<MComment>>(commentSearch);
                 reportData.Add(new ArticleReportViewModel
                 {
                     CreateOn = item.CreateOn,
                     Likes = item.Likes,
                     Title = item.Title,
-                    CommentNumber = comments==null?0:comments.Count(),
+                    CommentNumber = 0,//comments==null?0:comments.Count(),
                     Journalist = user.FirstName + " " + user.LastName,
                     CategoryName = categories.Where(x => x.Id == item.CategoryId).Select(m => m.Name).FirstOrDefault()
             });

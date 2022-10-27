@@ -17,7 +17,7 @@ namespace NewsPortal.WebAPI.Database
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
-
+        public DbSet<PaidArticle> PaidArticles { get; set; }
         public PortalDbContext(DbContextOptions<PortalDbContext> options) : base(options)
         {
 

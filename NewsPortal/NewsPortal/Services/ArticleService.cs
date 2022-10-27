@@ -25,15 +25,19 @@ namespace NewsPortal.Services
         }
         public override IEnumerable<MArticle> Get(ArticleSearchRequest request)
         {
-            var query = _context.Articles.AsQueryable().OrderBy(c => c.Title);
+            var query = _context.Articles.Include(a=>a.User).Include(a=>a.Category).AsQueryable().OrderBy(c => c.Title);
 
             if (!string.IsNullOrWhiteSpace(request?.Title))
             {
-                query = query.Where(x => x.Title.StartsWith(request.Title)).OrderBy(c => c.Title);
+                query = query.Where(x => x.Title.StartsWith(request.Title)).OrderBy(c => c.CreateOn);
             }
             else if (request.UserID != 0)
             {
-                query = query.Where(x => x.UserId==request.UserID).OrderBy(c => c.Title);
+                query = query.Where(x => x.UserId==request.UserID).OrderBy(c => c.CreateOn);
+            }
+            else if (request.CategoryID != 0)
+            {
+                query = query.Where(x => x.CategoryId == request.CategoryID).OrderBy(c => c.CreateOn);
             }
             var list =  query.ToList();
 
@@ -57,7 +61,7 @@ namespace NewsPortal.Services
         }
         public override async Task<MArticle> Update(int ID, ArticleUpsertRequest request)
         {
-            var Article = await _context.Articles.FindAsync(ID);
+            //var Article = await _context.Articles.FindAsync(ID);
             var entity = _context.Set<Article>().Find(ID);
             entity.UpdatedOn = DateTime.Now;
             _context.Set<Article>().Attach(entity);
@@ -101,5 +105,21 @@ namespace NewsPortal.Services
             return filteredQuery;
         }
 
+        public MArticle LikeArticle(int Id)
+        {
+            if (Id > 0)
+            {
+                Article article = _context.Articles.Where(i => i.Id == Id).SingleOrDefault();
+                if (article != null)
+                {
+                    article.Likes++;
+                    _context.Set<Article>().Attach(article);
+                    _context.Set<Article>().Update(article);
+                    _context.SaveChangesAsync();
+                    return _mapper.Map<MArticle>(article);
+                }
+            }
+            return null;
+        }
     }
 }

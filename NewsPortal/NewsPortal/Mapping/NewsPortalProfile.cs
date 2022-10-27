@@ -40,9 +40,17 @@ namespace NewsPortal.Mapping
         CreateMap<Role, RoleSearchRequest>().ReverseMap();
         CreateMap<Role, RoleUpsertRequest>().ReverseMap();
 
-        CreateMap<Article, MArticle>();
-        CreateMap<Article, ArticleSearchRequest>().ReverseMap();
+            CreateMap<Article, MArticle>().ReverseMap();
+            //.ForMember(
+            //dest=>dest.Author, dest => dest.MapFrom(y => y.User.FirstName+' '+y.User.LastName)
+            //  ).ReverseMap();
+            CreateMap<Article, ArticleSearchRequest>().ReverseMap();
         CreateMap<Article, ArticleUpsertRequest>().ReverseMap();
+
+        CreateMap<PaidArticle, MPaidArticle>();
+        CreateMap<PaidArticle, PaidArticleSearchRequest>();
+        CreateMap<PaidArticle, PaidArticleUpsertRequest>().ReverseMap();
+
         }
     }
 }

@@ -25,7 +25,7 @@ namespace NewsPortal.WinUI.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:44341/api")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:44363/api")]
         public string APIUrl {
             get {
                 return ((string)(this["APIUrl"]));

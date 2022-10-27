@@ -54,7 +54,7 @@ namespace NewsPortal.WinUI.Forms.Users
                     Password = APIService.Password
                 };
 
-                var user = await _api.Authenticate(request);
+                var user = await _api.Authenticate(APIService.Username, APIService.Password);
               
                 if (user != null)
                 {

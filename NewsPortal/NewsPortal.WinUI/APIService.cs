@@ -35,12 +35,14 @@ namespace NewsPortal.WinUI
                 var result = await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
                 return result;
             }
-        public async Task<MUser> Authenticate(UserAuthenticationRequest request)
+        public async Task<MUser> Authenticate(string username, string password)
         {
             try
             {
                 var url = $"{Properties.Settings.Default.APIUrl}/User/Authenticate";
-                return await url.WithBasicAuth(Username, Password).PostJsonAsync(request).ReceiveJson<MUser>();
+                return await url.WithBasicAuth(Username, Password).GetJsonAsync<MUser>();
+                //.PostJsonAsync(request).ReceiveJson<MUser>();
+
             }
             catch (FlurlHttpException ex)
             {

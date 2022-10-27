@@ -1,0 +1,36 @@
+version: '3'
+services:
+#mssql docker
+  newsportal-sql:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=QWElkj132!
+      - MSSQL_PID=Developer
+    ports:
+      - 1433:1433
+    expose:
+        - 1433
+    networks:
+      - newsportalnet2022
+
+  newsportal-api:
+    restart: unless-stopped
+    build:
+      context: .
+    environment:
+      - ConnectionStrings:DefaultConnection=Server=newsportal-sql,1433;Database=NewsPortal;User=sa;Password=QWElkj132!;ConnectRetryCount=0
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - 5192:5192
+    networks:
+      - newsportalnet2022
+    links:
+      - newsportal-sql
+    depends_on:
+      - newsportal-sql
+      
+networks:
+  newsportalnet2022:
+    driver: bridge      

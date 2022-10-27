@@ -22,16 +22,17 @@ namespace NewsPortal.WebAPI.Model
         [System.ComponentModel.Browsable(false)]
         public int UserId { get; set; }
         [System.ComponentModel.Browsable(false)]
-        //public User User { get; set; }
+       // public User User { get; set; }
         //[System.ComponentModel.Browsable(false)]
         public int CategoryId { get; set; }
         //[System.ComponentModel.Browsable(false)]
-        //public Category Category { get; set; }
+       // public Category Category { get; set; }
         //[System.ComponentModel.Browsable(false)]
         //public virtual ICollection<MComment> Comments { get; set; }
         public string ActiveStatus { get; set; }
         public string CategoryName { get; set; }
-
+        public string UserFirstName { get; set; }
+        public string UserLastName { get; set; }
 
     }
 }

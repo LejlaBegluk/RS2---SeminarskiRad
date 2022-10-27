@@ -110,16 +110,16 @@ namespace NewsPortal.WebAPI.Services
 
             return _mapper.Map<MUser>(entity);
         }
-        public async Task<MUser> Authenticate(UserAuthenticationRequest request)
+        public async Task<MUser> Authenticate(string Username, string Password)
         {
             var user = await _context.Users
                 .Include(i => i.UserRoles)
                 .ThenInclude(j => j.Role)
-                .FirstOrDefaultAsync(i => i.Username == request.Username);
+                .FirstOrDefaultAsync(i => i.Username == Username);
 
             if (user != null)
             {
-                var newHash = GenerateHash(user.PasswordSalt, request.Password);
+                var newHash = GenerateHash(user.PasswordSalt, Password);
 
                 if (newHash == user.PasswordHash)
                 {

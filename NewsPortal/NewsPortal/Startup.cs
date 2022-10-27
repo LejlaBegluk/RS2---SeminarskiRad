@@ -11,6 +11,7 @@ using NewsPortal.WebAPI.Security;
 using NewsPortal.WebAPI.Database;
 using NewsPortal.WebAPI.Model;
 using NewsPortal.Model.Request;
+using Microsoft.OpenApi.Models;
 
 namespace NewsPortal
 {
@@ -26,36 +27,57 @@ namespace NewsPortal
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSwaggerGen(options =>
+            services.AddSwaggerGen(c =>
             {
-                options.CustomSchemaIds(type => type.ToString());
-                //options.AddSecurityDefinition("basic", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
-                //{
-                //    Name = "Authorization",
-                //    Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
-                //    Scheme = "basic",
-                //    In = Microsoft.OpenApi.Models.ParameterLocation.Header,
-                //    Description = "Basic Authorization header using the Bearer scheme."
-                //});
-                //options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
-                //{
-                //    {
-                //        new Microsoft.OpenApi.Models.OpenApiSecurityScheme
-                //        {
-                //           Reference =new Microsoft.OpenApi.Models.OpenApiReference
-                //           {
-                //               Type=Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
-                //               Id="basic"
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "newsPortal API", Version = "v1" });
 
-                //           }
-                //        },
-                //        new string[]{}
-                //    }
-                //});
+                c.AddSecurityDefinition("basicAuth", new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "basic"
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "basicAuth" }
+                        },
+                        new string[]{}
+                    }
+                });
             });
+
+
+
+            //options.AddSecurityDefinition("basic", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+            //{
+            //    Name = "Authorization",
+            //    Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
+            //    Scheme = "basic",
+            //    In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+            //    Description = "Basic Authorization header using the Bearer scheme."
+            //});
+            //options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+            //{
+            //    {
+            //        new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+            //        {
+            //           Reference =new Microsoft.OpenApi.Models.OpenApiReference
+            //           {
+            //               Type=Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
+            //               Id="basic"
+
+            //           }
+            //        },
+            //        new string[]{}
+            //    }
+            //});
+   
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-            //services.AddScoped<IArticleService, ArticleService>();
+            services.AddScoped<IArticleService, ArticleService>();
             services.AddScoped<ICRUDService<MCategory, CategorySearchRequest, CategoryUpsertRequest, CategoryUpsertRequest>, CategoryService>();
            // services.AddScoped<IBaseService, BaseService>();
             services.AddScoped<ICRUDService<MPoll, PollSearchRequest, PollUpsertRequest, PollUpsertRequest>, PollService>();
@@ -97,7 +119,7 @@ namespace NewsPortal
                 
             });
 
-            app.UseHttpsRedirection();
+           // app.UseHttpsRedirection();
 
             app.UseRouting();
 

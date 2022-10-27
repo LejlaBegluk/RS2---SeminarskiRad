@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace NewsPortal.Model.Request
 {
-    public class ArticleSearchRequest : BaseSearchObject
+    public class PaidArticleSearchRequest:BaseSearchObject
     {
-        public string Title { get; set; }
+        public string Text { get; set; }
         public int UserID { get; set; }
-        public int CategoryID { get; set; }
-
     }
 }

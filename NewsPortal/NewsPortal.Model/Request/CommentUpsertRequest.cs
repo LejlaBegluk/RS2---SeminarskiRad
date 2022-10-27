@@ -10,5 +10,7 @@ namespace NewsPortal.Model.Request
         [Required]
         public string Content { get; set; }
         public int ArticleId { get; set; }
+        public int UserId { get; set; }
+
     }
 }

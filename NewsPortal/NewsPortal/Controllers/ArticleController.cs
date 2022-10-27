@@ -14,11 +14,18 @@ namespace NewsPortal.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [RequestSizeLimit(400000000000)]
     public class ArticleController : CRUDController<MArticle, ArticleSearchRequest, ArticleUpsertRequest, ArticleUpsertRequest>
     {
-        public ArticleController(ICRUDService<MArticle, ArticleSearchRequest, ArticleUpsertRequest, ArticleUpsertRequest> service) : base(service)
+        protected readonly IArticleService _service;
+        public ArticleController(ICRUDService<MArticle, ArticleSearchRequest, ArticleUpsertRequest, ArticleUpsertRequest> service, IArticleService articleService) : base(service)
         {
-
+            _service = articleService;
+        }
+        [HttpGet("ArticleLike")]
+        public MArticle LikeArticle(int Id)
+        {
+            return _service.LikeArticle(Id);
         }
     }
 }
