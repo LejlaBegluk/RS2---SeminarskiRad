@@ -1,4 +1,5 @@
-﻿using NewsPortal.Model.Request;
+﻿using NewsPortal.Model.Enums;
+using NewsPortal.Model.Request;
 using NewsPortal.WebAPI.Model;
 using System;
 using System.Collections.Generic;
@@ -21,14 +22,13 @@ namespace NewsPortal.WinUI.Forms.Users
 
         private void LoadPanel(MUser user)
         {
-            var role = user.UserRoles.Select(i => i.Role.Name).FirstOrDefault();
 
-            if (role == "Admin")
+            if (user.RoleId == (int)Roles.Admin)
             {
                 var form = new frmAdminIndex(user);
                 form.Show();
             }
-            else if (role == "Urednik"|| role == "Novinar")
+            else if (user.RoleId == (int)Roles.Editor || user.RoleId == (int)Roles.Journalist)
             {
                 var form = new frmEditorIndex(user);
                 form.Show();

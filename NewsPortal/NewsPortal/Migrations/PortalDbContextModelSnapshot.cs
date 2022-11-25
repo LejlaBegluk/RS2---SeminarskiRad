@@ -45,6 +45,9 @@ namespace NewsPortal.WebAPI.Migrations
                     b.Property<int>("Likes")
                         .HasColumnType("int");
 
+                    b.Property<int?>("PaidArticleId")
+                        .HasColumnType("int");
+
                     b.Property<byte[]>("Photo")
                         .HasColumnType("varbinary(max)");
 
@@ -64,9 +67,38 @@ namespace NewsPortal.WebAPI.Migrations
 
                     b.HasIndex("CategoryId");
 
+                    b.HasIndex("PaidArticleId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Articles");
+                });
+
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.ArticlePayment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<string>("TansactionNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("TransactionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ArticlePayments");
                 });
 
             modelBuilder.Entity("NewsPortal.WebAPI.Database.Category", b =>
@@ -160,17 +192,25 @@ namespace NewsPortal.WebAPI.Migrations
                     b.Property<DateTime>("CreateOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("PaidArticleStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PaidArticleStatusId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("PaidArticles");
                 });
 
-            modelBuilder.Entity("NewsPortal.WebAPI.Database.Photo", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.PaidArticleStatus", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -178,26 +218,12 @@ namespace NewsPortal.WebAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("CreateOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PublicId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Url")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserPhotos");
+                    b.ToTable("PaidArticleStatuses");
                 });
 
             modelBuilder.Entity("NewsPortal.WebAPI.Database.Poll", b =>
@@ -318,6 +344,9 @@ namespace NewsPortal.WebAPI.Migrations
                     b.Property<byte[]>("PhotoThumb")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
@@ -325,33 +354,9 @@ namespace NewsPortal.WebAPI.Migrations
 
                     b.HasIndex("EditorId");
 
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("NewsPortal.WebAPI.Database.UserRole", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("CreateOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
                     b.HasIndex("RoleId");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserRoles");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("NewsPortal.WebAPI.Database.Article", b =>
@@ -362,6 +367,10 @@ namespace NewsPortal.WebAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("NewsPortal.WebAPI.Database.PaidArticle", "PaidArticle")
+                        .WithMany()
+                        .HasForeignKey("PaidArticleId");
+
                     b.HasOne("NewsPortal.WebAPI.Database.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -369,6 +378,19 @@ namespace NewsPortal.WebAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+
+                    b.Navigation("PaidArticle");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.ArticlePayment", b =>
+                {
+                    b.HasOne("NewsPortal.WebAPI.Database.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -394,22 +416,19 @@ namespace NewsPortal.WebAPI.Migrations
 
             modelBuilder.Entity("NewsPortal.WebAPI.Database.PaidArticle", b =>
                 {
+                    b.HasOne("NewsPortal.WebAPI.Database.PaidArticleStatus", "PaidArticleStatus")
+                        .WithMany()
+                        .HasForeignKey("PaidArticleStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("NewsPortal.WebAPI.Database.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("NewsPortal.WebAPI.Database.Photo", b =>
-                {
-                    b.HasOne("NewsPortal.WebAPI.Database.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("PaidArticleStatus");
 
                     b.Navigation("User");
                 });
@@ -442,26 +461,15 @@ namespace NewsPortal.WebAPI.Migrations
                         .WithMany()
                         .HasForeignKey("EditorId");
 
-                    b.Navigation("Editor");
-                });
-
-            modelBuilder.Entity("NewsPortal.WebAPI.Database.UserRole", b =>
-                {
                     b.HasOne("NewsPortal.WebAPI.Database.Role", "Role")
-                        .WithMany()
+                        .WithMany("Users")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NewsPortal.WebAPI.Database.User", "User")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Editor");
 
                     b.Navigation("Role");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("NewsPortal.WebAPI.Database.Article", b =>
@@ -479,9 +487,9 @@ namespace NewsPortal.WebAPI.Migrations
                     b.Navigation("PollAnswers");
                 });
 
-            modelBuilder.Entity("NewsPortal.WebAPI.Database.User", b =>
+            modelBuilder.Entity("NewsPortal.WebAPI.Database.Role", b =>
                 {
-                    b.Navigation("UserRoles");
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

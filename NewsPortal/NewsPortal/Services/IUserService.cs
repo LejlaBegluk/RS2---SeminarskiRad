@@ -11,7 +11,9 @@ namespace NewsPortal.WebAPI.Services
     public interface IUserService : ICRUDService<MUser, UserSearchRequest, UserUpsertRequest, UserUpsertRequest>
     {
         Task<MUser> Authenticate(string Username, string Password);
-        Task<MUser> Register(UserUpsertRequest request);
-        
+        Task<MUser> Register(UserRegisterRequest request);
+        public Task<MUser> EditProfile(UserEditProfileRequest request);
+
+
     }
 }

@@ -101,5 +101,8 @@ namespace NewsPortal.WinUI
                 return default(bool);
             }
         }
+   
+        
+    
     }
 }

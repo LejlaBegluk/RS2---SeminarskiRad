@@ -9,7 +9,7 @@ services:
       - SA_PASSWORD=QWElkj132!
       - MSSQL_PID=Developer
     ports:
-      - 1433:1433
+      - 1434:1433
     expose:
         - 1433
     networks:
@@ -20,7 +20,7 @@ services:
     build:
       context: .
     environment:
-      - ConnectionStrings:DefaultConnection=Server=newsportal-sql,1433;Database=NewsPortal;User=sa;Password=QWElkj132!;ConnectRetryCount=0
+      - ConnectionStrings:DefaultConnection=Server=newsportal-sql,1433;Database=IB210303;User=sa;Password=QWElkj132!;ConnectRetryCount=0
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - 5192:5192

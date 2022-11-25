@@ -27,5 +27,12 @@ namespace NewsPortal.Controllers
         {
             return _service.LikeArticle(Id);
         }
+        [HttpGet("ArticleUnlike")]
+        public MArticle UnikeArticle(int Id)
+        {
+            return _service.UnlikeArticle(Id);
+        }
+      
+
     }
 }

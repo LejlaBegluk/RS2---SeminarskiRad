@@ -18,7 +18,6 @@ namespace NewsPortal.WinUI.Forms.Users
     {
         private readonly APIService _userService = new APIService("User");
         private readonly APIService _roleService = new APIService("Role");
-        private readonly APIService _userroleService = new APIService("UserRole");
         private int? Id = null;
         UserUpsertRequest request = new UserUpsertRequest();
         public frmAddUser(int? userId = null)
@@ -67,9 +66,7 @@ namespace NewsPortal.WinUI.Forms.Users
                 txtPhone.Text = korisnik.PhoneNumber;
                 dtpBirthDate.Value = korisnik.BirthDate;
                 chbActive.Checked = korisnik.IsActive ;
-                var uloge = await _userroleService.Get<List<MUserRole>>(null);
-                var ulogekorisnika = uloge.Where(a => a.UserId == korisnik.Id).FirstOrDefault();
-                cbRole.SelectedValue = ulogekorisnika.RoleId;
+                cbRole.SelectedValue = korisnik.RoleId;
 
                 byte[] image =korisnik.Photo;
 
@@ -115,7 +112,7 @@ namespace NewsPortal.WinUI.Forms.Users
                     request.BirthDate = Convert.ToDateTime(dtpBirthDate.Value);
                     request.IsActive =Convert.ToBoolean(Convert.ToInt32(chbActive.Checked));
                     //  Image = pbUserImage.Image != null ? ImageHelper.SystemDrawingToByteArray(pbUserImage.Image) : null,
-                    request.Role = (int)cbRole.SelectedValue;
+                    request.RoleId = (int)cbRole.SelectedValue;
 
                     if (Id == null)
                     {

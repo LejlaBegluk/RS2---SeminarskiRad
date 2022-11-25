@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using NewsPortal.Model.Enums;
 using NewsPortal.Model.Request;
 using NewsPortal.WebAPI.Database;
 using NewsPortal.WebAPI.Model;
@@ -23,7 +24,7 @@ namespace NewsPortal.WebAPI.Services
         }
         public  override IEnumerable<MUser> Get(UserSearchRequest search)
         {
-            var query = _context.Users.Include(x => x.UserRoles).AsQueryable().OrderBy(c => c.FirstName);
+            var query = _context.Users.Include(x => x.Role).AsQueryable().OrderBy(c => c.FirstName);
 
             if (!string.IsNullOrWhiteSpace(search?.Username))
             {
@@ -37,7 +38,7 @@ namespace NewsPortal.WebAPI.Services
         {
             var entity =  _context.Set<User>()
                 .Where(i => i.Id == ID)
-                .Include(i => i.UserRoles)
+                .Include(i => i.Role)
                 .SingleOrDefault();
 
             return _mapper.Map<MUser>(entity);
@@ -54,17 +55,6 @@ namespace NewsPortal.WebAPI.Services
             entity.PasswordHash = GenerateHash(entity.PasswordSalt, request.Password);
 
             await _context.Users.AddAsync(entity);
-            await _context.SaveChangesAsync();
-
-            var role = new Database.UserRole()
-              {
-                    UserId = entity.Id,
-                    RoleId = request.Role
-             };
-
-                await _context.UserRoles.AddAsync(role);
-            
-
             await _context.SaveChangesAsync();
 
             return _mapper.Map<MUser>(entity);
@@ -86,25 +76,7 @@ namespace NewsPortal.WebAPI.Services
                 entity.PasswordSalt = GenerateSalt();
                 entity.PasswordHash = GenerateHash(entity.PasswordSalt, request.Password);
             }
-                var userRole =  _context.UserRoles.Where(i => i.UserId == ID).AsQueryable();
-            foreach(var role in userRole)
-            {
-                if (role.RoleId != request.Role)
-                {
-                    _context.Set<Database.UserRole>().Remove(role);
-                }
-
-            }
-            
-            var newRole = new Database.UserRole()
-            {
-               UserId = ID,
-               RoleId = request.Role
-             };
-           await _context.Set<Database.UserRole>().AddAsync(newRole);
-
-            
-
+     
             _mapper.Map(request, entity);
             await _context.SaveChangesAsync();
 
@@ -113,8 +85,7 @@ namespace NewsPortal.WebAPI.Services
         public async Task<MUser> Authenticate(string Username, string Password)
         {
             var user = await _context.Users
-                .Include(i => i.UserRoles)
-                .ThenInclude(j => j.Role)
+                .Include(i => i.Role)
                 .FirstOrDefaultAsync(i => i.Username == Username);
 
             if (user != null)
@@ -128,14 +99,25 @@ namespace NewsPortal.WebAPI.Services
             }
             return null;
         }
-        public async Task<MUser> Register(UserUpsertRequest request)
+        public async Task<MUser> Register(UserRegisterRequest request)
         {
             if (request.Password != request.PasswordConfirmation)
             {
                 throw new Exception("Passwords do not match!");
             }
-            request.Role = 2;//new List<int> { 2, 3 };
-            var entity = _mapper.Map<User>(request);
+            UserUpsertRequest newUser = new UserUpsertRequest()
+            {
+                Username = request.Username,
+                BirthDate = request.BirthDate,
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Email = request.Email,
+                PhoneNumber = request.PhoneNumber,
+                IsActive=true,
+                CreateOn = DateTime.Now,
+                RoleId=(int)Roles.Registerd,
+            };
+            var entity = _mapper.Map<User>(newUser);
             entity.PasswordSalt = GenerateSalt();
             entity.PasswordHash = GenerateHash(entity.PasswordSalt, request.Password);
 
@@ -147,7 +129,7 @@ namespace NewsPortal.WebAPI.Services
         public override async Task<bool> Delete(int ID)
         {
             var entity = await _context.Users.
-                Include(i => i.UserRoles).
+                Include(i => i.Role).
                 FirstOrDefaultAsync(i => i.Id == ID);
 
             var articleList = await _context.Articles.Where(i => i.UserId == ID).ToListAsync();
@@ -155,9 +137,6 @@ namespace NewsPortal.WebAPI.Services
             var commentList = await _context.Comments.Where(i => i.UserId == ID).ToListAsync();
             if (!articleList.Any() && !pollList.Any() && !commentList.Any())
             {
-                if (entity.UserRoles.Count != 0)
-                    _context.UserRoles.RemoveRange(entity.UserRoles);
-
                 _context.Users.Remove(entity);
                 await _context.SaveChangesAsync();
                 return true;
@@ -185,5 +164,22 @@ namespace NewsPortal.WebAPI.Services
             byte[] inArray = algorithm.ComputeHash(dst);
             return Convert.ToBase64String(inArray);
         }
+        public  async Task<MUser> EditProfile( UserEditProfileRequest request)
+        {
+            var entity = _context.Users.Find(request.Id);
+            entity.FirstName = request.FirstName;
+            entity.LastName = request.LastName;
+            entity.Username = request.Username;
+
+            _context.Users.Attach(entity);
+            _context.Users.Update(entity);
+
+           
+           // _mapper.Map(request, entity);
+            await _context.SaveChangesAsync();
+
+            return _mapper.Map<MUser>(entity);
+        }
+
     }
 }

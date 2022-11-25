@@ -37,7 +37,7 @@ namespace NewsPortal.WinUI.Forms.Poll
                 cbActive.Checked = model.Active;    
                 PollAnswerSearchRequest search = new PollAnswerSearchRequest()
                 {
-                    Text = ""
+                    PollId = (int)Id
                 };
                 var result = await _pollAnswer.Get<List<MPollAnswer>>(search);
 

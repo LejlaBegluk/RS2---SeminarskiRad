@@ -20,7 +20,7 @@ namespace NewsPortal.WebAPI.Services
         }
         public override IEnumerable<MPaidArticle> Get(PaidArticleSearchRequest request)
         {
-            var query = _context.PaidArticles.Include(a => a.User).AsQueryable().OrderBy(c => c.CreateOn);
+            var query = _context.PaidArticles.Include(a => a.User).Include(a=>a.PaidArticleStatus).AsQueryable().OrderBy(c => c.CreateOn);
 
             if (!string.IsNullOrWhiteSpace(request?.Text))
             {
@@ -36,7 +36,7 @@ namespace NewsPortal.WebAPI.Services
         }
         public override MPaidArticle GetById(int ID)
         {
-            var entity = _context.PaidArticles
+            var entity = _context.PaidArticles.Include(a => a.User).Include(a => a.PaidArticleStatus)
                 .Where(i => i.Id == ID)
                 .SingleOrDefault();
 
@@ -78,21 +78,6 @@ namespace NewsPortal.WebAPI.Services
             return false;
         }
 
-        public MArticle LikeArticle(int Id)
-        {
-            if (Id > 0)
-            {
-                Article article = _context.Articles.Where(i => i.Id == Id).SingleOrDefault();
-                if (article != null)
-                {
-                    article.Likes++;
-                    _context.Set<Article>().Attach(article);
-                    _context.Set<Article>().Update(article);
-                    _context.SaveChangesAsync();
-                    return _mapper.Map<MArticle>(article);
-                }
-            }
-            return null;
-        }
+     
     }
 }

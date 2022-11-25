@@ -43,11 +43,16 @@ namespace NewsPortal.WebAPI.Controllers
             return null;
         }
         [HttpPost("Register")]
-        public async Task<MUser> Register(UserUpsertRequest request)
+        public async Task<MUser> Register(UserRegisterRequest request)
         {
-            return await _service.Insert(request);
+            return await _service.Register(request);
+        }
+        [HttpPost("EditProfile")]
+        public async Task<MUser> EditProfile(UserEditProfileRequest request)
+        {
+            return await _service.EditProfile(request);
         }
 
-       
+
     }
 }

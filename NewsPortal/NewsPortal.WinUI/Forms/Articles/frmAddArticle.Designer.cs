@@ -47,13 +47,15 @@ namespace NewsPortal.WinUI.Forms.Articles
             this.btnDeletePhoto = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.cbActive = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbSponsored = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(547, 572);
+            this.btnCancel.Location = new System.Drawing.Point(547, 606);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(111, 23);
             this.btnCancel.TabIndex = 24;
@@ -63,7 +65,7 @@ namespace NewsPortal.WinUI.Forms.Articles
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(421, 572);
+            this.btnSave.Location = new System.Drawing.Point(421, 606);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(111, 23);
             this.btnSave.TabIndex = 23;
@@ -192,11 +194,30 @@ namespace NewsPortal.WinUI.Forms.Articles
             this.cbActive.Text = "Aktivan";
             this.cbActive.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(43, 578);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(78, 15);
+            this.label5.TabIndex = 36;
+            this.label5.Text = "Sponzorisano";
+            // 
+            // cbSponsored
+            // 
+            this.cbSponsored.FormattingEnabled = true;
+            this.cbSponsored.Location = new System.Drawing.Point(143, 570);
+            this.cbSponsored.Name = "cbSponsored";
+            this.cbSponsored.Size = new System.Drawing.Size(518, 23);
+            this.cbSponsored.TabIndex = 37;
+            // 
             // frmAddArticle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(839, 607);
+            this.ClientSize = new System.Drawing.Size(839, 641);
+            this.Controls.Add(this.cbSponsored);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.cbActive);
             this.Controls.Add(this.btnDeletePhoto);
             this.Controls.Add(this.txtContent);
@@ -240,5 +261,7 @@ namespace NewsPortal.WinUI.Forms.Articles
         private System.Windows.Forms.Button btnDeletePhoto;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.CheckBox cbActive;
+        private System.Windows.Forms.ComboBox cbSponsored;
+        private System.Windows.Forms.Label label5;
     }
 }

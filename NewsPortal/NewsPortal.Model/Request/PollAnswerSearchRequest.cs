@@ -6,6 +6,6 @@ namespace NewsPortal.Model.Request
 {
     public class PollAnswerSearchRequest : BaseSearchObject
     {
-        public string Text { get; set; }
+        public int PollId { get; set; }
     }
 }

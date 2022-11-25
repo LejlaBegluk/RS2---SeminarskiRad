@@ -1,6 +1,7 @@
 ﻿using NewsPortal.WebAPI.Model;
 using NewsPortal.WinUI.Forms.Articles;
 using NewsPortal.WinUI.Forms.Categories;
+using NewsPortal.WinUI.Forms.PaidArticles;
 using NewsPortal.WinUI.Forms.Poll;
 using NewsPortal.WinUI.Forms.Report;
 using NewsPortal.WinUI.Helpers;
@@ -77,6 +78,12 @@ namespace NewsPortal.WinUI.Forms.Users
         private void izvještajONovinarimaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var frm = new frmReport();
+            frm.Show();
+        }
+
+        private void pretragaToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            var frm = new frmPaidArticleIndex();
             frm.Show();
         }
     }

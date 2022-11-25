@@ -78,15 +78,20 @@ namespace NewsPortal
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddScoped<IArticleService, ArticleService>();
+            services.AddScoped<IPaidArticleService, PaidArticleService>(); 
+            services.AddScoped<IPollAnswerService, PollAnswerService>();
             services.AddScoped<ICRUDService<MCategory, CategorySearchRequest, CategoryUpsertRequest, CategoryUpsertRequest>, CategoryService>();
            // services.AddScoped<IBaseService, BaseService>();
             services.AddScoped<ICRUDService<MPoll, PollSearchRequest, PollUpsertRequest, PollUpsertRequest>, PollService>();
             services.AddScoped<ICRUDService<MPollAnswer, PollAnswerSearchRequest, PollAnswerUpsertRequest, PollAnswerUpsertRequest>, PollAnswerService>();
             services.AddScoped<ICRUDService<MComment, CommentSearchRequest, CommentUpsertRequest, CommentUpsertRequest>, CommentService>();
             services.AddScoped<ICRUDService<MUser, UserSearchRequest, UserUpsertRequest, UserUpsertRequest>, UserService>();
-            services.AddScoped<ICRUDService<MUserRole, UserRoleSearchRequest, UserRoleUpsertRequest, UserRoleUpsertRequest>, UserRoleService>();
             services.AddScoped<ICRUDService<MRole, RoleSearchRequest, RoleUpsertRequest, RoleUpsertRequest>, RoleService>();
             services.AddScoped<ICRUDService<MArticle, ArticleSearchRequest, ArticleUpsertRequest, ArticleUpsertRequest>, ArticleService>();
+            services.AddScoped<ICRUDService<MPaidArticle, PaidArticleSearchRequest, PaidArticleUpsertRequest, PaidArticleUpsertRequest>, PaidArticleService>();
+            services.AddScoped<ICRUDService<MArticlePayment, ArticlePaymentSearchRequest, ArticlePaymentUpsertRequest, ArticlePaymentUpsertRequest>, ArticlePaymentService>();
+            services.AddScoped<ICRUDService<MPaidArticleStatus, PaidArticleStatusSearchRequest, PaidArticleStatusUpsertRequest, PaidArticleStatusUpsertRequest>, PaidArticleStatusService>();
+            services.AddScoped<ICRUDService<MArticle, RecommendationArticleSearchRequest,  RecommendationArticleUpsertRequest, RecommendationArticleUpsertRequest>, RecommendationService>();
 
 
             services.AddDbContext<PortalDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

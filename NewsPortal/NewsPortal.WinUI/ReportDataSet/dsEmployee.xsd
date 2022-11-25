@@ -9,18 +9,19 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="dsEmployee" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="dsEmployee" msprop:Generator_DataSetName="dsEmployee">
+  <xs:element name="dsEmployee" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dsEmployee" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsEmployee">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="dtEmployee" msprop:Generator_RowClassName="dtEmployeeRow" msprop:Generator_RowEvHandlerName="dtEmployeeRowChangeEventHandler" msprop:Generator_RowDeletedName="dtEmployeeRowDeleted" msprop:Generator_RowDeletingName="dtEmployeeRowDeleting" msprop:Generator_RowEvArgName="dtEmployeeRowChangeEvent" msprop:Generator_TablePropName="dtEmployee" msprop:Generator_RowChangedName="dtEmployeeRowChanged" msprop:Generator_RowChangingName="dtEmployeeRowChanging" msprop:Generator_TableClassName="dtEmployeeDataTable" msprop:Generator_UserTableName="dtEmployee" msprop:Generator_TableVarName="tabledtEmployee">
+        <xs:element name="dtEmployee" msprop:Generator_RowEvHandlerName="dtEmployeeRowChangeEventHandler" msprop:Generator_RowDeletedName="dtEmployeeRowDeleted" msprop:Generator_RowDeletingName="dtEmployeeRowDeleting" msprop:Generator_RowEvArgName="dtEmployeeRowChangeEvent" msprop:Generator_TablePropName="dtEmployee" msprop:Generator_RowChangedName="dtEmployeeRowChanged" msprop:Generator_UserTableName="dtEmployee" msprop:Generator_RowChangingName="dtEmployeeRowChanging" msprop:Generator_RowClassName="dtEmployeeRow" msprop:Generator_TableClassName="dtEmployeeDataTable" msprop:Generator_TableVarName="tabledtEmployee">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Comments" msprop:Generator_ColumnPropNameInRow="Comments" msprop:Generator_ColumnPropNameInTable="CommentsColumn" msprop:Generator_ColumnVarNameInTable="columnComments" msprop:Generator_UserColumnName="Comments" type="xs:string" minOccurs="0" />
-              <xs:element name="Title" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_ColumnVarNameInTable="columnTitle" msprop:Generator_UserColumnName="Title" type="xs:string" minOccurs="0" />
-              <xs:element name="Likes" msprop:Generator_ColumnPropNameInRow="Likes" msprop:Generator_ColumnPropNameInTable="LikesColumn" msprop:Generator_ColumnVarNameInTable="columnLikes" msprop:Generator_UserColumnName="Likes" type="xs:string" minOccurs="0" />
-              <xs:element name="CreateOn" msprop:Generator_ColumnPropNameInRow="CreateOn" msprop:Generator_ColumnPropNameInTable="CreateOnColumn" msprop:Generator_ColumnVarNameInTable="columnCreateOn" msprop:Generator_UserColumnName="CreateOn" type="xs:string" minOccurs="0" />
-              <xs:element name="Category" msprop:Generator_ColumnPropNameInRow="Category" msprop:Generator_ColumnPropNameInTable="CategoryColumn" msprop:Generator_ColumnVarNameInTable="columnCategory" msprop:Generator_UserColumnName="Category" type="xs:string" minOccurs="0" />
-              <xs:element name="Journalist" msprop:Generator_ColumnPropNameInRow="Journalist" msprop:Generator_ColumnPropNameInTable="JournalistColumn" msprop:Generator_ColumnVarNameInTable="columnJournalist" msprop:Generator_UserColumnName="Journalist" type="xs:string" minOccurs="0" />
+              <xs:element name="Comments" msprop:Generator_UserColumnName="Comments" msprop:Generator_ColumnPropNameInTable="CommentsColumn" msprop:Generator_ColumnPropNameInRow="Comments" msprop:Generator_ColumnVarNameInTable="columnComments" type="xs:string" minOccurs="0" />
+              <xs:element name="Title" msprop:Generator_UserColumnName="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnVarNameInTable="columnTitle" type="xs:string" minOccurs="0" />
+              <xs:element name="Likes" msprop:Generator_UserColumnName="Likes" msprop:Generator_ColumnPropNameInTable="LikesColumn" msprop:Generator_ColumnPropNameInRow="Likes" msprop:Generator_ColumnVarNameInTable="columnLikes" type="xs:string" minOccurs="0" />
+              <xs:element name="CreateOn" msprop:Generator_UserColumnName="CreateOn" msprop:Generator_ColumnPropNameInTable="CreateOnColumn" msprop:Generator_ColumnPropNameInRow="CreateOn" msprop:Generator_ColumnVarNameInTable="columnCreateOn" type="xs:string" minOccurs="0" />
+              <xs:element name="Category" msprop:Generator_UserColumnName="Category" msprop:Generator_ColumnPropNameInTable="CategoryColumn" msprop:Generator_ColumnPropNameInRow="Category" msprop:Generator_ColumnVarNameInTable="columnCategory" type="xs:string" minOccurs="0" />
+              <xs:element name="Journalist" msprop:Generator_UserColumnName="Journalist" msprop:Generator_ColumnPropNameInTable="JournalistColumn" msprop:Generator_ColumnPropNameInRow="Journalist" msprop:Generator_ColumnVarNameInTable="columnJournalist" type="xs:string" minOccurs="0" />
+              <xs:element name="Rb" msprop:Generator_ColumnPropNameInRow="Rb" msprop:Generator_ColumnPropNameInTable="RbColumn" msprop:Generator_ColumnVarNameInTable="columnRb" msprop:Generator_UserColumnName="Rb" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

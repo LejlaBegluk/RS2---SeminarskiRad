@@ -14,9 +14,21 @@ namespace NewsPortal.WebAPI.Controllers
     [ApiController]
     public class PollAnswerController : CRUDController<MPollAnswer, PollAnswerSearchRequest, PollAnswerUpsertRequest, PollAnswerUpsertRequest>
     {
-        public PollAnswerController(ICRUDService<MPollAnswer, PollAnswerSearchRequest, PollAnswerUpsertRequest, PollAnswerUpsertRequest> service) : base(service)
-        {
+        protected readonly IPollAnswerService _service;
 
+        public PollAnswerController(ICRUDService<MPollAnswer, PollAnswerSearchRequest, PollAnswerUpsertRequest, PollAnswerUpsertRequest> service, IPollAnswerService answerService) : base(service)
+        {
+             _service=answerService;
+        }
+        [HttpGet("Vote")]
+        public Task<int> Vote(int Id)
+        {
+            return _service.Vote(Id);
+        }
+        [HttpGet("Results")]
+        public Task<IEnumerable<PollResultsRequest>> Results(int Id)
+        {
+            return _service.Results(Id);
         }
     }
 }

@@ -21,8 +21,8 @@ namespace NewsPortal.WebAPI.Database
         public User Editor { get; set; }
         public string PasswordHash { get; set; }
         public string PasswordSalt { get; set; }
-
-        public virtual ICollection<UserRole> UserRoles { get; set; }
+        public int RoleId { get; set; }
+        public Role Role { get; set; }
 
 
     }

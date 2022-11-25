@@ -23,6 +23,7 @@ namespace NewsPortal.Mapping
         CreateMap<PollAnswer, MPollAnswer>();
         CreateMap<PollAnswer, PollAnswerSearchRequest>().ReverseMap();
         CreateMap<PollAnswer, PollAnswerUpsertRequest>().ReverseMap();
+        CreateMap<PollAnswer, PollResultsRequest>();
 
         CreateMap<Comment, MComment>();
         CreateMap<Comment, CommentSearchRequest>().ReverseMap();
@@ -32,9 +33,6 @@ namespace NewsPortal.Mapping
         CreateMap<User, UserSearchRequest>().ReverseMap();
         CreateMap<User, UserUpsertRequest>().ReverseMap();
 
-        CreateMap<UserRole, MUserRole>().ReverseMap();
-        CreateMap<UserRole, UserRoleSearchRequest>().ReverseMap();
-        CreateMap<UserRole, UserRoleUpsertRequest>().ReverseMap();
 
         CreateMap<Role, MRole>();
         CreateMap<Role, RoleSearchRequest>().ReverseMap();
@@ -44,13 +42,21 @@ namespace NewsPortal.Mapping
             //.ForMember(
             //dest=>dest.Author, dest => dest.MapFrom(y => y.User.FirstName+' '+y.User.LastName)
             //  ).ReverseMap();
-            CreateMap<Article, ArticleSearchRequest>().ReverseMap();
-        CreateMap<Article, ArticleUpsertRequest>().ReverseMap();
+         CreateMap<Article, ArticleSearchRequest>().ReverseMap();
+         CreateMap<Article, ArticleUpsertRequest>().ReverseMap();
 
         CreateMap<PaidArticle, MPaidArticle>();
         CreateMap<PaidArticle, PaidArticleSearchRequest>();
         CreateMap<PaidArticle, PaidArticleUpsertRequest>().ReverseMap();
 
+
+         CreateMap<ArticlePayment, MArticlePayment>();
+         CreateMap<ArticlePayment, ArticlePaymentSearchRequest>();
+         CreateMap<ArticlePayment, ArticlePaymentUpsertRequest>().ReverseMap();
+
+            CreateMap<PaidArticleStatus, MPaidArticleStatus>();
+            CreateMap<PaidArticleStatus, PaidArticleStatusSearchRequest>();
+            CreateMap<PaidArticleStatus, PaidArticleStatusUpsertRequest>().ReverseMap();
         }
     }
 }

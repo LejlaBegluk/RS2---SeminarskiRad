@@ -22,7 +22,7 @@ namespace NewsPortal.Model.Request
             public byte[] Photo { get; set; }
             public byte[] PhotoThumb { get; set; }
             public string FullName { get; set; }
-            public int Role { get; set; }
+            public int RoleId { get; set; }
             public DateTime BirthDate { get; set; }
             public bool IsActive { get; set; }
             public DateTime CreateOn { get; set; }

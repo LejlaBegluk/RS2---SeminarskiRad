@@ -1,5 +1,6 @@
 ﻿using NewsPortal.WinUI.Forms.Articles;
 using NewsPortal.WinUI.Forms.Categories;
+using NewsPortal.WinUI.Forms.PaidArticles;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,6 +35,12 @@ namespace NewsPortal.WinUI.Forms.Users
         private void pretragaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             var frm = new frmArticleIndex();
+            frm.Show();
+        }
+
+        private void pretragaToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            var frm = new frmPaidArticleIndex();
             frm.Show();
         }
     }

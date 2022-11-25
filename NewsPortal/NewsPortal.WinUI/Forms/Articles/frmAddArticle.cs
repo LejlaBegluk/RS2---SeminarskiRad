@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using NewsPortal.Model.Enums;
 
 namespace NewsPortal.WinUI.Forms.Articles
 {
@@ -21,7 +22,7 @@ namespace NewsPortal.WinUI.Forms.Articles
         private readonly APIService _userService = new APIService("User");
         private readonly APIService _articleService = new APIService("Article");
         private readonly APIService _roleService = new APIService("Role");
-        private readonly APIService _userroleService = new APIService("UserRole");
+        private readonly APIService _paidarticleService = new APIService("PaidArticle");
 
         ArticleUpsertRequest request = new ArticleUpsertRequest();
         private int? Id = null;
@@ -30,6 +31,7 @@ namespace NewsPortal.WinUI.Forms.Articles
             Id = articleId;
             InitializeCategory();
             InitializeComponent();
+            InitializeSponsoredArticles();
         }
         private async void InitializeCategory()
         {
@@ -40,7 +42,15 @@ namespace NewsPortal.WinUI.Forms.Articles
             cbCategory.ValueMember = "Id";
             cbCategory.SelectedValue = 0;
         }
- 
+        private async void InitializeSponsoredArticles()
+        {
+            var paidArticels = await _paidarticleService.Get<List<MPaidArticle>>(new PaidArticleSearchRequest());
+            paidArticels.Add(new MPaidArticle { Id = 0, Title = "-Odaberite-" });
+            cbSponsored.DataSource = paidArticels;
+            cbSponsored.DisplayMember = "Title";
+            cbSponsored.ValueMember = "Id";
+            cbSponsored.SelectedValue = 0;
+        }
         private async void frmAddArticle_Load(object sender, EventArgs e)
         {
             try
@@ -50,11 +60,7 @@ namespace NewsPortal.WinUI.Forms.Articles
                     Username = _userService.GetActiveUser()
                 };
                 var users = await _userService.Get<List<MUser>>(search);
-                var uloge = await _userroleService.Get<List<MUserRole>>(null);
-                var ulogekorisnika = uloge.Where(a => a.UserId == users.FirstOrDefault().Id).FirstOrDefault();
-                var role = await _roleService.GetById<MRole>(ulogekorisnika.RoleId);
-
-                if (role.Name == "Novinar")
+                if (users.FirstOrDefault().RoleId == (int)Roles.Journalist)
                 {
                     cbActive.Enabled = false;
                 }
@@ -67,6 +73,8 @@ namespace NewsPortal.WinUI.Forms.Articles
                 request.UserId = model.UserId;
                 request.CreateOn = model.CreateOn;
                 request.Active = model.Active;
+                cbSponsored.SelectedValue = model.PaidArticleId==null?0: model.PaidArticleId;
+                cbActive.Checked= model.Active;
                     byte[] image = model.Photo;
 
                 MemoryStream ms=new MemoryStream(image);
@@ -146,6 +154,7 @@ namespace NewsPortal.WinUI.Forms.Articles
                     request.Content = txtContent.Text;
                     request.Title = txtTitle.Text;
                     request.Active=Convert.ToBoolean(Convert.ToInt32(cbActive.Checked));
+                    request.PaidArticleId= (int)cbSponsored.SelectedValue;
                     if (Id == null)
                     {
                         try

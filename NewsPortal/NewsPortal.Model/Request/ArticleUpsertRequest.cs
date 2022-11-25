@@ -19,6 +19,8 @@ namespace NewsPortal.Model.Request
         public int CategoryId { get; set; }
         public byte[] Photo{get; set; }
         public byte[] PhotoThumb { get; set; }
+        public int? PaidArticleId { get; set; }
+
 
     }
 }

@@ -19,6 +19,8 @@ namespace NewsPortal.Models
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
+        public int? PaidArticleId { get; set; }
+        public PaidArticle? PaidArticle { get; set; }
 
     }
 }

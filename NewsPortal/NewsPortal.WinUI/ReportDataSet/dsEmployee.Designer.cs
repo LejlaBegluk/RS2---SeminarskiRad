@@ -291,6 +291,8 @@ namespace NewsPortal.WinUI.ReportDataSet {
             
             private global::System.Data.DataColumn columnJournalist;
             
+            private global::System.Data.DataColumn columnRb;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public dtEmployeeDataTable() {
@@ -374,6 +376,14 @@ namespace NewsPortal.WinUI.ReportDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RbColumn {
+                get {
+                    return this.columnRb;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -409,7 +419,7 @@ namespace NewsPortal.WinUI.ReportDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public dtEmployeeRow AdddtEmployeeRow(string Comments, string Title, string Likes, string CreateOn, string Category, string Journalist) {
+            public dtEmployeeRow AdddtEmployeeRow(string Comments, string Title, string Likes, string CreateOn, string Category, string Journalist, string Rb) {
                 dtEmployeeRow rowdtEmployeeRow = ((dtEmployeeRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Comments,
@@ -417,7 +427,8 @@ namespace NewsPortal.WinUI.ReportDataSet {
                         Likes,
                         CreateOn,
                         Category,
-                        Journalist};
+                        Journalist,
+                        Rb};
                 rowdtEmployeeRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtEmployeeRow);
                 return rowdtEmployeeRow;
@@ -446,6 +457,7 @@ namespace NewsPortal.WinUI.ReportDataSet {
                 this.columnCreateOn = base.Columns["CreateOn"];
                 this.columnCategory = base.Columns["Category"];
                 this.columnJournalist = base.Columns["Journalist"];
+                this.columnRb = base.Columns["Rb"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -463,6 +475,8 @@ namespace NewsPortal.WinUI.ReportDataSet {
                 base.Columns.Add(this.columnCategory);
                 this.columnJournalist = new global::System.Data.DataColumn("Journalist", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnJournalist);
+                this.columnRb = new global::System.Data.DataColumn("Rb", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRb);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -701,6 +715,22 @@ namespace NewsPortal.WinUI.ReportDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Rb {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtEmployee.RbColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Rb\' in table \'dtEmployee\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtEmployee.RbColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsCommentsNull() {
                 return this.IsNull(this.tabledtEmployee.CommentsColumn);
             }
@@ -769,6 +799,18 @@ namespace NewsPortal.WinUI.ReportDataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetJournalistNull() {
                 this[this.tabledtEmployee.JournalistColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsRbNull() {
+                return this.IsNull(this.tabledtEmployee.RbColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetRbNull() {
+                this[this.tabledtEmployee.RbColumn] = global::System.Convert.DBNull;
             }
         }
         

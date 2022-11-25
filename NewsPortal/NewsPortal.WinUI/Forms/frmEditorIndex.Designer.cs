@@ -39,6 +39,8 @@ namespace NewsPortal.WinUI.Forms.Users
             this.anketeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pretragaToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.novaAnketaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.plaćeniČlanciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pretragaToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,7 +49,8 @@ namespace NewsPortal.WinUI.Forms.Users
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.kategorijeToolStripMenuItem,
             this.članciToolStripMenuItem,
-            this.anketeToolStripMenuItem});
+            this.anketeToolStripMenuItem,
+            this.plaćeniČlanciToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -66,14 +69,14 @@ namespace NewsPortal.WinUI.Forms.Users
             // pretragaToolStripMenuItem
             // 
             this.pretragaToolStripMenuItem.Name = "pretragaToolStripMenuItem";
-            this.pretragaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pretragaToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.pretragaToolStripMenuItem.Text = "Pretraga";
             this.pretragaToolStripMenuItem.Click += new System.EventHandler(this.pretragaToolStripMenuItem_Click);
             // 
             // novaKategorijaToolStripMenuItem
             // 
             this.novaKategorijaToolStripMenuItem.Name = "novaKategorijaToolStripMenuItem";
-            this.novaKategorijaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.novaKategorijaToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.novaKategorijaToolStripMenuItem.Text = "Nova kategorija";
             this.novaKategorijaToolStripMenuItem.Click += new System.EventHandler(this.novaKategorijaToolStripMenuItem_Click_1);
             // 
@@ -89,14 +92,14 @@ namespace NewsPortal.WinUI.Forms.Users
             // pretragaToolStripMenuItem1
             // 
             this.pretragaToolStripMenuItem1.Name = "pretragaToolStripMenuItem1";
-            this.pretragaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.pretragaToolStripMenuItem1.Size = new System.Drawing.Size(136, 22);
             this.pretragaToolStripMenuItem1.Text = "Pretraga";
             this.pretragaToolStripMenuItem1.Click += new System.EventHandler(this.pretragaToolStripMenuItem1_Click);
             // 
             // noviČlanakToolStripMenuItem
             // 
             this.noviČlanakToolStripMenuItem.Name = "noviČlanakToolStripMenuItem";
-            this.noviČlanakToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.noviČlanakToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.noviČlanakToolStripMenuItem.Text = "Novi članak";
             // 
             // anketeToolStripMenuItem
@@ -119,6 +122,21 @@ namespace NewsPortal.WinUI.Forms.Users
             this.novaAnketaToolStripMenuItem.Name = "novaAnketaToolStripMenuItem";
             this.novaAnketaToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.novaAnketaToolStripMenuItem.Text = "Nova anketa";
+            // 
+            // plaćeniČlanciToolStripMenuItem
+            // 
+            this.plaćeniČlanciToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pretragaToolStripMenuItem3});
+            this.plaćeniČlanciToolStripMenuItem.Name = "plaćeniČlanciToolStripMenuItem";
+            this.plaćeniČlanciToolStripMenuItem.Size = new System.Drawing.Size(91, 20);
+            this.plaćeniČlanciToolStripMenuItem.Text = "Plaćeni članci";
+            // 
+            // pretragaToolStripMenuItem3
+            // 
+            this.pretragaToolStripMenuItem3.Name = "pretragaToolStripMenuItem3";
+            this.pretragaToolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.pretragaToolStripMenuItem3.Text = "Pretraga";
+            this.pretragaToolStripMenuItem3.Click += new System.EventHandler(this.pretragaToolStripMenuItem3_Click);
             // 
             // frmEditorIndex
             // 
@@ -148,5 +166,7 @@ namespace NewsPortal.WinUI.Forms.Users
         private System.Windows.Forms.ToolStripMenuItem anketeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pretragaToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem novaAnketaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem plaćeniČlanciToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pretragaToolStripMenuItem3;
     }
 }
