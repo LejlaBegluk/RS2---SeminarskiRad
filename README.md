@@ -1,13 +1,17 @@
-# RS2---SeminarskiRad
-Seminarski rad
+# eNovine
 
-
-User: admin
-Password: Te$t
-
-
-
-This is a .NET CORE application that is currently in development.*
-
-This will be a WinForms application for administration of NewsApp, and mobile application developed with Flutter. 
-It's backend soultion uses custom REST API for all requests using .NET Core (C#) and Entity framework Core for working with the database where I used CODE FIRST principle.
+### Desktop app:
+ - Username: Admin
+ - Pw: Admin
+ 
+### Mobile app:
+ - Username: Amel
+ - Pw: Amel
+ - Broj kartice: 4242 4242 4242 4242
+ 
+## Installation
+1. Clone the repo
+   - git clone https://github.com/LejlaBegluk/RS2---SeminarskiRad.git
+2. Open project folder and run in cmd
+ - docker-compose build
+ - docker-compose up
