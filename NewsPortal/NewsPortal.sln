@@ -9,6 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsPortal.Model", "NewsPor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsPortal.WinUI", "NewsPortal.WinUI\NewsPortal.WinUI.csproj", "{8AB99325-370A-469E-9798-3476A9CCDB3E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "documents", "documents", "{7D66E2F2-D79D-4C79-9CDC-FAB388ABB74D}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Desktop\FIT\rs2\RS2 - Prijava seminarskog rada IB210303.docx = ..\..\..\..\Desktop\FIT\rs2\RS2 - Prijava seminarskog rada IB210303.docx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
