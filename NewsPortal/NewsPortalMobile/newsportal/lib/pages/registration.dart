@@ -61,16 +61,19 @@ final _formKey = GlobalKey<FormState>();
             style: TextStyle(fontSize: 30, color: Colors.black),
           ),
           const SizedBox(height: 50),
+      
           TextFormField(
                 validator: (value) {
              return value == null || value.isEmpty ? "Required" : null;
               },
 
               controller: imeController,
-              decoration: const InputDecoration(hintText: 'Ime',
-              contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-             
-              ),
+             decoration: InputDecoration(
+          contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "Firstname",
+          label: const Text("Firstname"),
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
               ),
           const SizedBox(
             height: 10,
@@ -80,7 +83,12 @@ final _formKey = GlobalKey<FormState>();
              return value == null || value.isEmpty ? "Required" : null;
               },
               controller: prezimeController,
-              decoration: const InputDecoration(hintText: 'Prezime',contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0))),
+              decoration: InputDecoration(
+          contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "Lastname",
+          label: const Text("Lastname"),
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),),
           const SizedBox(
             height: 10,
           ),
@@ -89,7 +97,12 @@ final _formKey = GlobalKey<FormState>();
              return value == null || value.isEmpty ? "Required" : null;
               },
             controller: datumRodjenjaController,
-            decoration: const InputDecoration(hintText: 'Datum rođenja',contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0)),
+          decoration: InputDecoration(
+          contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "Birthdate",
+          label: const Text("Birthdate"),
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
             readOnly: true,
             onTap: () async {
               DateTime? pickedDate = await showDatePicker(
@@ -123,33 +136,58 @@ final _formKey = GlobalKey<FormState>();
                   },
                 
               controller: emailController,
-              decoration: const InputDecoration(hintText: 'E-mail',contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0))),
+            decoration: InputDecoration(
+          contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "Email",
+          label: const Text("Email"),
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)))),
           const SizedBox(
             height: 10,
           ),
           TextField(
               controller: telefonController,
-              decoration: const InputDecoration(hintText: 'Telefon',contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0))),
+               decoration: InputDecoration(
+          contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "Phone",
+          label: const Text("Phone"),
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)))),
           const SizedBox(
             height: 10,
           ),
           TextField(
               controller: korisnickoImeController,
-              decoration: const InputDecoration(hintText: 'Korisničko ime',contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0))),
+              decoration: InputDecoration(
+          contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "Username",
+          label: const Text("Username"),
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)))),
           const SizedBox(
             height: 10,
           ),
           TextField(
               obscureText: true,
               controller: lozinkaController,
-              decoration: const InputDecoration(hintText: 'Password',contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0))),
+              decoration: InputDecoration(
+          contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "Password",
+          label: const Text("Password"),
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)))),
           const SizedBox(
             height: 10,
           ),
           TextField(
               obscureText: true,
               controller: lozinkaPotvrdaController,
-              decoration: const InputDecoration(hintText: 'Password potvrda',contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0))),
+               decoration: InputDecoration(
+          contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "Confirm password",
+          label: const Text("Confirm password"),
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)))),
           const SizedBox(
             height: 10,
           ),

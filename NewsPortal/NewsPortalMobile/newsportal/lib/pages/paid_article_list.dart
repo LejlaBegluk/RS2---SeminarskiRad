@@ -3,14 +3,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:intl/intl.dart';
 import 'package:newsportal/models/PaidArticleStatus.dart';
 import 'package:newsportal/pages/paid_article.dart';
 import 'package:newsportal/services/APIService.dart';
 import 'package:newsportal/utils/util.dart';
-import 'package:newsportal/widgets/master_screen.dart';
 import 'package:newsportal/widgets/news_portal_drawer.dart';
 import 'package:provider/provider.dart';
 

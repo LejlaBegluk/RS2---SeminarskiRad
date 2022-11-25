@@ -93,7 +93,7 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> with SingleTi
                             SizedBox(width: 30.0,),
                         Center(
                           child:LikeButton(
-                            likeCount:numberOfLikes ,
+                           // likeCount:numberOfLikes ,
                             isLiked: _isLiked,
                             onTap:onLikeButtonTapped
                         )

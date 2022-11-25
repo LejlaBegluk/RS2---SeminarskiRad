@@ -174,10 +174,9 @@ import 'package:http/http.dart' as http;
           .onError((error, stackTrace) {
         print('Exception/DISPLAYPAYMENTSHEET==> $error $stackTrace');
       });
-      _scaffoldKey.currentState?.showSnackBar(const SnackBar(content: Text("Successful payment.")));
+
     } on StripeException catch (e) {
 
-              _scaffoldKey.currentState?.showSnackBar(const SnackBar(content: Text("Failed payment")));
     } catch (e) {
       print('$e');
     }

@@ -8,7 +8,6 @@ import 'package:newsportal/models/Article.dart';
 import 'package:newsportal/pages/article_detail.dart';
 import 'package:newsportal/services/APIService.dart';
 import 'package:newsportal/utils/util.dart';
-import 'package:newsportal/widgets/master_screen.dart';
 import 'package:newsportal/widgets/news_portal_drawer.dart';
 import 'package:provider/provider.dart';
 

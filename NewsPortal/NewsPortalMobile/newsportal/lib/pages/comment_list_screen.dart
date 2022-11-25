@@ -1,16 +1,9 @@
-// ignore_for_file: unused_import, unnecessary_import, prefer_final_fields, avoid_web_libraries_in_flutter
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:intl/intl.dart';
 import 'package:newsportal/models/Comment.dart';
 import 'package:newsportal/services/APIService.dart';
-import 'package:newsportal/utils/util.dart';
-import 'package:newsportal/widgets/master_screen.dart';
 import 'package:newsportal/widgets/news_portal_drawer.dart';
-import 'package:provider/provider.dart';
-
 class CommentListScreen extends StatelessWidget {
   final int articleId;
   TextEditingController commentController = TextEditingController();
@@ -75,7 +68,7 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
                             
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: RaisedButton(
+                                child: ElevatedButton(
                                
                                   child: Text("Save"),
                                   onPressed: () {

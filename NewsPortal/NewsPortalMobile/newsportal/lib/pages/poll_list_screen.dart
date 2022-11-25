@@ -1,8 +1,6 @@
 // ignore_for_file: unused_import, unnecessary_import, prefer_final_fields
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:intl/intl.dart';
 import 'package:newsportal/models/Article.dart';
 import 'package:newsportal/models/Poll.dart';
@@ -10,15 +8,10 @@ import 'package:newsportal/pages/article_detail.dart';
 import 'package:newsportal/pages/poll_detail.dart';
 import 'package:newsportal/services/APIService.dart';
 import 'package:newsportal/utils/util.dart';
-import 'package:newsportal/widgets/master_screen.dart';
 import 'package:newsportal/widgets/news_portal_drawer.dart';
 import 'package:provider/provider.dart';
 
 import '../models/PollAnswer.dart';
-
-/*import '../../model/product.dart';
-import '../../providers/cart_provider.dart';
-import '../../widgets/eprodaja_drawer.dart';*/
 
 class PollListScreen extends StatefulWidget {
   const PollListScreen({Key? key}) : super(key: key);
