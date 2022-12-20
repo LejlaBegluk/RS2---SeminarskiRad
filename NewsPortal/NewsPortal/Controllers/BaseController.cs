@@ -21,6 +21,7 @@ namespace NewsPortal.WebAPI.Controllers
             _service = service;
         }
         [HttpGet]
+        [AllowAnonymous]
         public virtual IEnumerable<T> Get([FromQuery] Tsearch search = null)
         {
             return _service.Get(search);

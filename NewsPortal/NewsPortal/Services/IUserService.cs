@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.Services.Users;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Services.Users;
 using NewsPortal.Model.Request;
 using NewsPortal.WebAPI.Model;
 using System;

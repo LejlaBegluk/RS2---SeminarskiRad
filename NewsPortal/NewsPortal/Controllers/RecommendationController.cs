@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using NewsPortal.Model.Request;
 using NewsPortal.WebAPI.Model;
@@ -9,6 +10,7 @@ namespace NewsPortal.WebAPI.Controllers
     [Microsoft.AspNetCore.Mvc.Route("api/[controller]")]
     [ApiController]
     [RequestSizeLimit(400000000000)]
+    [AllowAnonymous]
     public class RecommendationController : CRUDController<MArticle, RecommendationArticleSearchRequest, RecommendationArticleUpsertRequest, RecommendationArticleUpsertRequest>
     {
 

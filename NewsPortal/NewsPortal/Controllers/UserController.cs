@@ -4,8 +4,6 @@ using NewsPortal.Model.Request;
 using NewsPortal.WebAPI.Model;
 using NewsPortal.WebAPI.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,8 +22,8 @@ namespace NewsPortal.WebAPI.Controllers
         [AllowAnonymous]
         public async Task<MUser> Authenticate()
         {
-            try { 
-            string authorization = HttpContext.Request.Headers["Authorization"];
+            try {
+                string authorization = HttpContext.Request.Headers["Authorization"];
 
             string encodedHeader = authorization["Basic ".Length..].Trim();
 

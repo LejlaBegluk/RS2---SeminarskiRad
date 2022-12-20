@@ -48,33 +48,12 @@ namespace NewsPortal
                     }
                 });
             });
+            services.AddAuthentication("BasicAuthentication")
+           .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
 
 
-            //options.AddSecurityDefinition("basic", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
-            //{
-            //    Name = "Authorization",
-            //    Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
-            //    Scheme = "basic",
-            //    In = Microsoft.OpenApi.Models.ParameterLocation.Header,
-            //    Description = "Basic Authorization header using the Bearer scheme."
-            //});
-            //options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
-            //{
-            //    {
-            //        new Microsoft.OpenApi.Models.OpenApiSecurityScheme
-            //        {
-            //           Reference =new Microsoft.OpenApi.Models.OpenApiReference
-            //           {
-            //               Type=Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
-            //               Id="basic"
 
-            //           }
-            //        },
-            //        new string[]{}
-            //    }
-            //});
-   
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddScoped<IArticleService, ArticleService>();
@@ -99,8 +78,7 @@ namespace NewsPortal
             services.AddAutoMapper(typeof(IUserService));
             services.AddScoped<IUserService, UserService>();
 
-            services.AddAuthentication("BasicAuthentication")
-            .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -127,9 +105,9 @@ namespace NewsPortal
            // app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
-            app.UseAuthentication();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

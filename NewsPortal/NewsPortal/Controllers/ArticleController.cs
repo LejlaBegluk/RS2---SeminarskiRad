@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NewsPortal.Model.Request;
 using NewsPortal.Models;
@@ -22,12 +23,15 @@ namespace NewsPortal.Controllers
         {
             _service = articleService;
         }
+
         [HttpGet("ArticleLike")]
+        [AllowAnonymous]
         public MArticle LikeArticle(int Id)
         {
             return _service.LikeArticle(Id);
         }
         [HttpGet("ArticleUnlike")]
+        [AllowAnonymous]
         public MArticle UnikeArticle(int Id)
         {
             return _service.UnlikeArticle(Id);
