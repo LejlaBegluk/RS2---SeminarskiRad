@@ -47,9 +47,9 @@ namespace NewsPortal.WinUI.Forms.PollAnswer
                                 frm.Show();
                             }
                         }
-                catch
+                catch(Exception ex)
                 {
-                    MessageBox.Show("You don't have permission to do that!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("That answer already exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 

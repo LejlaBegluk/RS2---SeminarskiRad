@@ -35,7 +35,7 @@ namespace NewsPortal.WinUI.Forms.PaidArticles
             model = await _articleService.GetById<MPaidArticle>(Id);
             txtTitle.Text = model.Title;
             txtContent.Text = model.Content;
-            cbStatus.SelectedIndex = model.PaidArticleStatusId;
+            cbStatus.SelectedValue = model.PaidArticleStatusId;
             txtKorisnik.Text = model.UserUsername;
 
 
@@ -55,11 +55,7 @@ namespace NewsPortal.WinUI.Forms.PaidArticles
             cbStatus.DataSource = new BindingSource(dictionary, null);
 
 
-            //var statusList = Enum.GetValues(typeof(PaidArticleStatus));
-
-            //cbStatus.DataSource = statusList;
-            //cbStatus.DisplayMember = "Key";
-            //cbStatus.ValueMember = "Value";
+   
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {

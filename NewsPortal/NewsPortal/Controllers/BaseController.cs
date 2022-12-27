@@ -12,7 +12,7 @@ namespace NewsPortal.WebAPI.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [AllowAnonymous]
     public class BaseController<T, Tsearch> : ControllerBase where T : class where Tsearch : class
     {
         private readonly IService<T, Tsearch> _service;

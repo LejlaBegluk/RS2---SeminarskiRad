@@ -72,7 +72,10 @@ namespace NewsPortal.WinUI.Forms.Articles
                 request.UserId = model.UserId;
                 request.CreateOn = model.CreateOn;
                 request.Active = model.Active;
-                cbSponsored.SelectedValue = model.PaidArticleId==null?0: model.PaidArticleId;
+                request.Likes = model.Likes;
+                request.Photo = model.Photo;
+                request.PhotoThumb = model.PhotoThumb;
+                    cbSponsored.SelectedValue = model.PaidArticleId==null?0: model.PaidArticleId;
                 cbActive.Checked= model.Active;
                     byte[] image = model.Photo;
 

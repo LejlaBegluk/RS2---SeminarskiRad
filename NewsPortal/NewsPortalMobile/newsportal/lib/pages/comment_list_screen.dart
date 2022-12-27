@@ -76,7 +76,7 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
                                      if (_formKey.currentState!.validate()) {
                                      insertComment(commentController.text);
                                      bodyWidget();
-                                      Navigator.push(context,MaterialPageRoute(builder:(context)=>CommentListScreen(articleId: articleId)));
+                                      Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>CommentListScreen(articleId: articleId)));
                                     }
                                   },
                                 ),

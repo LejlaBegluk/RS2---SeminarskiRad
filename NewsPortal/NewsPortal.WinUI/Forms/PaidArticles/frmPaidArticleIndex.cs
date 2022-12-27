@@ -15,8 +15,6 @@ namespace NewsPortal.WinUI.Forms.PaidArticles
     public partial class frmPaidArticleIndex : Form
     {
         private readonly APIService _article = new APIService("PaidArticle");
-       // private readonly APIService _category = new APIService("Category");
-
         public frmPaidArticleIndex()
         {
             InitializeComponent();
@@ -29,7 +27,6 @@ namespace NewsPortal.WinUI.Forms.PaidArticles
                  Text = txtName.Text
             };
             var result = await _article.Get<List<MPaidArticle>>(search);
-          //  var categories = await _category.Get<List<MCategory>>(null);
             dgvArticle.DataSource = result.ToList();
         }
         private async void frmArticle_Load(object sender, EventArgs e)
@@ -57,8 +54,7 @@ namespace NewsPortal.WinUI.Forms.PaidArticles
 
         private async void btnPonisti_Click(object sender, EventArgs e)
         {
-            var result = await _article.Get<List<MArticle>>(null);
-          //  var categories = await _category.Get<List<MCategory>>(null);
+            var result = await _article.Get<IEnumerable<MPaidArticle>>(new PaidArticleSearchRequest());
             txtName.Text = "";
             dgvArticle.DataSource = result.ToList();
         }

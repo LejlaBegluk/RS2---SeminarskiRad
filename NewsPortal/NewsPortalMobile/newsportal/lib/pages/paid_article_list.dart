@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, unnecessary_import, prefer_final_fields
+// ignore_for_file: unused_import, unnecessary_import, prefer_final_fields, sort_child_properties_last, library_private_types_in_public_api
 
 import 'dart:convert';
 
@@ -40,7 +40,7 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
 
     return Scaffold(
       resizeToAvoidBottomInset:false,
-        drawer:MenuDrawer(),
+        drawer:const MenuDrawer(),
         appBar: AppBar(
           backgroundColor: Colors.grey,
         ),
@@ -49,7 +49,7 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
         floatingActionButton: Visibility(
           child:FloatingActionButton(
              backgroundColor: Colors.blueGrey,
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
           onPressed: (){showDialog(
                 context: context,
                 builder: (BuildContext context) {
@@ -63,7 +63,7 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
                             onTap: () {
                               Navigator.of(context).pop();
                             },
-                            child: CircleAvatar(
+                            child: const CircleAvatar(
                               child: Icon(Icons.close),
                               backgroundColor: Colors.red,
                             ),
@@ -75,10 +75,10 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               Padding(
-                                padding: EdgeInsets.all(5.0),
+                                padding: const EdgeInsets.all(5.0),
                                 child: TextFormField(
                                    controller: titleController,
-                                   decoration: InputDecoration( hintText: "Title"),
+                                   decoration: const InputDecoration( hintText: "Title"),
                                    validator: (value) {
                                      if(value!.isEmpty) {
                                       return 'Title can not be empty';
@@ -87,12 +87,12 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.all(0),
+                                padding: const EdgeInsets.all(0),
                                 child: TextFormField(
                                    controller: contentController,
-                                   decoration: InputDecoration( hintText: "Content"),
+                                   decoration: const InputDecoration( hintText: "Content"),
                                     keyboardType: TextInputType.multiline,
-                                    maxLines: 5,
+                                    maxLines: 4,
                                    validator: (value) {
                                      if(value!.isEmpty) {
                                       return 'Content can not be empty';
@@ -105,13 +105,11 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
                                 child: ElevatedButton(
                                    style: ElevatedButton.styleFrom(
                                     backgroundColor:  Colors.blueGrey),
-                                  child: Text("Save"),
+                                  child: const Text("Save"),
                                   onPressed: () {
                                      if (_formKey.currentState!.validate()) {
-                                      //_formKey.currentState!.save();
                                      insertPaidArticle(titleController.text,contentController.text);
-                                     //bodyWidget();
-                                      Navigator.push(context,MaterialPageRoute(builder:(context)=>const PaidArticleListScreen()));
+                                      Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>const PaidArticleListScreen()));
 
                                     }
                                   },
@@ -170,8 +168,8 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
     return GestureDetector(
       child:Card(
     elevation: 2.0,
-    margin: EdgeInsets.only(bottom: 20.0),
-    child: Padding(padding: EdgeInsets.all(8.0),
+    margin: const EdgeInsets.only(bottom: 20.0),
+    child: Padding(padding: const EdgeInsets.all(8.0),
    
     child: Row(children: [
       
@@ -184,22 +182,22 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
                
             children: [
               Text(item.Title,
-              style: TextStyle(fontSize: 18.0),),
-              SizedBox(height: 5.0,),
+              style: const TextStyle(fontSize: 18.0),),
+              const SizedBox(height: 5.0,),
               Row(
                 children: [
-                  Icon(Icons.archive),
+                  const Icon(Icons.archive),
                   Text(item.PaidArticleStatusName,
-                  style: TextStyle(fontSize: 12.0),
+                  style: const TextStyle(fontSize: 12.0),
                   ),
-                  SizedBox(width: 10.0,),
-                   Icon(Icons.calendar_month),
+                  const SizedBox(width: 10.0,),
+                   const Icon(Icons.calendar_month),
                   Text(formatter.format(item.CreateOn).toString(),
-                  style: TextStyle(fontSize: 12.0),
+                  style: const TextStyle(fontSize: 12.0),
                   ),
-                  SizedBox(width: 10.0,),
-                    Padding(
-          padding: const EdgeInsets.all(5),
+                  const SizedBox(width: 10.0,),
+                    const Padding(
+          padding: EdgeInsets.all(5),
               )],
               )
             ],

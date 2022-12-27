@@ -28,6 +28,12 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> with SingleTi
         super.initState();
   }
   @override
+  void setState(fn) {
+    if(mounted) {
+      super.setState(fn);
+    }
+  }
+  @override
 void dispose() {
   super.dispose();
 }

@@ -42,9 +42,9 @@ namespace NewsPortal.WebAPI.Services
         }
         public override async Task<MPollAnswer> Insert(PollAnswerUpsertRequest request)
         {
-            if (await _context.PollAnswer.AnyAsync(i => i.Text == request.Text))
+            if (await _context.PollAnswer.AnyAsync(i => i.Text == request.Text && i.PollId==request.PollId))
             {
-                throw new UserException("Answer with that name already exists!");
+                throw new UserException("Answer with that text already exists!");
             }
 
             var entity = _mapper.Map<PollAnswer>(request);
