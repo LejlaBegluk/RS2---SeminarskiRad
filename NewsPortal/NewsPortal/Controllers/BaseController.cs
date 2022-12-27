@@ -27,6 +27,7 @@ namespace NewsPortal.WebAPI.Controllers
             return _service.Get(search);
         }
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public virtual T GetById(int id)
         {
             return _service.GetById(id);

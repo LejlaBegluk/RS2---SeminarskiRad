@@ -9,8 +9,8 @@ import 'package:http/http.dart' as http;
 import '../models/User.dart';
 
 class APIService {
-  static String? username;//="Admin";
-  static String? password;//="Pa\$\$w0rd";
+  static String? username;
+  static String? password;
   static int? UserId;
   static const String baseRoute = "http://10.0.2.2:5192/api/";
   String? route;
@@ -230,8 +230,8 @@ static Future<List<dynamic>?> getComments(String route, dynamic? object) async {
 
     final String basicAuth =
         'Basic ' + base64Encode(utf8.encode('$username:$password'));
-    final response = await http.get(Uri.parse(baseUrl)//,
-       // headers: {HttpHeaders.authorizationHeader: basicAuth}
+    final response = await http.get(Uri.parse(baseUrl),
+        headers: {HttpHeaders.authorizationHeader: basicAuth}
         );
     print('Status code [GET] -> ' + response.statusCode.toString());
     if (response.statusCode == 200) {

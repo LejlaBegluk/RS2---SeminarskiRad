@@ -83,9 +83,9 @@ namespace NewsPortal.WebAPI.Services
 
             List<Article> allItems = new List<Article>();
 
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 100; i++)
             {
-                var tmp = _context.Articles.Where(x => x.Id != ID);
+                var tmp = _context.Articles.Include(a=>a.User).Where(x => x.Id != ID);
                 allItems.AddRange(tmp);
             }
 
@@ -102,6 +102,7 @@ namespace NewsPortal.WebAPI.Services
                 });
 
                 predictionResult.Add(new Tuple<Article, float>(item, prediction.Score));
+              
             }
 
             var finalResult = predictionResult.OrderByDescending(x => x.Item2)

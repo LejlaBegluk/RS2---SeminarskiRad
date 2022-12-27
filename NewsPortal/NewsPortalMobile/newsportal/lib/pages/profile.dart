@@ -23,7 +23,7 @@ class _ProfilState extends State<Profil> {
         appBar: AppBar(
           title: Text('My profile'),
         ),
-        body: bodyWidget());
+        body:   SingleChildScrollView( child:bodyWidget()));
   }
 
   Widget bodyWidget() {

@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:like_button/like_button.dart';
 import 'package:newsportal/models/Article.dart';
 import 'package:newsportal/pages/comment_list_screen.dart';
+import 'package:newsportal/pages/home.dart';
 import 'package:newsportal/services/APIService.dart';
 import 'package:newsportal/widgets/news_portal_drawer.dart';
 
@@ -27,6 +28,10 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> with SingleTi
         super.initState();
   }
   @override
+void dispose() {
+  super.dispose();
+}
+  @override
   Widget build(BuildContext context) {
     Recommended(widget.item.Id);
     final DateFormat formatter = DateFormat('dd.MM.yyyy');
@@ -37,9 +42,11 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> with SingleTi
        appBar: AppBar(
           title: const Text('Article'),
           backgroundColor: Colors.grey,
+         
         ),
     body:Container(
       child:Scaffold(
+        
         backgroundColor: Colors.white,
         body: Stack(
           children:[
@@ -93,7 +100,7 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> with SingleTi
                             SizedBox(width: 30.0,),
                         Center(
                           child:LikeButton(
-                           // likeCount:numberOfLikes ,
+                            likeCount:numberOfLikes ,
                             isLiked: _isLiked,
                             onTap:onLikeButtonTapped
                         )
@@ -186,9 +193,10 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> with SingleTi
               ),
               Padding(padding: EdgeInsets.only(top:12.0),
                 child: IconButton(
-                  
                   onPressed: (){
-                      Navigator.pop(context);
+                    if (mounted) {
+                      Navigator.push(context,MaterialPageRoute(builder: (context)=>Home()));
+                      }
                   },
                   icon: Icon(
                     Icons.arrow_back,
@@ -229,11 +237,17 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> with SingleTi
   }
 
    void Recommended(int id)async  {
+
+if (!mounted) {
+  return;
+}
     var article = await APIService.GetById('Recommendation', id);
     if(article!=null){
         setState(() {
           recommended = Article.fromJson(article);
         });
+     
     }
-    }
+  
+  }
 }

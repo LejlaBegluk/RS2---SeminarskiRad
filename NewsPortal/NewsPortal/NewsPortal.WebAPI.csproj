@@ -4,7 +4,16 @@
     <TargetFramework>net6.0</TargetFramework>
     <UserSecretsId>f5948e1d-e2c8-4413-a101-b3d3e273a274</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Migrations\seedScript.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\seedScript.sql" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AspNetCore.Reporting" Version="2.1.0" />

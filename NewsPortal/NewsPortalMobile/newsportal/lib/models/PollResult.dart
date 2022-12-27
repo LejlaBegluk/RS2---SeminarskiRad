@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class PollResult {
   final String Text;
   final int Counter;

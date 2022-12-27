@@ -11,6 +11,7 @@ namespace NewsPortal.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
     public class PollController : CRUDController<MPoll, PollSearchRequest, PollUpsertRequest, PollUpsertRequest>
     {
         public PollController(ICRUDService<MPoll, PollSearchRequest, PollUpsertRequest, PollUpsertRequest> service) : base(service)

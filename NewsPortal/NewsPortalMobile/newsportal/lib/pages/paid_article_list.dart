@@ -39,6 +39,7 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
   Widget build(BuildContext context) {
 
     return Scaffold(
+      resizeToAvoidBottomInset:false,
         drawer:MenuDrawer(),
         appBar: AppBar(
           backgroundColor: Colors.grey,
@@ -74,7 +75,7 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(5.0),
                                 child: TextFormField(
                                    controller: titleController,
                                    decoration: InputDecoration( hintText: "Title"),
@@ -86,7 +87,7 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(0),
                                 child: TextFormField(
                                    controller: contentController,
                                    decoration: InputDecoration( hintText: "Content"),
@@ -100,17 +101,17 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(0),
                                 child: ElevatedButton(
                                    style: ElevatedButton.styleFrom(
-                                    primary:  Colors.blueGrey),
+                                    backgroundColor:  Colors.blueGrey),
                                   child: Text("Save"),
                                   onPressed: () {
                                      if (_formKey.currentState!.validate()) {
                                       //_formKey.currentState!.save();
                                      insertPaidArticle(titleController.text,contentController.text);
-                                     bodyWidget();
-                                      Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>PaidArticleListScreen()));
+                                     //bodyWidget();
+                                      Navigator.push(context,MaterialPageRoute(builder:(context)=>const PaidArticleListScreen()));
 
                                     }
                                   },

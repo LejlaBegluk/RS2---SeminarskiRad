@@ -21,7 +21,6 @@ namespace NewsPortal.WinUI.Forms.Articles
         private readonly APIService _category = new APIService("Category");
         private readonly APIService _userService = new APIService("User");
         private readonly APIService _articleService = new APIService("Article");
-        private readonly APIService _roleService = new APIService("Role");
         private readonly APIService _paidarticleService = new APIService("PaidArticle");
 
         ArticleUpsertRequest request = new ArticleUpsertRequest();
@@ -78,9 +77,6 @@ namespace NewsPortal.WinUI.Forms.Articles
                     byte[] image = model.Photo;
 
                 MemoryStream ms=new MemoryStream(image);
-                //ms.Flush();
-                //ms.Position = 0;
-                //ms = 
                 if (ms.Length == 0 && ms.Position == 0 && ms.Capacity == 0)
                 {
 

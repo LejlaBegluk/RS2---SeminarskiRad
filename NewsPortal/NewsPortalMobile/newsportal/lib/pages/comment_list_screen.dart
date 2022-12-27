@@ -69,13 +69,14 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: ElevatedButton(
-                               
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor:  Colors.blueGrey),
                                   child: Text("Save"),
                                   onPressed: () {
                                      if (_formKey.currentState!.validate()) {
                                      insertComment(commentController.text);
                                      bodyWidget();
-                                      Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>CommentListScreen(articleId: articleId)));
+                                      Navigator.push(context,MaterialPageRoute(builder:(context)=>CommentListScreen(articleId: articleId)));
                                     }
                                   },
                                 ),
