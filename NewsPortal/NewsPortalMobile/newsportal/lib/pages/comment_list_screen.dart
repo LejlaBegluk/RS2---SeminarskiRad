@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable, non_constant_identifier_names
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -16,7 +18,7 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
   Widget build(BuildContext context) {
 
     return Scaffold(
-        drawer:MenuDrawer(),
+        drawer:const MenuDrawer(),
         appBar: AppBar(
           title: const Text('Comments'),
           backgroundColor: Colors.grey,
@@ -27,7 +29,7 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
           visible: APIService.UserId!=null,
           child:FloatingActionButton(
             backgroundColor: Colors.blueGrey,
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
           onPressed: (){showDialog(
                 context: context,
                 builder: (BuildContext context) {
@@ -42,9 +44,9 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
                             onTap: () {
                               Navigator.of(context).pop();
                             },
-                            child: CircleAvatar(
-                              child: Icon(Icons.close),
+                            child: const CircleAvatar(
                               backgroundColor: Colors.red,
+                              child: Icon(Icons.close),
                             ),
                           ),
                         ),
@@ -54,14 +56,15 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8.0),
                                 child: TextFormField(
                                    controller: commentController,
-                                   decoration: InputDecoration( hintText: "Add a comment"),
+                                   decoration: const InputDecoration( hintText: "Add a comment"),
                                    validator: (value) {
                                      if(value!.isEmpty) {
                                       return 'Comment can not be empty';
                                        }
+                                     return null;
                                   },
                                 ),
                               ),
@@ -71,7 +74,7 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
                                 child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor:  Colors.blueGrey),
-                                  child: Text("Save"),
+                                  child: const Text("Save"),
                                   onPressed: () {
                                      if (_formKey.currentState!.validate()) {
                                      insertComment(commentController.text);
@@ -120,11 +123,11 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
   Widget CommentWidget(item) {
     return Card(
     elevation: 2.0,
-    margin: EdgeInsets.only(bottom: 20.0),
-    child: Padding(padding: EdgeInsets.all(8.0),
+    margin: const EdgeInsets.only(bottom: 20.0),
+    child: Padding(padding: const EdgeInsets.all(8.0),
    
     child: Row(children: [
-        SizedBox(
+        const SizedBox(
           width: 5.0,
         ),
         Expanded(
@@ -136,22 +139,22 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
                
             children: [
               Text(item.Content,
-              style: TextStyle(fontSize: 18.0),),
-              SizedBox(height: 5.0,),
+              style: const TextStyle(fontSize: 18.0),),
+              const SizedBox(height: 5.0,),
               Row(
                 children: [
-                  Icon(Icons.person),
+                  const Icon(Icons.person),
                   Text(item.Username,
-                  style: TextStyle(fontSize: 12.0),
+                  style: const TextStyle(fontSize: 12.0),
                   ),
-                  SizedBox(width: 10.0,),
-                   Icon(Icons.calendar_month),
+                  const SizedBox(width: 10.0,),
+                   const Icon(Icons.calendar_month),
                   Text(formatter.format(item.CreateOn).toString(),
-                  style: TextStyle(fontSize: 12.0),
+                  style: const TextStyle(fontSize: 12.0),
                   ),
-                  SizedBox(width: 10.0,),
-                    Padding(
-          padding: const EdgeInsets.all(5),
+                  const SizedBox(width: 10.0,),
+                    const Padding(
+          padding: EdgeInsets.all(5),
               )],
               )
             ],

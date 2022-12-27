@@ -1,6 +1,4 @@
-import 'dart:convert';
-import 'dart:ffi';
-
+// ignore_for_file: non_constant_identifier_names, file_names
 class PaidArticle {
   final int Id;
   final bool Active;

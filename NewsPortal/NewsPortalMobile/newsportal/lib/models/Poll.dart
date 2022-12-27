@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:newsportal/models/PollAnswer.dart';
+// ignore_for_file: non_constant_identifier_names, file_names
 
 class Poll {
   final int Id;

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:newsportal/models/Category.dart';
@@ -44,7 +44,7 @@ class MenuDrawer extends StatelessWidget {
     menuItems.add(DrawerHeader(
       decoration: BoxDecoration(color:Colors.blueGrey),
       child: Text('News.com',style: TextStyle(color:Colors.white,fontSize: 28),),));
-    menuTitles.forEach((String element) { 
+    for (var element in menuTitles) { 
       Widget screen=Container();
       menuItems.add(ListTile(
           title: Text(element,style: TextStyle(fontSize: 18),),
@@ -78,7 +78,7 @@ class MenuDrawer extends StatelessWidget {
                   break;
                case 'Profile' :
               screen=Profil(); 
-                  break;;
+                  break;
             }
             Navigator.of(context).pop();
             Navigator.of(context).push(
@@ -86,7 +86,7 @@ class MenuDrawer extends StatelessWidget {
           },
         
       ));
-    });
+    }
 return menuItems;
   }
 

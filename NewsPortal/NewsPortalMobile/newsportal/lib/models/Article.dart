@@ -1,7 +1,4 @@
-import 'dart:convert';
-import 'dart:io' as Io;
-import 'package:flutter/cupertino.dart';
-import 'package:newsportal/models/Category.dart';
+// ignore_for_file: file_names, non_constant_identifier_names
 
 class Article {
   final int Id;

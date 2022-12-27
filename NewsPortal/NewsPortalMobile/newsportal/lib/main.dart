@@ -8,7 +8,7 @@ import 'package:newsportal/pages/registration.dart';
 void main() {
   Stripe.publishableKey =
      "pk_test_51M5bAiByli9BoYmU1U6QqBnoVi2hmvUiqWjlKW2HpyQJr16Uh233UwQnwYjM2E9VBi6FtQZ9MKzetimlG1UMqukl00medsSww2";
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -17,15 +17,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
        theme: ThemeData(
-       appBarTheme: AppBarTheme(
+       appBarTheme: const AppBarTheme(
      color: Colors.grey,
   )),
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: const Home(),
       routes: {
-        'Home': (context) => Home(),
-        'Register': (context) => Register(),
-        'Login': (context) => Login(),
+        'Home': (context) => const Home(),
+        'Register': (context) => const Register(),
+        'Login': (context) => const Login(),
       },
     );
   }

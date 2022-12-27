@@ -1,18 +1,16 @@
-// ignore_for_file: empty_constructor_bodies
+// ignore_for_file: empty_constructor_bodies, non_constant_identifier_names, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:newsportal/models/PollAnswer.dart';
 import 'package:newsportal/models/PollResult.dart';
 import 'package:newsportal/widgets/news_portal_drawer.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:pie_chart/pie_chart.dart';
 
 import '../services/APIService.dart';
 
 class PollResultScreen extends StatefulWidget {
 final int Id;
 final String Question;
-   PollResultScreen({Key? key, required this.Id,required this.Question}) : super(key: key);
+   const PollResultScreen({Key? key, required this.Id,required this.Question}) : super(key: key);
 
   @override
   _PollResultScreenState createState() => _PollResultScreenState();
@@ -35,7 +33,7 @@ final String Question;
   @override
   Widget build(BuildContext context) {
  return Scaffold(
-        drawer:MenuDrawer(),
+        drawer:const MenuDrawer(),
        appBar: AppBar(
           title: const Text('Poll results'),
           backgroundColor: Colors.grey,
@@ -48,7 +46,7 @@ final String Question;
                   dataSource: dataList,
                   xValueMapper: (PollResult data,_)=>data.Text,
                   yValueMapper: (PollResult data,_)=>data.Counter,
-                  dataLabelSettings: DataLabelSettings(isVisible: true),
+                  dataLabelSettings: const DataLabelSettings(isVisible: true),
 
                 )
               ],

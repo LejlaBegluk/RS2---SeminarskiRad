@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unused_field, prefer_final_fields, prefer_typing_uninitialized_variables, unused_import, import_of_legacy_library_into_null_safe, avoid_unnecessary_containers, depend_on_referenced_packages
+// ignore_for_file: prefer_const_constructors, unused_field, prefer_final_fields, prefer_typing_uninitialized_variables, unused_import, import_of_legacy_library_into_null_safe, avoid_unnecessary_containers, depend_on_referenced_packages, library_private_types_in_public_api, non_constant_identifier_names
 ////////////////// https://www.youtube.com/watch?v=VWLWjAJT9Vs      16:00
 import 'dart:typed_data';
 
@@ -78,7 +78,7 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
     child: Row(children: [
       
          item.Photo.isNotEmpty
-                ? Container(
+                ? SizedBox(
                     height: 50,
                     width: 50,
                     child: imageFromBase64String(item.Photo!),

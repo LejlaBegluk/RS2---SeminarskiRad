@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, prefer_interpolation_to_compose_strings
+// ignore_for_file: unused_import, prefer_interpolation_to_compose_strings, file_names, non_constant_identifier_names, unnecessary_question_mark, unused_local_variable
 
 import 'dart:convert';
 import 'dart:developer';
@@ -65,8 +65,8 @@ class APIService {
 
     final String basicAuth =
         'Basic ' + base64Encode(utf8.encode('$username:$password'));
-    final response = await http.get(Uri.parse(baseUrl)//,
-       // headers: {HttpHeaders.authorizationHeader: basicAuth}
+    final response = await http.get(Uri.parse(baseUrl),
+        headers: {HttpHeaders.authorizationHeader: basicAuth}
         );
     print('Status code [GET] -> ' + response.statusCode.toString());
     if (response.statusCode == 200) {
@@ -122,7 +122,6 @@ class APIService {
   }
 
 static Future<List<dynamic>?> getComments(String route, dynamic? object) async {
-    String queryString;
     String baseUrl = baseRoute + route;
 
     if (object != null) {

@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, unnecessary_import, prefer_final_fields
+// ignore_for_file: unused_import, unnecessary_import, prefer_final_fields, library_private_types_in_public_api, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -37,7 +37,7 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
   Widget build(BuildContext context) {
 
     return Scaffold(
-        drawer:MenuDrawer(),
+        drawer:const MenuDrawer(),
         appBar: AppBar(
           backgroundColor: Colors.grey,
         ),
@@ -72,8 +72,8 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
     return GestureDetector(
       child:Card(
     elevation: 2.0,
-    margin: EdgeInsets.only(bottom: 20.0),
-    child: Padding(padding: EdgeInsets.all(8.0),
+    margin: const EdgeInsets.only(bottom: 20.0),
+    child: Padding(padding: const EdgeInsets.all(8.0),
    
     child: Row(children: [  
         Expanded(
@@ -85,19 +85,19 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
                
             children: [
               Text(item.Question,
-              style: TextStyle(fontSize: 18.0),),
-              SizedBox(height: 5.0,),
+              style: const TextStyle(fontSize: 18.0),),
+              const SizedBox(height: 5.0,),
               Row(
                 children: [
                
-                  SizedBox(width: 10.0,),
-                   Icon(Icons.calendar_month),
+                  const SizedBox(width: 10.0,),
+                   const Icon(Icons.calendar_month),
                   Text(formatter.format(item.CreateOn).toString(),
-                  style: TextStyle(fontSize: 12.0),
+                  style: const TextStyle(fontSize: 12.0),
                   ),
-                  SizedBox(width: 10.0,),
-                    Padding(
-          padding: const EdgeInsets.all(5),
+                  const SizedBox(width: 10.0,),
+                    const Padding(
+          padding: EdgeInsets.all(5),
               )],
               )
             ],

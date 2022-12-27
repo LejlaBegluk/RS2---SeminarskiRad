@@ -1,8 +1,6 @@
-// ignore_for_file: import_of_legacy_library_into_null_safe, prefer_const_constructors, avoid_unnecessary_containers, depend_on_referenced_packages, avoid_web_libraries_in_flutter
+// ignore_for_file: import_of_legacy_library_into_null_safe, prefer_const_constructors, avoid_unnecessary_containers, depend_on_referenced_packages, avoid_web_libraries_in_flutter, library_private_types_in_public_api, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, unused_local_variable
 
-//import 'dart:html';
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:like_button/like_button.dart';
@@ -148,7 +146,7 @@ void dispose() {
                   SizedBox(height: 20.0,),
                   GestureDetector(
                    child: recommended.Photo!.isNotEmpty
-                ? Container(
+                ? SizedBox(
                     height: 50,
                     width: 50,
                     child: 

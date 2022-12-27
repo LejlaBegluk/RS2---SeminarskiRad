@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, prefer_const_constructors, non_constant_identifier_names
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:newsportal/models/User.dart';
@@ -5,6 +7,8 @@ import 'package:newsportal/services/APIService.dart';
 import 'package:newsportal/widgets/news_portal_drawer.dart';
 
 class Profil extends StatefulWidget {
+  const Profil({super.key});
+
   @override
   _ProfilState createState() => _ProfilState();
 }

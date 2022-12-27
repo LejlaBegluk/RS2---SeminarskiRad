@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, non_constant_identifier_names, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:newsportal/models/User.dart';
 import 'package:newsportal/services/APIService.dart';
@@ -16,14 +18,14 @@ Future<void> GetData() async {
 }
 
 class _LoginState extends State<Login> {
-  var usernameController = new TextEditingController();
-  var passwordController = new TextEditingController();
+  var usernameController = TextEditingController();
+  var passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -63,7 +65,6 @@ class _LoginState extends State<Login> {
                     APIService.password = passwordController.text;
                     await GetData();
                     if (result != null) {
-                      print(result);
                       APIService.UserId = result!.UserId;
                       Navigator.of(context).pushReplacementNamed('Home');
                     }
@@ -75,7 +76,7 @@ class _LoginState extends State<Login> {
                       ));
                     }
                   },
-                  child: Text('Login',
+                  child: const Text('Login',
                       style: TextStyle(color: Colors.white, fontSize: 20)),
                 ),
               ),

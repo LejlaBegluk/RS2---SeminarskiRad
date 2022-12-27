@@ -1,21 +1,17 @@
-// ignore_for_file: empty_constructor_bodies, deprecated_member_use
+// ignore_for_file: empty_constructor_bodies, deprecated_member_use, library_private_types_in_public_api, non_constant_identifier_names
 
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:newsportal/models/Poll.dart';
 import 'package:newsportal/models/PollAnswer.dart';
-import 'package:newsportal/pages/poll_list_screen.dart';
 import 'package:newsportal/pages/poll_result_screen.dart';
  import 'package:newsportal/services/APIService.dart';
 import 'package:newsportal/widgets/news_portal_drawer.dart';
-import '../utils/util.dart';
 //import 'package:flutter_polls/flutter_polls.dart';
 
 class PollDetailScreen extends StatefulWidget {
     final Poll poll;
-   PollDetailScreen({Key? key, required this.poll}) : super(key: key);
+   const PollDetailScreen({Key? key, required this.poll}) : super(key: key);
 
   @override
   _PollDetailScreenState createState() => _PollDetailScreenState();
@@ -23,7 +19,7 @@ class PollDetailScreen extends StatefulWidget {
 
   class _PollDetailScreenState extends State<PollDetailScreen> with SingleTickerProviderStateMixin{
      late int? groupValue = 0;
-     Map<String, dynamic>? dataMap=null;
+     Map<String, dynamic>? dataMap;
      @override
   void initState(){
     super.initState();
@@ -37,21 +33,21 @@ class PollDetailScreen extends StatefulWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-       drawer:MenuDrawer(),
+       drawer:const MenuDrawer(),
        appBar: AppBar(
           title: const Text('Poll'),
           backgroundColor: Colors.grey,
         ),
     body: Container( 
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: 
           Column(
             children: [
-                Text(widget.poll.Question, style: TextStyle( 
+                Text(widget.poll.Question, style: const TextStyle( 
                     fontSize: 18
                 ),),
 
-                Divider(),
+                const Divider(),
       Expanded(
       child:bodyWidget()
       ),
@@ -60,7 +56,7 @@ class PollDetailScreen extends StatefulWidget {
                         child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                     primary:  Colors.blueGrey),
-                          child: Text("Save"),
+                          child: const Text("Save"),
                             onPressed: () {
                             if (groupValue!=0) {
                                  vote();
@@ -106,8 +102,8 @@ class PollDetailScreen extends StatefulWidget {
     GestureDetector(
       child:Card(
     elevation: 2.0,
-    margin: EdgeInsets.only(bottom: 20.0),
-    child: Padding(padding: EdgeInsets.all(8.0),
+    margin: const EdgeInsets.only(bottom: 20.0),
+    child: Padding(padding: const EdgeInsets.all(8.0),
    
     child: Row(children: [  
         

@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, must_be_immutable, prefer_final_fields, non_constant_identifier_names
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart' hide Card;
@@ -11,7 +11,6 @@ import 'package:http/http.dart' as http;
   class PaidArticleForm extends StatelessWidget {
   final String tag;
   final PaidArticle item;
-  final _formKey = GlobalKey<FormState>();
   final int Amount=300;
    Map<String, dynamic>? paymentIntentData;
    GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -29,41 +28,43 @@ import 'package:http/http.dart' as http;
       
       Container(
        // crossAxisAlignment: CrossAxisAlignment.center,
-        margin: EdgeInsets.only(top:50),
+        margin: const EdgeInsets.only(top:50),
        child: Column(children: [  Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text("Status: "+item.PaidArticleStatusName.toString()),
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text("Status: ${item.PaidArticleStatusName}"),
                               ), 
                                  Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8.0),
                                 child: TextFormField(
                                    enabled: item.Id==0,
                                     keyboardType: TextInputType.multiline,
                                     maxLines: 2,
                                    controller: TextEditingController(text:item.Title),
-                                   decoration: InputDecoration( hintText: "Title content",  border: OutlineInputBorder()),
+                                   decoration: const InputDecoration( hintText: "Title content",  border: OutlineInputBorder()),
                                    validator: (value) {
                                      if(value!.isEmpty) {
                                       return 'Title can not be empty'; }
+                                     return null;
                                   },
                                 ),
                               ), 
                               Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8.0),
                                 child: TextFormField(
                                    enabled: item.Id==0,
                                     keyboardType: TextInputType.multiline,
                                     maxLines: 8,
                                    controller: TextEditingController(text:item.Content),
-                                   decoration: InputDecoration( hintText: "Article content",  border: OutlineInputBorder()),
+                                   decoration: const InputDecoration( hintText: "Article content",  border: OutlineInputBorder()),
                                    validator: (value) {
                                      if(value!.isEmpty) {
                                       return 'Content can not be empty';
                                        }
+                                     return null;
                                   },
                                 ),
                               ), 
-                               Padding(
+                               const Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Text("*Article can be payed only in status approved."),
                               ), 
@@ -73,7 +74,7 @@ import 'package:http/http.dart' as http;
                         ElevatedButton(
                           onPressed: () async {
                             await makePayment(double.parse(Amount.toString())).then((String value){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>PaidArticleListScreen()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>const PaidArticleListScreen()));
                             });
 
                           },
@@ -174,8 +175,6 @@ import 'package:http/http.dart' as http;
           .onError((error, stackTrace) {
         print('Exception/DISPLAYPAYMENTSHEET==> $error $stackTrace');
       });
-
-    } on StripeException catch (e) {
 
     } catch (e) {
       print('$e');

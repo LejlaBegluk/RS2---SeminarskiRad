@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, unnecessary_import, prefer_final_fields, sort_child_properties_last, library_private_types_in_public_api
+// ignore_for_file: unused_import, unnecessary_import, prefer_final_fields, sort_child_properties_last, library_private_types_in_public_api, non_constant_identifier_names
 
 import 'dart:convert';
 
@@ -83,6 +83,7 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
                                      if(value!.isEmpty) {
                                       return 'Title can not be empty';
                                        }
+                                     return null;
                                   },
                                 ),
                               ),
@@ -97,6 +98,7 @@ final DateFormat formatter = DateFormat('dd.MM.yyyy');
                                      if(value!.isEmpty) {
                                       return 'Content can not be empty';
                                        }
+                                     return null;
                                   },
                                 ),
                               ),
